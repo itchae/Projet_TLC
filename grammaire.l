@@ -7,6 +7,8 @@ CHIFFRE 	[1-9]
 ENTIER 		[+-]?{CHIFFRE}+
 REEL 		{ENTIER}("."{CHIFFRE}+)? 
 
+BOOL 		["true""TRUE""false""FALSE"]
+
 
 PLUS		"+"
 MOINS		"-"
@@ -41,20 +43,18 @@ NOM			[a-zA-Z]+
 %%
 {CLASS}|{IS}|{METHOD}|{END}|{DATA}|{RETURN}|{EXTENDS}	{ printf("Mot clé \n");}
 
-{PV}|{AFF}|{PAROUV}|{PARFER}|{VIRG}|{POINT}|{DPOINT}			{ printf("Ponctuation \n");}
+{PV}|{AFF}|{PAROUV}|{PARFER}|{VIRG}|{POINT}|{DPOINT}	{ printf("Ponctuation \n");}
 
-{PLUS}|{MOINS}|{MUL}|{DIV}|{EXPO}|{SQRT} 		{ printf("Opérateurs \n"); }
+{PLUS}|{MOINS}|{MUL}|{DIV}|{EXPO}|{SQRT} 				{ printf("Opérateurs \n"); }
 
-{CHIFFRE}|{ENTIER}|{REEL} 		{ printf("Chiffre \n"); }
+{ENTIER}|{REEL} 										{ printf("Chiffre \n"); }
 
-{FLOAT}|{INTEGER}|{BOOLEAN} 	{ printf("Type\n"); }
+{FLOAT}|{INTEGER}|{BOOLEAN} 							{ printf("Type\n"); }
 
-{NOM} 			{ printf("Nom \n"); }
+{NOM} 													{ printf("Nom \n"); }
 
+.|\n|\t 
 
-
-
-.|\n|\t
 %%
 int main(){
 	yylex();

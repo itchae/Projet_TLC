@@ -1,0 +1,12 @@
+class complexe is 
+	data
+		x is float; 
+		y is float; 
+	method
+		module() is return sqrt(x^2 + y^2); 
+		ajouter(z:complexe) is (x,y):=(x+z.x, y+z.y); 
+		multiplier(z:complexe) is (x,y):=(x*z.x-y*z.y , x*z.y+y*z.x); 
+		conjuguer() is y:=-y; 
+end complexe; 
+-2.3
+-4

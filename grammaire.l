@@ -3,11 +3,11 @@
 #include <stdlib.h>
 
 %}
-CHIFFRE 	[1-9]
-ENTIER 		[+-]?{CHIFFRE}+
-REEL 		{ENTIER}("."{CHIFFRE}+)? 
+CHIFFRE		[0-9]
+ENTIER		[+-]?{CHIFFRE}+
+REEL		{ENTIER}("."{CHIFFRE}+)? 
 
-BOOL 		"true"|"TRUE"|"false"|"FALSE"
+BOOL		"true"|"TRUE"|"false"|"FALSE"
 
 PLUS		"+"
 MOINS		"-"
@@ -18,22 +18,22 @@ SQRT		"sqrt"
 
 CLASS		"class"
 IS			"is"
-METHOD 		"method"
-END 		"end"
+METHOD		"method"
+END			"end"
 AFF			":="
 PAROUV		"("
 PARFER		")"
-DATA 		"data"
+DATA		"data"
 PV			";"
 VIRG		","
 POINT		"."
 DPOINT		":"
 
 RETURN		"return"
-FLOAT 		"float"
+FLOAT		"float"
 INTEGER		"integer"
 BOOLEAN		"boolean"
-EXTENDS 	"extends"
+EXTENDS		"extends"
 
 NOM			[a-zA-Z]+
 

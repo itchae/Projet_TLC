@@ -3,54 +3,42 @@
 #include <stdlib.h>
 
 %}
-CHIFFRE		[0-9]
-ENTIER		[+-]?{CHIFFRE}+
-REEL		{ENTIER}("."{CHIFFRE}+)? 
-
-BOOL		"true"|"TRUE"|"false"|"FALSE"
-
-PLUS		"+"
-MOINS		"-"
-MUL			"*"
-DIV			"/"
-EXPO		"^"
-SQRT		"sqrt"
-
-CLASS		"class"
-IS			"is"
-METHOD		"method"
-END			"end"
-AFF			":="
-PAROUV		"("
-PARFER		")"
-DATA		"data"
-PV			";"
-VIRG		","
-POINT		"."
-DPOINT		":"
-
-RETURN		"return"
-FLOAT		"float"
-INTEGER		"integer"
-BOOLEAN		"boolean"
-EXTENDS		"extends"
-
-NOM			[a-zA-Z]+
 
 %%
-{CLASS}|{IS}|{METHOD}|{END}|{DATA}|{RETURN}|{EXTENDS}|{BOOL}	{ printf("Mot clé \n");}
 
-{PV}|{AFF}|{PAROUV}|{PARFER}|{VIRG}|{POINT}|{DPOINT}			{ printf("Ponctuation \n");}
+[a-zA-Z]+			{return T_NAME;}
+[0-9]+\.[0-9]+ 		{yylval.fval = atof(yytext); return T_FLOAT;}
+[0-9]+				{yylval.ival = atoi(yytext); return T_INTEGER;}
+"true"|"false"		{return T_BOOLEAN;}
 
-{PLUS}|{MOINS}|{MUL}|{DIV}|{EXPO}|{SQRT} 						{ printf("Opérateurs \n"); }
+"float"				{return T_TYPEFLOAT;}
+"boolean"			{return T_TYPEBOOLEAN;}
+"integer"			{return T_TYPEINTEGER;}
 
-{ENTIER}|{REEL} 												{ printf("Chiffre \n"); }
+"+"					{return T_PLUS;}
+"-"					{return T_MINUS;}
+"*"					{return T_MULTIPLY;}
+"/"					{return T_DIVIDE;}
+"^"					{return T_EXPO;}
+"sqrt"				{return T_SQRT;}
 
-{FLOAT}|{INTEGER}|{BOOLEAN} 									{ printf("Type\n"); }
+"("					{return T_PLEFT;}
+")"					{return T_PRIGHT;}
+","					{return T_COMMA;}
+"."					{return T_POINT;}
+":"					{return T_COLON;}
+";"					{return T_SEMICOLON;}
+":="				{return T_ASSIGNMENT;}
 
-{NOM} 															{ printf("Nom \n"); }
+"class"				{return T_CLASS;}
+"extends"			{return T_EXTENDS;}
+"is"				{return T_IS;}
+"data"				{return T_DATA;}
+"method"			{return T_METHOD;}
+"return"			{return T_RETURN;}
+"end"				{return T_END;}
 
-.|\n|\t 
+.|\n|\t  			/* ignore all whitespace */
 
 %%
 int main(){

@@ -4,11 +4,17 @@
 
 %}
 
+
+
+
 %%
 
+<<<<<<< HEAD:grammaireTOKEN.l
 [+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
 [+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
 "true"|"false"		{return T_BOOLEAN;}
+=======
+>>>>>>> master:grammaire.l
 
 "float"				{return T_TYPEFLOAT;}
 "boolean"			{return T_TYPEBOOLEAN;}
@@ -37,7 +43,15 @@
 "return"			{return T_RETURN;}
 "end"				{return T_END;}
 
+<<<<<<< HEAD:grammaireTOKEN.l
 [a-zA-Z]+			{return T_NAME;}
+=======
+"true"|"false"		{return T_BOOLEAN;}
+
+[a-zA-Z]+			{return T_NAME;}
+[+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
+[+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
+>>>>>>> master:grammaire.l
 
 .|\n|\t  			/* ignore all whitespace */
 

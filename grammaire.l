@@ -4,12 +4,11 @@
 
 %}
 
+
+
+
 %%
 
-[a-zA-Z]+			{return T_NAME;}
-[+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
-[+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
-"true"|"false"		{return T_BOOLEAN;}
 
 "float"				{return T_TYPEFLOAT;}
 "boolean"			{return T_TYPEBOOLEAN;}
@@ -37,6 +36,12 @@
 "method"			{return T_METHOD;}
 "return"			{return T_RETURN;}
 "end"				{return T_END;}
+
+"true"|"false"		{return T_BOOLEAN;}
+
+[a-zA-Z]+			{return T_NAME;}
+[+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
+[+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
 
 .|\n|\t  			/* ignore all whitespace */
 

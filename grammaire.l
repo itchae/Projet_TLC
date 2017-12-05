@@ -1,4 +1,5 @@
 %{
+#include "calc.tab.h"
 #include <string.h>
 %}
 
@@ -17,7 +18,7 @@
 "-"					{return T_MINUS;}
 "*"					{return T_TIMES;}
 "/"					{return T_DIVIDE;}
-"^"					{return T_EXPO;}
+"^"					{return T_POWER;}
 "sqrt"				{return T_SQRT;}
 
 "("					{return T_PLEFT;}

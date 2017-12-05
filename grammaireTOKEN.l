@@ -1,20 +1,13 @@
 %{
-#include <stdio.h>
-#include <stdlib.h>
-
+#include <string.h>
 %}
-
-
 
 
 %%
 
-<<<<<<< HEAD:grammaireTOKEN.l
 [+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
 [+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
 "true"|"false"		{return T_BOOLEAN;}
-=======
->>>>>>> master:grammaire.l
 
 "float"				{return T_TYPEFLOAT;}
 "boolean"			{return T_TYPEBOOLEAN;}
@@ -22,7 +15,7 @@
 
 "+"					{return T_PLUS;}
 "-"					{return T_MINUS;}
-"*"					{return T_MULTIPLY;}
+"*"					{return T_TIMES;}
 "/"					{return T_DIVIDE;}
 "^"					{return T_EXPO;}
 "sqrt"				{return T_SQRT;}
@@ -43,19 +36,12 @@
 "return"			{return T_RETURN;}
 "end"				{return T_END;}
 
-<<<<<<< HEAD:grammaireTOKEN.l
-[a-zA-Z]+			{return T_NAME;}
-=======
-"true"|"false"		{return T_BOOLEAN;}
-
-[a-zA-Z]+			{return T_NAME;}
-[+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
-[+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
->>>>>>> master:grammaire.l
+[a-zA-Z]+			{yylval.sval = strdup(yytext); return T_NAME;}
 
 .|\n|\t  			/* ignore all whitespace */
 
 %%
+
 int main(){
 	yylex();
 }

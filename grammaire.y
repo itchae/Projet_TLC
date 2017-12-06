@@ -35,42 +35,58 @@ int powI(int x, int y){
 
 %left T_PLUS T_MINUS	
 %left T_TIMES T_DIVIDE
-%right T_POWER T_SQRT
+%left T_SQRT
+%right T_POWER
 
 %start S
 
 %%
 
-S : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
+S : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON {}
+  | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON {}
+  ;
 
 /* Emplacement data contenant les déclarations des variables */
-data : T_DATA declaration  
-     |
+data : T_DATA declaration  {}
+     | {}
      ;
 
 /* Déclarations des variables */
-declaration : T_NAME T_IS T_INTEGER T_SEMICOLON declaration
-            | T_NAME T_IS T_FLOAT T_SEMICOLON declaration
-            | T_NAME T_IS T_BOOLEAN T_SEMICOLON declaration
-            |
+declaration : T_NAME T_IS T_INTEGER T_SEMICOLON declaration {}
+            | T_NAME T_IS T_FLOAT T_SEMICOLON declaration {}
+            | T_NAME T_IS T_BOOLEAN T_SEMICOLON declaration {}
+            | {}
             ;
 
 /* Emplacement méthod contenant les fonctions */
-method : T_METHOD fonction
-       |
+method : T_METHOD fonction {}
+       | {}
        ;
 
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN corps T_SEMICOLON fonction
-         |
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN corps T_SEMICOLON fonction {}
+         | {}
          ;
 
 /* Paramètres de la fonction */
-parametre : T_NAME T_COLON T_FLOAT
-          | T_NAME T_COLON T_INTEGER
-          | T_NAME T_COLON T_BOOLEAN
-          |
+parametre : T_NAME T_COLON T_FLOAT {}
+          | T_NAME T_COLON T_INTEGER {}
+          | T_NAME T_COLON T_BOOLEAN {}
+          | {}
           ;
 
-corps : /* TODO */
+corps : T_NAME T_ASSIGNMENT operation {}
+      | T_NAME T_ASSIGNMENT T_BOOLEAN {}
+      ;
+
+operation : operation T_PLUS operation {$$ = $1 + $3;}
+          | operation T_MINUS operation {$$ = $1 - $3;}
+          | operation T_TIMES operation {$$ = $1 * $3;}
+          | operation T_DIVIDE operation {$$ = $1 / $3;}
+          | T_SQRT T_PLEFT operation T_PRIGHT {}
+          | operation T_POWER T_INTEGER {$$ = powI($1,$3);}
+          | T_PLEFT operation T_PRIGHT {$$ = $2;}
+          | T_INTEGER {$$ = $1;}
+          | T_FLOAT {$$ = $1;}
+          ;
 
 %%

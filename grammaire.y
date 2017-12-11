@@ -20,18 +20,21 @@ int powI(int x, int y){
 
 %union {
     int ival;
+    bool bval;
     float fval;
     char* sval;
 };
 
-%type<p> expr CNUM
-%type<s> ID
-
-%token T_NAME T_INTEGER T_FLOAT T_BOOLEAN 
+%token<sval> T_NAME 
+%token<ival> T_INTEGER 
+%token<fval> T_FLOAT 
+%token<bval> T_BOOLEAN 
 %token T_TYPEFLOAT T_TYPEBOOLEAN T_TYPEINTEGER 
 %token T_PLUS T_MINUS T_TIMES T_DIVIDE T_POWER T_SQRT
 %token T_PLEFT T_PRIGHT T_COMMA T_POINT T_COLON T_SEMICOLON T_ASSIGNMENT
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
+
+%type<fval> operation
 
 %left T_PLUS T_MINUS	
 %left T_TIMES T_DIVIDE
@@ -90,3 +93,7 @@ operation : operation T_PLUS operation {$$ = $1 + $3;}
           ;
 
 %%
+
+int main(){
+	return yyparse ();
+}

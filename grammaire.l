@@ -1,5 +1,5 @@
 %{
-#include "calc.tab.h"
+#include "grammaire.tab.h"
 #include <string.h>
 %}
 
@@ -8,7 +8,7 @@
 
 [+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
 [+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
-"true"|"false"		{return T_BOOLEAN;}
+"true"|"false"		{yylval.bval = strdup(yytext); return T_BOOLEAN;}
 
 "float"				{return T_TYPEFLOAT;}
 "boolean"			{return T_TYPEBOOLEAN;}
@@ -42,7 +42,3 @@
 .|\n|\t  			/* ignore all whitespace */
 
 %%
-
-int main(){
-	yylex();
-}

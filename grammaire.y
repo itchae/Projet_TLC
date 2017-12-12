@@ -39,6 +39,7 @@ int powI(int x, int y){
 %left T_PLUS T_MINUS	
 %left T_TIMES T_DIVIDE
 %left T_SQRT
+%left NEG
 %right T_POWER
 
 %start S
@@ -81,15 +82,16 @@ corps : T_NAME T_ASSIGNMENT operation {}
       | T_NAME T_ASSIGNMENT T_BOOLEAN {}
       ;
 
-operation : operation T_PLUS operation {$$ = $1 + $3;}
-          | operation T_MINUS operation {$$ = $1 - $3;}
-          | operation T_TIMES operation {$$ = $1 * $3;}
-          | operation T_DIVIDE operation {$$ = $1 / $3;}
-          | T_SQRT T_PLEFT operation T_PRIGHT {}
-          | operation T_POWER T_INTEGER {$$ = powI($1,$3);}
-          | T_PLEFT operation T_PRIGHT {$$ = $2;}
-          | T_INTEGER {$$ = $1;}
-          | T_FLOAT {$$ = $1;}
+operation : operation T_PLUS operation 			{$$ = $1 + $3;}
+          | operation T_MINUS operation 		{$$ = $1 - $3;}
+          | operation T_TIMES operation 		{$$ = $1 * $3;}
+          | operation T_DIVIDE operation 		{$$ = $1 / $3;}
+          | T_SQRT T_PLEFT operation T_PRIGHT 	{}
+          | operation T_POWER T_INTEGER 		{$$ = powI($1,$3);}
+          | T_PLEFT operation T_PRIGHT 			{$$ = $2;}
+          | T_MINUS operation %prec NEG  		{$$=-$2;}
+          | T_INTEGER 							{$$ = $1;}
+          | T_FLOAT 							{$$ = $1;}
           ;
 
 %%

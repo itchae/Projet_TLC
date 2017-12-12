@@ -6,8 +6,8 @@
 
 %%
 
-[+-]?[0-9]+			{yylval.ival = atoi(yytext); return T_INTEGER;}
-[+-]?[0-9]+\.[0-9]+ {yylval.fval = atof(yytext); return T_FLOAT;}
+[0-9]+				{yylval.ival = atoi(yytext); return T_INTEGER;}
+[0-9]+\.[0-9]+ 		{yylval.fval = atof(yytext); return T_FLOAT;}
 "true"|"false"		{yylval.bval = strdup(yytext); return T_BOOLEAN;}
 
 "float"				{return T_TYPEFLOAT;}

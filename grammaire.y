@@ -1,6 +1,5 @@
 %{
 #include <iostream>
-#include "stdio.h"
 
 extern int yylex();
 
@@ -14,9 +13,14 @@ int powI(int x, int y){
 		res *= x;
 	}
 	return res;
-}		
+}
 
 %}
+
+
+%token<ival> T_INTEGER
+%token<fval> T_FLOAT
+%token<sval> T_NAME
 
 %union {
     int ival;
@@ -46,6 +50,8 @@ int powI(int x, int y){
 
 %%
 
+/* Il va falloir un point d'entrée pour savoir d'ou doivent partir les
+calculs je suppose ... */
 S : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON {}
   | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON {}
   ;
@@ -72,6 +78,8 @@ fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN corps T_SEMICOLON fon
          ;
 
 /* Paramètres de la fonction */
+//il faut virer les trois et mettre un autre truc avec float int etc a part
+//plus facile si on doit rajouter des types
 parametre : T_NAME T_COLON T_FLOAT {}
           | T_NAME T_COLON T_INTEGER {}
           | T_NAME T_COLON T_BOOLEAN {}

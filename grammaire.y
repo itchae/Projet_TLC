@@ -55,9 +55,9 @@ data : T_DATA declaration  {}
      ;
 
 /* Déclarations des variables */
-declaration : T_NAME T_IS T_INTEGER T_SEMICOLON declaration {}
-            | T_NAME T_IS T_FLOAT T_SEMICOLON declaration {}
-            | T_NAME T_IS T_BOOLEAN T_SEMICOLON declaration {}
+declaration : T_NAME T_IS T_TYPEINTEGER T_SEMICOLON declaration {}
+            | T_NAME T_IS T_TYPEFLOAT T_SEMICOLON declaration {}
+            | T_NAME T_IS T_TYPEBOOLEAN T_SEMICOLON declaration {}
             | {}
             ;
 

@@ -7,6 +7,4 @@ class complexe is
     ajouter(z:complexe) is (x,y):=(x+z.x, y+z.y);  
     multiplier(z:complexe) is (x,y):=(x*z.x-y*z.y , x*z.y+y*z.x);  
     conjuguer() is y:=-y;  
-end complexe;  
--2.3 
--4 
+end complexe;

@@ -1,5 +1,6 @@
 %{
 #include <iostream>
+#include "stdio.h"
 
 extern int yylex();
 
@@ -17,11 +18,6 @@ int powI(int x, int y){
 
 %}
 
-
-%token<ival> T_INTEGER
-%token<fval> T_FLOAT
-%token<sval> T_NAME
-
 %union {
     int ival;
     bool bval;
@@ -38,7 +34,7 @@ int powI(int x, int y){
 %token T_PLEFT T_PRIGHT T_COMMA T_POINT T_COLON T_SEMICOLON T_ASSIGNMENT
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
-%type<fval> operation
+%type<fval> expression
 
 %left T_PLUS T_MINUS	
 %left T_TIMES T_DIVIDE
@@ -50,57 +46,67 @@ int powI(int x, int y){
 
 %%
 
-/* Il va falloir un point d'entrée pour savoir d'ou doivent partir les
-calculs je suppose ... */
-S : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON {}
-  | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON {}
+/* Axiome : signature de la classe */
+S : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 						{printf("CLASS \n");}
+  | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON	{printf("CLASS EXTENDS \n");}
   ;
 
 /* Emplacement data contenant les déclarations des variables */
-data : T_DATA declaration  {}
+data : T_DATA declaration  {printf("DATA ");}
      | {}
      ;
 
 /* Déclarations des variables */
-declaration : T_NAME T_IS T_TYPEINTEGER T_SEMICOLON declaration {}
-            | T_NAME T_IS T_TYPEFLOAT T_SEMICOLON declaration {}
-            | T_NAME T_IS T_TYPEBOOLEAN T_SEMICOLON declaration {}
+declaration : T_NAME T_IS type T_SEMICOLON declaration 	{printf("DECLARATION ");}
             | {}
             ;
 
 /* Emplacement méthod contenant les fonctions */
-method : T_METHOD fonction {}
+method : T_METHOD fonction {printf("METHODE ");}
        | {}
        ;
 
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN corps T_SEMICOLON fonction {}
+/* Signatures des fonctions */
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction {printf("FONCTION ");}
          | {}
          ;
 
 /* Paramètres de la fonction */
-//il faut virer les trois et mettre un autre truc avec float int etc a part
-//plus facile si on doit rajouter des types
-parametre : T_NAME T_COLON T_FLOAT {}
-          | T_NAME T_COLON T_INTEGER {}
-          | T_NAME T_COLON T_BOOLEAN {}
-          | {}
+parametre : T_NAME T_COLON type 	{printf("PARAMETRE ");}
+          | {printf("NOPARAM ");}
           ;
 
-corps : T_NAME T_ASSIGNMENT operation {}
-      | T_NAME T_ASSIGNMENT T_BOOLEAN {}
+/* Types possibles des variables */
+type : T_TYPEBOOLEAN	{printf("BOOL ");}
+	  | T_TYPEFLOAT 	{printf("FLOAT ");}
+	  | T_TYPEINTEGER	{printf("INTEGER ");}
+	  | T_NAME			{printf("NAME ");}
+	  ;
+
+/* Corps de la fonction : affectation ou retourne une expression */
+corps : T_NAME T_ASSIGNMENT expression		{printf("ASSIGN ");}
+		| T_PLEFT assignment T_PRIGHT  		{printf("FIN ");}
+      | T_RETURN expression		 			{printf("RETURN ");}
       ;
+			  
+/* Affectations multiples (ex : (x,y):=(1,2) */
+assignment : T_NAME T_COMMA assignment T_COMMA expression		{printf("MULTIASSIGN1 ");}
+			  | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression	{printf("MULTIASSIGN2 ");}
+			  ;
 
-operation : operation T_PLUS operation 			{$$ = $1 + $3;}
-          | operation T_MINUS operation 		{$$ = $1 - $3;}
-          | operation T_TIMES operation 		{$$ = $1 * $3;}
-          | operation T_DIVIDE operation 		{$$ = $1 / $3;}
-          | T_SQRT T_PLEFT operation T_PRIGHT 	{}
-          | operation T_POWER T_INTEGER 		{$$ = powI($1,$3);}
-          | T_PLEFT operation T_PRIGHT 			{$$ = $2;}
-          | T_MINUS operation %prec NEG  		{$$=-$2;}
-          | T_INTEGER 							{$$ = $1;}
-          | T_FLOAT 							{$$ = $1;}
-          ;
+expression : expression T_PLUS expression 			{printf("PLUS ");}
+           | expression T_MINUS expression 			{printf("MOINS ");}
+           | expression T_TIMES expression 			{printf("FOIS ");}
+           | expression T_DIVIDE expression 			{printf("DIVISE ");}
+           | T_SQRT T_PLEFT expression T_PRIGHT 	{printf("SQRT ");}
+           | expression T_POWER T_INTEGER 		 	{printf("POWER ");}
+           | T_PLEFT expression T_PRIGHT 			   {printf("PARENTHESE ");}
+           | T_MINUS expression %prec NEG  			{printf("NEG ");}
+           | T_INTEGER 										{printf("INTEGER ");}
+           | T_FLOAT 										{printf("FLOAT ");}
+           | T_NAME											{printf("NAME ");}
+           | T_NAME T_POINT T_NAME						{printf("PARAM ");}
+           ;
 
 %%
 

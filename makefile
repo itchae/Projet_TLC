@@ -1,7 +1,7 @@
-toto: main.cc grammaire.tab.c lex.yy.c
+toto: grammaire.tab.c lex.yy.c
 	$(CXX) -o $@ $^ -lfl
 
-calc.tab.cc: grammaire.y
+grammaire.tab.c: grammaire.y
 	bison -d $<
 
 lex.yy.c : grammaire.l

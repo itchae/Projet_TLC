@@ -1,8 +1,7 @@
-
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include "grammaire.tab.hh"
+#include "grammaire.tab.h"
 
 using namespace std;
 

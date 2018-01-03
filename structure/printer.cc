@@ -68,3 +68,10 @@ void Printer::visitSeq(const Sequence *s) {
   }
   //cout<<"ATTENTION Inversion possible (en fct de votre algo)!"<<endl;
 }
+
+void Printer::visitClass(const Class *c) {
+  cout<<"Class " << c->getName();
+  w->getCond()->visit(*this);
+  cout<<")"<<endl;
+  w->getBody()->visit(*this);
+}

@@ -1,6 +1,6 @@
 #include "decl.hh"
 
-Decl::Decl(string var) : var(var) {
+Decl::Decl(string var, Type type) : var(var), type(type) {
 }
 
 Decl::~Decl() {

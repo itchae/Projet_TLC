@@ -3,10 +3,17 @@
 
 #include "inst.hh"
 
+enum Type {
+  BOOLEAN,
+  FLOAT,
+  INTEGER,
+};
+
 class Decl : public Instruction {
   string var;
+  Type type;
 public:
-  Decl(string var);
+  Decl(string var, Type type);
   ~Decl();
 
   inline const string getVar() const { return var; }

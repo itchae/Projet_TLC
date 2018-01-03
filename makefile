@@ -1,11 +1,20 @@
-toto: grammaire.tab.c lex.yy.c
+SRC= $(wildcard structure/*.cc)
+OBJ= $(SRC:structure/*.cc=.o)
+
+EXEC=test
+
+all: $(EXEC)
+
+test: main.cc TLC_Gpe_14_Grammaire_v2.tab.c lex.yy.c $(OBJ)
 	$(CXX) -o $@ $^ -lfl
 
-grammaire.tab.c: grammaire.y
+TLC_Gpe_14_Grammaire_v2.tab.c: TLC_Gpe_14_Grammaire_v2.y
 	bison -d $<
 
-lex.yy.c : grammaire.l
+lex.yy.c: TLC_Gpe_14_Grammaire.l
 	flex $<
 
-clean :
-	rm -fr grammaire.tab.c grammaire.tab.h lex.yy.c toto
+.PHONY: clean	
+	
+clean:
+	rm -rf TLC_Gpe_14_Grammaire_v2.tab.c TLC_Gpe_14_Grammaire_v2.tab.h lex.yy.c test

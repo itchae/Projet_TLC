@@ -109,7 +109,3 @@ expression : expression T_PLUS expression 			{printf("PLUS ");}
            ;
 
 %%
-
-int main(){
-	return yyparse ();
-}

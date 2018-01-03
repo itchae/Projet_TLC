@@ -14,7 +14,7 @@ class Fonction  {
 		Instruction* instruct;
 		
 	public:
-		Fonction(vector<Fonction*> v);
+		Fonction(string name, vector<Decl*> v, Instruction* instruct);
 		~Fonction();
 
 		bool containsParam(string var) const;

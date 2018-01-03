@@ -1,7 +1,7 @@
 #include "fonc.hh"
 
-Fonction::Fonction(vector<Decl*> v, Instruction* i)
-	: instruct(i)
+Fonction::Fonction(string name, vector<Decl*> v, Instruction* i)
+	: name(name), instruct(i)
 {
 	//copie le vecteur v dans le vecteur vars
 	param.reserve(v.size());
@@ -13,6 +13,7 @@ Fonction::~Fonction() {
 	  delete param.back();
 	  param.pop_back();
   }
+  delete instruct;
 }
 
 bool Fonction::containsParam(string var) const{

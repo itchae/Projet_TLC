@@ -2,6 +2,7 @@
 #include <iostream>
 #include "stdio.h"
 #include <vector>
+#include "vivacite.hh"
 
 extern int yylex();
 
@@ -22,6 +23,11 @@ void yyerror(const char* msg){
 	Expression* exp;
 	Sequence* seq;
 	Class* class;
+	Method* meth;
+	Data* data;
+	Type* type;
+	vector<Decl*> params;
+	Fonction* fonc;
 };
 
 %token<sval> T_NAME 
@@ -34,7 +40,13 @@ void yyerror(const char* msg){
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
 %type<exp> expression
+%type<term> corps
 %type<class> class
+%type<type> type
+%type<data> data
+%type<meth> method
+%type<params> parametre
+%type<fonc> fonction
 
 %left T_PLUS T_MINUS	
 %left T_TIMES T_DIVIDE
@@ -67,7 +79,7 @@ method : T_METHOD fonction 								{printf("METHODE ");}
        ;
 
 /* Signatures des fonctions */
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction 		{printf("FONCTION ");}
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction 		{$$ = new Fonction($1,$3,$6);}
          | 																			{}
          ;
 

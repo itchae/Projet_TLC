@@ -1,6 +1,7 @@
 %{
-#include "grammaire.tab.h"
+#include "TLC_Gpe_14_Grammaire_v2.tab.h"
 #include <string.h>
+#include "structure/vivacite.hh"
 %}
 
 

@@ -29,5 +29,5 @@ Decl* Method::getFonction(string var) const{
 }
 
 void Method::visit(Visitor& visitor) const {
-  return visitor.visitBlock(this);
+  return visitor.visitMethod(this);
 }

@@ -35,43 +35,13 @@ void Printer::visitAffect(const Affect *a) {
   cout<<";"<<endl;
 }
 
-void Printer::visitCond(const Cond *c) {
-  cout<<"if(";
-  c->getCond()->visit(*this);
-  cout<<")"<<endl;
-  c->getCons()->visit(*this);
-  if(c->getAlt() != NULL){
-  	cout<<endl<<"else"<<endl;
-  	c->getAlt()->visit(*this);
-  }
-}
-
 void Printer::visitDecl(const Decl *d) {
   cout<<"var "<<d->getVar()<<";"<<endl;
 }
 
-void Printer::visitWhile(const While *w) {
-  cout<<"while(";
-  w->getCond()->visit(*this);
-  cout<<")"<<endl;
-  w->getBody()->visit(*this);
-}
-
-void Printer::visitSeq(const Sequence *s) {
-  //cout<<"ATTENTION Inversion possible (en fct de votre algo)!"<<endl;
-  SeqItem *t = s->getFirst();
-  while(t != NULL) {
-    t->getInst()->visit(*this);
-    t = t->getNext();
-  }
-  //cout<<"ATTENTION Inversion possible (en fct de votre algo)!"<<endl;
-}
-
 void Printer::visitClass(const Class *c) {
   cout<<"Class " << c->getName();
-  w->getCond()->visit(*this);
-  cout<<")"<<endl;
-  w->getBody()->visit(*this);
+  //TODO affichage element classe
 }
 
 void Printer::visitFonc(const Fonction *f) {
@@ -79,12 +49,15 @@ void Printer::visitFonc(const Fonction *f) {
   //affichage parametres
   cout<<"(";
   if (!f->noParam()){
-    std::vector<Decl*>::iterator it = f->paramIterator();
-    while (*it.next != null){
-      it->visit(*this);
-      cout << ", ";
-    }
+    //TODO affichage parametre
   }
   f->getInst()->visit();
   cout << "\n}"
+}
+
+void Printer::visitMethod(const Method *m) {
+  cout<<"Class " << c->getName();
+  w->getCond()->visit(*this);
+  cout<<")"<<endl;
+  w->getBody()->visit(*this);
 }

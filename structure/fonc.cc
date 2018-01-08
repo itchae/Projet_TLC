@@ -34,10 +34,6 @@ bool Fonction::noParam() const{
 	return param.empty();
 }
 
-std::vector<Decl*>::iterator Fonction::paramIterator() {
-    return param.begin();
-}
-
 void Fonction::visit(Visitor& visitor) const {
   return visitor.visitFonc(this);
 }

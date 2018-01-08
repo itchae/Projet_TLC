@@ -6,6 +6,7 @@
 #include "expr.hh"
 
 class Affect : public Instruction {
+private:
   vector<string> vars;
   vector<Expression*> exprs;
 public:
@@ -14,7 +15,7 @@ public:
 
   inline vector<string> getVars() const { return vars; }
   inline const vector<Expression*> getExprs() const { return exprs; }
-  
+
   void visit(Visitor& visitor) const;
 };
 

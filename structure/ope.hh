@@ -15,6 +15,7 @@ enum OperatorSymbol {
 };
 
 class Operator : public Expression {
+private:
   Expression *left;
   OperatorSymbol symbol;
   Expression *right;
@@ -28,9 +29,9 @@ public:
   inline const OperatorSymbol getSymbol() const {
     return symbol;
   }
-  
+
   void visit(Visitor& visitor) const;
-  
+
 };
 
 #endif

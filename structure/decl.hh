@@ -10,6 +10,7 @@ enum Type {
 };
 
 class Decl : public Instruction {
+private:
   string var;
   Type type;
 public:
@@ -17,9 +18,9 @@ public:
   ~Decl();
 
   inline const string getVar() const { return var; }
-  
+
   void visit(Visitor& visitor) const;
-  
+
 };
 
 

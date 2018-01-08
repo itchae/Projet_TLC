@@ -15,6 +15,7 @@ class Fonction  {
 
 	public:
 		Fonction(string name, vector<Decl*> v, Instruction* instruct);
+		
 		~Fonction();
 
 		/**
@@ -26,8 +27,6 @@ class Fonction  {
 		bool containsParam(string var) const;
 
 		Decl* getParam(string var) const;
-
-		std::vector<Decl*>::iterator paramIterator();
 
 		inline const Instruction* getInst() const { return instruct; }
 

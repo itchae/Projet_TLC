@@ -25,13 +25,13 @@ class Sequence : public Instruction {
 public:
   Sequence(Instruction *first = NULL);
   ~Sequence();
-  
+
   inline SeqItem* getFirst() const { return first; }
 
   void visit(Visitor& visitor) const;
 
   void add(Instruction *i); // attention risque d'inversion! (a vous de voir...)
-  
+
 };
 
 

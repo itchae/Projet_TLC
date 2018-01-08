@@ -8,6 +8,10 @@ void Printer::visitFloat(const Float *f) {
   cout<<f->getValue();
 }
 
+void Printer::visitInteger(const Integer *i) {
+  cout<<i->getValue();
+}
+
 void Printer::visitOperator(const Operator *o) {
   cout<<"(";
   o->getLeft()->visit(*this);
@@ -31,18 +35,12 @@ void Printer::visitAffect(const Affect *a) {
   cout<<";"<<endl;
 }
 
-void Printer::visitBlock(const Block *b) {
-  cout<<"{"<<endl;
-  b->getBody()->visit(*this);
-  cout<<"}"<<endl;
-}
-
 void Printer::visitCond(const Cond *c) {
   cout<<"if(";
   c->getCond()->visit(*this);
   cout<<")"<<endl;
   c->getCons()->visit(*this);
-  if(c->getAlt() != NULL){ 	
+  if(c->getAlt() != NULL){
   	cout<<endl<<"else"<<endl;
   	c->getAlt()->visit(*this);
   }
@@ -74,4 +72,19 @@ void Printer::visitClass(const Class *c) {
   w->getCond()->visit(*this);
   cout<<")"<<endl;
   w->getBody()->visit(*this);
+}
+
+void Printer::visitFonc(const Fonction *f) {
+  cout<<"fonction " << f->getName();
+  //affichage parametres
+  cout<<"(";
+  if (!f->noParam()){
+    std::vector<Decl*>::iterator it = f->paramIterator();
+    while (*it.next != null){
+      it->visit(*this);
+      cout << ", ";
+    }
+  }
+  f->getInst()->visit();
+  cout << "\n}"
 }

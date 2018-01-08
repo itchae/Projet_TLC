@@ -18,18 +18,26 @@ Fonction::~Fonction() {
 
 bool Fonction::containsParam(string var) const{
 	for (int i=0; i<param.size(); i++){
-		if (param[i]->compare(var)==0) return true;
+		if (param[i]->getVar().compare(var)==0) return true;
 	}
 	return false;
 }
 
 Decl* Fonction::getParam(string var) const{
-	for (int i=0; i<vars.size(); i++){
-		if (vars[i]->compare(var)==0) return vars[i];
+	for (int i=0; i<param.size(); i++){
+		if (param[i]->getVar().compare(var)==0) return param[i];
 	}
-	return null;
+	return NULL;
+}
+
+bool Fonction::noParam() const{
+	return param.empty();
+}
+
+std::vector<Decl*>::iterator Fonction::paramIterator() {
+    return param.begin();
 }
 
 void Fonction::visit(Visitor& visitor) const {
-  return visitor.visitBlock(this);
+  return visitor.visitFonc(this);
 }

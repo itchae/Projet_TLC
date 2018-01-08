@@ -519,7 +519,8 @@ char *yytext;
 #line 2 "TLC_Gpe_14_Grammaire.l"
 #include "TLC_Gpe_14_Grammaire_v2.tab.h"
 #include <string.h>
-#line 523 "lex.yy.c"
+#include "structure/vivacite.hh"
+#line 524 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -737,10 +738,10 @@ YY_DECL
 		}
 
 	{
-#line 7 "TLC_Gpe_14_Grammaire.l"
+#line 8 "TLC_Gpe_14_Grammaire.l"
 
 
-#line 744 "lex.yy.c"
+#line 745 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -799,151 +800,151 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "TLC_Gpe_14_Grammaire.l"
+#line 10 "TLC_Gpe_14_Grammaire.l"
 {yylval.ival = atoi(yytext); return T_INTEGER;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "TLC_Gpe_14_Grammaire.l"
+#line 11 "TLC_Gpe_14_Grammaire.l"
 {yylval.fval = atof(yytext); return T_FLOAT;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 11 "TLC_Gpe_14_Grammaire.l"
+#line 12 "TLC_Gpe_14_Grammaire.l"
 {yylval.bval = strdup(yytext); return T_BOOLEAN;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "TLC_Gpe_14_Grammaire.l"
+#line 14 "TLC_Gpe_14_Grammaire.l"
 {return T_TYPEFLOAT;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "TLC_Gpe_14_Grammaire.l"
+#line 15 "TLC_Gpe_14_Grammaire.l"
 {return T_TYPEBOOLEAN;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "TLC_Gpe_14_Grammaire.l"
+#line 16 "TLC_Gpe_14_Grammaire.l"
 {return T_TYPEINTEGER;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 17 "TLC_Gpe_14_Grammaire.l"
+#line 18 "TLC_Gpe_14_Grammaire.l"
 {return T_PLUS;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 18 "TLC_Gpe_14_Grammaire.l"
+#line 19 "TLC_Gpe_14_Grammaire.l"
 {return T_MINUS;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 19 "TLC_Gpe_14_Grammaire.l"
+#line 20 "TLC_Gpe_14_Grammaire.l"
 {return T_TIMES;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 20 "TLC_Gpe_14_Grammaire.l"
+#line 21 "TLC_Gpe_14_Grammaire.l"
 {return T_DIVIDE;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 21 "TLC_Gpe_14_Grammaire.l"
+#line 22 "TLC_Gpe_14_Grammaire.l"
 {return T_POWER;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 22 "TLC_Gpe_14_Grammaire.l"
+#line 23 "TLC_Gpe_14_Grammaire.l"
 {return T_SQRT;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 24 "TLC_Gpe_14_Grammaire.l"
+#line 25 "TLC_Gpe_14_Grammaire.l"
 {return T_PLEFT;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 25 "TLC_Gpe_14_Grammaire.l"
+#line 26 "TLC_Gpe_14_Grammaire.l"
 {return T_PRIGHT;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 26 "TLC_Gpe_14_Grammaire.l"
+#line 27 "TLC_Gpe_14_Grammaire.l"
 {return T_COMMA;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 27 "TLC_Gpe_14_Grammaire.l"
+#line 28 "TLC_Gpe_14_Grammaire.l"
 {return T_POINT;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 28 "TLC_Gpe_14_Grammaire.l"
+#line 29 "TLC_Gpe_14_Grammaire.l"
 {return T_COLON;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 29 "TLC_Gpe_14_Grammaire.l"
+#line 30 "TLC_Gpe_14_Grammaire.l"
 {return T_SEMICOLON;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 30 "TLC_Gpe_14_Grammaire.l"
+#line 31 "TLC_Gpe_14_Grammaire.l"
 {return T_ASSIGNMENT;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 32 "TLC_Gpe_14_Grammaire.l"
+#line 33 "TLC_Gpe_14_Grammaire.l"
 {return T_CLASS;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 33 "TLC_Gpe_14_Grammaire.l"
+#line 34 "TLC_Gpe_14_Grammaire.l"
 {return T_EXTENDS;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 34 "TLC_Gpe_14_Grammaire.l"
+#line 35 "TLC_Gpe_14_Grammaire.l"
 {return T_IS;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 35 "TLC_Gpe_14_Grammaire.l"
+#line 36 "TLC_Gpe_14_Grammaire.l"
 {return T_DATA;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 36 "TLC_Gpe_14_Grammaire.l"
+#line 37 "TLC_Gpe_14_Grammaire.l"
 {return T_METHOD;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 37 "TLC_Gpe_14_Grammaire.l"
+#line 38 "TLC_Gpe_14_Grammaire.l"
 {return T_RETURN;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 38 "TLC_Gpe_14_Grammaire.l"
+#line 39 "TLC_Gpe_14_Grammaire.l"
 {return T_END;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 40 "TLC_Gpe_14_Grammaire.l"
+#line 41 "TLC_Gpe_14_Grammaire.l"
 {yylval.sval = strdup(yytext); return T_NAME;}
 	YY_BREAK
 case 28:
 /* rule 28 can match eol */
 YY_RULE_SETUP
-#line 42 "TLC_Gpe_14_Grammaire.l"
+#line 43 "TLC_Gpe_14_Grammaire.l"
 /* ignore all whitespace */
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 44 "TLC_Gpe_14_Grammaire.l"
+#line 45 "TLC_Gpe_14_Grammaire.l"
 ECHO;
 	YY_BREAK
-#line 947 "lex.yy.c"
+#line 948 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1944,7 +1945,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 44 "TLC_Gpe_14_Grammaire.l"
+#line 45 "TLC_Gpe_14_Grammaire.l"
 
 
 

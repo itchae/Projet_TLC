@@ -12,19 +12,27 @@ class Fonction  {
 		string name;
 		vector<Decl*> param;
 		Instruction* instruct;
-		
+
 	public:
 		Fonction(string name, vector<Decl*> v, Instruction* instruct);
 		~Fonction();
 
+		/**
+		 * renvoie vrai si la fonction n'a pas de parametre (vector vide)
+		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
+		 */
+		bool noParam() const;
+
 		bool containsParam(string var) const;
-		
+
 		Decl* getParam(string var) const;
-		
+
+		std::vector<Decl*>::iterator paramIterator();
+
 		inline const Instruction* getInst() const { return instruct; }
-		
+
 		void visit(Visitor& visitor) const;
-  
+
 };
 
 #endif

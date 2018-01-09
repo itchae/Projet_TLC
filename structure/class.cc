@@ -13,12 +13,11 @@ Class::Class(Class* mere, char* n, Data* d, Method* m)
 }
 
 Class::~Class() {
-  if (name!=null) delete name;
-  if (data!=null) delete data;
-  if (method!=null) delete method;
-  if (mere!=null) delete mere;
+  if (data!=NULL) delete data;
+  if (method!=NULL) delete method;
+  if (mere!=NULL) delete mere;
 }
 
 void Class::visit(Visitor& visitor) const {
-  return visitor.visitBlock(this);
+  return visitor.visitClass(this);
 }

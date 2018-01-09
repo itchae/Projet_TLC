@@ -6,10 +6,7 @@ class Float;
 class Integer;
 class Operator;
 class Affect;
-class Cond;
 class Decl;
-class While;
-class Sequence;
 class Fonction;
 class Class;
 class Method;
@@ -23,6 +20,7 @@ public:
   virtual void visitDecl(const Decl *d) = 0;
   virtual void visitFonc(const Fonction *f) = 0;
   virtual void visitMethod(const Method *m) = 0;
+  virtual void visitClass(const Class *c) = 0;
 };
 
 

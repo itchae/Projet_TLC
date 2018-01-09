@@ -10,7 +10,7 @@ private:
   vector<string> vars;
   vector<Expression*> exprs;
 public:
-  Affect(vector<string> v, vector<Expression*> e)
+  Affect(vector<string> v, vector<Expression*> e);
   ~Affect();
 
   inline vector<string> getVars() const { return vars; }

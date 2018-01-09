@@ -9,17 +9,18 @@ class Data  {
 
 	private:
 		vector<Decl*> vars;
-		
+
 	public:
 		Data(vector<Decl*> v);
+		
 		~Data();
 
 		bool contains(string var) const;
-		
+
 		Decl* getDecl(string var) const;
-		
+
 		void visit(Visitor& visitor) const;
-  
+
 };
 
 #endif

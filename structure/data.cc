@@ -16,18 +16,18 @@ Data::~Data() {
 
 bool Data::contains(string var) const{
 	for (int i=0; i<vars.size(); i++){
-		if (vars[i]->compare(var)==0) return true;
+		if (vars[i]->getVar().compare(var)==0) return true;
 	}
 	return false;
 }
 
 Data* Decl::getDecl(string var) const{
 	for (int i=0; i<vars.size(); i++){
-		if (vars[i]->compare(var)==0) return vars[i];
+		if (vars[i]->getVar().compare(var)==0) return vars[i];
 	}
-	return null;
+	return NULL;
 }
 
 void Data::visit(Visitor& visitor) const {
-  return visitor.visitBlock(this);
+  //return visitor.visitFonc(this);
 }

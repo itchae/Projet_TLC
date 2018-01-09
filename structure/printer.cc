@@ -30,8 +30,10 @@ void Printer::visitOperator(const Operator *o) {
 }
 
 void Printer::visitAffect(const Affect *a) {
-  cout<<a->getVar()<<" = ";
-  a->getExpr()->visit(*this);
+  //TODO For each
+  //cout<<a->getVars()<<" = ";
+  //TODO for each expr
+  //a->getExprs()->visit(*this);
   cout<<";"<<endl;
 }
 
@@ -40,7 +42,7 @@ void Printer::visitDecl(const Decl *d) {
 }
 
 void Printer::visitClass(const Class *c) {
-  cout<<"Class " << c->getName();
+  //cout<<"Class " << c->getName();
   //TODO affichage element classe
 }
 
@@ -51,13 +53,10 @@ void Printer::visitFonc(const Fonction *f) {
   if (!f->noParam()){
     //TODO affichage parametre
   }
-  f->getInst()->visit();
-  cout << "\n}"
+  //f->getInst()->visit();
+  cout << "\n}";
 }
 
 void Printer::visitMethod(const Method *m) {
-  cout<<"Class " << c->getName();
-  w->getCond()->visit(*this);
-  cout<<")"<<endl;
-  w->getBody()->visit(*this);
+  //TODO affichage methode
 }

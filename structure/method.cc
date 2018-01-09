@@ -16,16 +16,16 @@ Method::~Method() {
 
 bool Method::contains(string var) const{
 	for (int i=0; i<vars.size(); i++){
-		if (vars[i]->compare(var)==0) return true;
+		if (vars[i]->getName().compare(var)==0) return true;
 	}
 	return false;
 }
 
-Decl* Method::getFonction(string var) const{
+Fonction* Method::getFonction(string var) const{
 	for (int i=0; i<vars.size(); i++){
-		if (vars[i]->compare(var)==0) return vars[i];
+		if (vars[i]->getName().compare(var)==0) return vars[i];
 	}
-	return null;
+	return NULL;
 }
 
 void Method::visit(Visitor& visitor) const {

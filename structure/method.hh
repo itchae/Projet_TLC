@@ -9,17 +9,17 @@ class Method  {
 
 	private:
 		vector<Fonction*> vars;
-		
+
 	public:
-		Data(vector<Fonction*> v);
-		~Data();
+		Method(vector<Fonction*> v);
+		~Method();
 
 		bool contains(string var) const;
-		
-		Decl* getFonction(string var) const;
-		
+
+		Fonction* getFonction(string var) const;
+
 		void visit(Visitor& visitor) const;
-  
+
 };
 
 #endif

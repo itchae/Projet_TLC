@@ -5,7 +5,7 @@ Fonction::Fonction(string name, vector<Decl*> v, Instruction* i)
 {
 	//copie le vecteur v dans le vecteur vars
 	param.reserve(v.size());
-	copy(v.begin(),v.end(),back_inserter(vars));
+	copy(v.begin(),v.end(),back_inserter(param));
 }
 
 Fonction::~Fonction() {

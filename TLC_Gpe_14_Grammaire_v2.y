@@ -19,15 +19,15 @@ void yyerror(const char* msg){
     bool bval;
     float fval;
     char* sval;
-	Instruction*  term;
-	Expression* exp;
-	Sequence* seq;
-	Class* class;
-	Method* meth;
-	Data* data;
-	Type* type;
-	vector<Decl*> params;
-	Fonction* fonc;
+		Instruction* term;
+		Expression* exp;
+		Sequence* seq;
+		Class* class;
+		Method* meth;
+		Data* data;
+		Type* type;
+		vector<Decl*> params;
+		Fonction* fonc;
 };
 
 %token<sval> T_NAME

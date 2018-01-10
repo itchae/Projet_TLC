@@ -1,10 +1,7 @@
-#include "method.hh"
+#include "headers/method.hh"
 
-Method::Method(vector<Fonction*> v)
+Method::Method(vector<Fonction*> v) : vars(v)
 {
-	//copie le vecteur v dans le vecteur vars
-	vars.reserve(v.size());
-	copy(v.begin(),v.end(),back_inserter(vars));
 }
 
 Method::~Method() {

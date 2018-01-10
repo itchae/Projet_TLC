@@ -1,4 +1,4 @@
-#include "decl.hh"
+#include "headers/decl.hh"
 
 Decl::Decl(string var, Type type) : var(var), type(type) {
 }

@@ -1,4 +1,4 @@
-#include "class.hh"
+#include "headers/class.hh"
 
 Class::Class(char* n, Data* d, Method* m)
   : data(d), method(m)

@@ -1,10 +1,7 @@
-#include "data.hh"
+#include "headers/data.hh"
 
-Data::Data(vector<Decl*> v)
+Data::Data(vector<Decl*> v) : vars(v)
 {
-	//copie le vecteur v dans le vecteur vars
-	vars.reserve(v.size());
-	copy(v.begin(),v.end(),back_inserter(vars));
 }
 
 Data::~Data() {

@@ -9,7 +9,7 @@
 #include "int.hh"
 #include "method.hh"
 #include "ope.hh"
-#include "printer.hh"
+#include "interpretor.hh"
 #include "visitor.hh"
 
 #endif

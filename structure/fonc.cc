@@ -1,11 +1,8 @@
-#include "fonc.hh"
+#include "headers/fonc.hh"
 
 Fonction::Fonction(string name, vector<Decl*> v, Instruction* i)
-	: name(name), instruct(i)
+	: name(name), instruct(i), param(v)
 {
-	//copie le vecteur v dans le vecteur vars
-	param.reserve(v.size());
-	copy(v.begin(),v.end(),back_inserter(param));
 }
 
 Fonction::~Fonction() {

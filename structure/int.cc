@@ -1,4 +1,4 @@
-#include "int.hh"
+#include "headers/int.hh"
 
 
 Integer::Integer(int v) : value(v) {

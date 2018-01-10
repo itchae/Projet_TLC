@@ -2,11 +2,19 @@
 #include <iostream>
 #include "stdio.h"
 #include <vector>
-#include "vivacite.hh"
+#include "structure/headers/vivacite.hh"
 
 extern int yylex();
 
+/**
+ * parametres d'une methode
+ */
 vector<Decl*> params;
+
+/**
+ * classes déclarées
+ */
+vector<Class*> usedClasses;
 
 void yyerror(const char* msg){
 	std::cerr << "ERROR : " << msg << std::endl;

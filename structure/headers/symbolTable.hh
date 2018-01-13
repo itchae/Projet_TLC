@@ -10,12 +10,12 @@
 class SymbolTable  {
 
 	private:
-    SymbolTable& operator= (const SymbolTable&){}
-    SymbolTable (const SymbolTable&){}
-    static SymbolTable m_instance;
-    SymbolTable();
-    ~SymbolTable();
-    static vector<Class*> classes;
+		SymbolTable& operator= (const SymbolTable&){}
+		SymbolTable (const SymbolTable&){}
+		static SymbolTable m_instance;
+		SymbolTable();
+		~SymbolTable();
+		static vector<Class*> classes;
 		static vector<Decl*> decls;
 		static vector<Affect*> affects;
 
@@ -26,7 +26,7 @@ class SymbolTable  {
 		void addDecl(Decl* d);
 		Decl* findDecl(string name) const;
 		void addAffect(Affect* a);
-		Decl* findAffect(string name) const;
+		Affect* findAffect(string name) const;
 };
 
 #endif

@@ -16,7 +16,10 @@ class Class  {
 	public:
 		Class(string n, Data* d, Method* m);
 		Class(Class* mere, string n, Data* d, Method* m);
-		~Class();
+
+	Class(Data *data);
+
+	~Class();
 		bool operator==(Class& rhs) const;
 		inline const Data* getData() const { return data; }
 		inline const Method* getMethod() const { return method; }

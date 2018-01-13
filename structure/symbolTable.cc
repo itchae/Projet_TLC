@@ -38,7 +38,7 @@ Class* SymbolTable::findClass(string name) const{
 }
 
 /**--------------------------------------------------------------------------**/
-void SymbolTable::addDecl(Decl* d{
+void SymbolTable::addDecl(Decl* d){
   for (int i=0; i<decls.size(); i++){
     if (d->getVar().compare(decls[i]->getVar())==0) throw invalid_argument("declaration deja existante");
   }
@@ -62,7 +62,7 @@ void SymbolTable::addAffect(Affect* a){
 }
 
 /**--------------------------------------------------------------------------**/
-Decl* SymbolTable::findAffect(string name) const{
+Affect* SymbolTable::findAffect(string name) const{
   for (int i=0; i<affects.size(); i++){
     if (name.compare(affects[i]->getVar()->getVar())==0) return affects[i];
   }

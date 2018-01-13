@@ -67,18 +67,29 @@
 #include <iostream>
 #include "stdio.h"
 #include <vector>
-#include "vivacite.hh"
+#include <string.h>
+#include "structure/headers/vivacite.hh"
+
+using namespace std;
 
 extern int yylex();
 
+/**
+ * parametres d'une methode
+ */
 vector<Decl*> params;
+
+/**
+ * classes déclarées
+ */
+vector<Class*> usedClasses;
 
 void yyerror(const char* msg){
 	std::cerr << "ERROR : " << msg << std::endl;
 }
 
 
-#line 82 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:339  */
+#line 93 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -149,23 +160,21 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 17 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:355  */
+#line 28 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:355  */
 
     int ival;
     bool bval;
     float fval;
-    char* sval;
+    string sval;
 		Instruction* term;
 		Expression* exp;
-		Sequence* seq;
 		Class* class;
 		Method* meth;
 		Data* data;
-		Type* type;
 		vector<Decl*> params;
 		Fonction* fonc;
 
-#line 169 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:355  */
+#line 178 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -182,7 +191,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 186 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:358  */
+#line 195 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -482,10 +491,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    62,    62,    63,    67,    68,    72,    73,    77,    78,
-      82,    83,    87,    89,    91,    95,    96,    97,    98,   102,
-     103,   104,   108,   109,   112,   113,   114,   115,   116,   117,
-     118,   119,   120,   121,   122,   123,   124
+       0,    70,    70,    71,    82,    83,    87,    88,    92,    93,
+      97,    98,   102,   104,   106,   110,   111,   112,   113,   117,
+     118,   119,   123,   124,   127,   128,   129,   130,   131,   132,
+     133,   134,   135,   136,   137,   138,   139
 };
 #endif
 
@@ -1310,219 +1319,226 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 62 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {(yyval.class) = new Class((yyvsp[-6].sval),(yyvsp[-4].data),(yyvsp[-3].meth));}
-#line 1316 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 70 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {usedClasses.push_back(new Class((yyvsp[-6].sval),(yyvsp[-4].data),(yyvsp[-3].meth)));}
+#line 1325 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 63 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {printf("CLASS EXTENDS \n");}
-#line 1322 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 71 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    { Class* mere = NULL;
+                                                                                      for(int i=0; i<usedClasses.size(); i++){
+                                                                                        if ((yyvsp[-6].sval).compare(usedClasses[i]->getName())){
+                                                                                          mere = usedClasses[i];
+                                                                                        }
+                                                                                      }
+                                                                                      usedClasses.push_back(new Class(mere,(yyvsp[-8].sval),(yyvsp[-4].data),(yyvsp[-3].meth)));
+                                                                                    }
+#line 1338 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 67 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 82 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("DATA ");}
-#line 1328 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1344 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 68 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 83 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {}
-#line 1334 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1350 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 72 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 87 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("DECLARATION ");}
-#line 1340 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1356 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 73 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 88 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {}
-#line 1346 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1362 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 77 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 92 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("METHODE ");}
-#line 1352 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1368 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 78 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 93 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {}
-#line 1358 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1374 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 82 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 97 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.fonc) = new Fonction((yyvsp[-7].sval),(yyvsp[-5].params),(yyvsp[-2].term));}
-#line 1364 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1380 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 83 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 98 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {}
-#line 1370 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1386 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 87 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {params.push_back(new Decl((yyvsp[-4].sval),(yyvsp[-2].type));
+#line 102 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {params.push_back(new Decl((yyvsp[-4].sval),(yyvsp[-2].class));
 																												(yyval.params) = params;}
-#line 1377 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1393 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 89 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {params.push_back(new Decl((yyvsp[-2].sval),(yyvsp[0].type));
+#line 104 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {params.push_back(new Decl((yyvsp[-2].sval),(yyvsp[0].class));
 																												(yyval.params) = params;}
-#line 1384 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1400 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 91 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 106 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.params) = params;}
-#line 1390 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1406 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 95 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {(yyval.type) = BOOLEAN;}
-#line 1396 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 110 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {(yyval.class) = NULL;}
+#line 1412 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 96 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {(yyval.type) = FLOAT;}
-#line 1402 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 111 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {(yyval.class) = NULL;}
+#line 1418 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 97 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {(yyval.type) = INTEGER;}
-#line 1408 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 112 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {(yyval.class) = NULL;}
+#line 1424 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 98 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {(yyval.type) = (yyvsp[0].sval);}
-#line 1414 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 113 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {(yyval.class) = NULL;}
+#line 1430 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 102 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
-    {(yyval.term) = new Affect(*(yyvsp[-2].sval),(yyvsp[0].exp));}
-#line 1420 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 117 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+    {(yyval.term) = new Affect((yyvsp[-2].sval),(yyvsp[0].exp));}
+#line 1436 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 103 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 118 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("FIN ");}
-#line 1426 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1442 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 104 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 119 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("RETURN ");}
-#line 1432 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1448 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 108 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 123 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("MULTIASSIGN1 ");}
-#line 1438 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1454 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 109 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 124 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("MULTIASSIGN2 ");}
-#line 1444 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1460 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 112 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 127 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = new Operator(PLUS,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1450 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1466 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 113 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 128 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = new Operator(MOINS,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1456 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1472 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 114 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 129 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = new Operator(MULT,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1462 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1478 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 115 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 130 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = new Operator(DIV,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1468 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1484 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 116 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 131 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = sqrt((yyvsp[-1].exp));}
-#line 1474 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1490 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 117 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 132 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = powI((yyvsp[-2].exp),(yyvsp[0].ival));}
-#line 1480 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1496 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 118 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 133 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = (yyvsp[-1].exp);;}
-#line 1486 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1502 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 119 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 134 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = -(yyvsp[0].exp);}
-#line 1492 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1508 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 120 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 135 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = (yyvsp[0].ival);}
-#line 1498 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1514 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 121 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 136 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = (yyvsp[0].fval);}
-#line 1504 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1520 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 122 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 137 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = new Decl(*(yyvsp[0].sval));}
-#line 1510 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1526 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 123 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 138 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {(yyval.exp) = (yyvsp[0].bval);}
-#line 1516 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1532 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 124 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
+#line 139 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1646  */
     {printf("PARAM ");}
-#line 1522 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1538 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1526 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
+#line 1542 "TLC_Gpe_14_Grammaire_v2.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1750,5 +1766,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 127 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1906  */
+#line 142 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1906  */
 

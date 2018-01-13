@@ -2,19 +2,14 @@
 #define _DECL_H
 
 #include "inst.hh"
-
-enum Type {
-  BOOLEAN,
-  FLOAT,
-  INTEGER,
-};
+#include "class.hh"
 
 class Decl : public Instruction {
 private:
   string var;
-  Type type;
+  Class* type;
 public:
-  Decl(string var, Type type);
+  Decl(string var, Class* type);
   ~Decl();
 
   inline const string getVar() const { return var; }

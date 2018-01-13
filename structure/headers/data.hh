@@ -2,7 +2,7 @@
 #define _DATA_H
 
 #include <vector>
-#include <string>
+#include <string.h>
 #include "decl.hh"
 
 class Data  {
@@ -12,7 +12,7 @@ class Data  {
 
 	public:
 		Data(vector<Decl*> v);
-		
+
 		~Data();
 
 		bool contains(string var) const;

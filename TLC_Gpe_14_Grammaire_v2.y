@@ -2,7 +2,10 @@
 #include <iostream>
 #include "stdio.h"
 #include <vector>
+#include <string.h>
 #include "structure/headers/vivacite.hh"
+
+using namespace std;
 
 extern int yylex();
 
@@ -26,14 +29,12 @@ void yyerror(const char* msg){
     int ival;
     bool bval;
     float fval;
-    char* sval;
+    string sval;
 		Instruction* term;
 		Expression* exp;
-		Sequence* seq;
 		Class* class;
 		Method* meth;
 		Data* data;
-		Type* type;
 		vector<Decl*> params;
 		Fonction* fonc;
 };
@@ -49,12 +50,11 @@ void yyerror(const char* msg){
 
 %type<exp> expression
 %type<term> corps
-%type<class> class
-%type<type> type
 %type<data> data
 %type<meth> method
 %type<params> parametre
 %type<fonc> fonction
+%type<class> type
 
 %left T_PLUS T_MINUS
 %left T_TIMES T_DIVIDE
@@ -67,8 +67,15 @@ void yyerror(const char* msg){
 %%
 
 /* Axiome : signature de la classe */
-class : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{$$ = new Class($2,$4,$5);}
-	  	| T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{printf("CLASS EXTENDS \n");}
+class : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{usedClasses.push_back(new Class($2,$4,$5));}
+	  	| T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{ Class* mere = NULL;
+                                                                                      for(int i=0; i<usedClasses.size(); i++){
+                                                                                        if ($4.compare(usedClasses[i]->getName())){
+                                                                                          mere = usedClasses[i];
+                                                                                        }
+                                                                                      }
+                                                                                      usedClasses.push_back(new Class(mere,$2,$6,$7));
+                                                                                    }
 	  	;
 
 /* Emplacement data contenant les déclarations des variables */
@@ -100,14 +107,14 @@ parametre : T_NAME T_COLON type T_COMMA parametre 		{params.push_back(new Decl($
           ;
 
 /* Types possibles des variables */
-type : T_TYPEBOOLEAN														{$$ = BOOLEAN;}
-	 	 | T_TYPEFLOAT 															{$$ = FLOAT;}
-	 	 | T_TYPEINTEGER														{$$ = INTEGER;}
-	 	 | T_NAME																		{$$ = $1;}
+type : T_TYPEBOOLEAN														{$$ = NULL;}
+	 	 | T_TYPEFLOAT 															{$$ = NULL;}
+	 	 | T_TYPEINTEGER														{$$ = NULL;}
+	 	 | T_NAME																		{$$ = NULL;}
 	 	 ;
 
 /* Corps de la fonction : affectation ou retourne une expression */
-corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(*$1,$3);}
+corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect($1,$3);}
 	  	| T_PLEFT assignment T_PRIGHT  						{printf("FIN ");}
       | T_RETURN expression		 									{printf("RETURN ");}
       ;

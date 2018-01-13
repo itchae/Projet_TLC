@@ -1,10 +1,12 @@
 #include "headers/fonc.hh"
 
+/**--------------------------------------------------------------------------**/
 Fonction::Fonction(string name, vector<Decl*> v, Instruction* i)
 	: name(name), instruct(i), param(v)
 {
 }
 
+/**--------------------------------------------------------------------------**/
 Fonction::~Fonction() {
   while (param.size()>0){
 	  delete param.back();
@@ -13,6 +15,7 @@ Fonction::~Fonction() {
   delete instruct;
 }
 
+/**--------------------------------------------------------------------------**/
 bool Fonction::containsParam(string var) const{
 	for (int i=0; i<param.size(); i++){
 		if (param[i]->getVar().compare(var)==0) return true;
@@ -20,6 +23,7 @@ bool Fonction::containsParam(string var) const{
 	return false;
 }
 
+/**--------------------------------------------------------------------------**/
 Decl* Fonction::getParam(string var) const{
 	for (int i=0; i<param.size(); i++){
 		if (param[i]->getVar().compare(var)==0) return param[i];
@@ -27,10 +31,12 @@ Decl* Fonction::getParam(string var) const{
 	return NULL;
 }
 
+/**--------------------------------------------------------------------------**/
 bool Fonction::noParam() const{
 	return param.empty();
 }
 
+/**--------------------------------------------------------------------------**/
 void Fonction::visit(Visitor& visitor) const {
   return visitor.visitFonc(this);
 }

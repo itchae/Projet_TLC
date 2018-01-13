@@ -81,23 +81,21 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 17 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1909  */
+#line 28 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1909  */
 
     int ival;
     bool bval;
     float fval;
-    char* sval;
+    string sval;
 		Instruction* term;
 		Expression* exp;
-		Sequence* seq;
 		Class* class;
 		Method* meth;
 		Data* data;
-		Type* type;
 		vector<Decl*> params;
 		Fonction* fonc;
 
-#line 101 "TLC_Gpe_14_Grammaire_v2.tab.h" /* yacc.c:1909  */
+#line 99 "TLC_Gpe_14_Grammaire_v2.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

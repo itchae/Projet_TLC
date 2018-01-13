@@ -1,9 +1,11 @@
 #include "headers/method.hh"
 
+/**--------------------------------------------------------------------------**/
 Method::Method(vector<Fonction*> v) : vars(v)
 {
 }
 
+/**--------------------------------------------------------------------------**/
 Method::~Method() {
   while (vars.size()>0){
 	  delete vars.back();
@@ -11,6 +13,7 @@ Method::~Method() {
   }
 }
 
+/**--------------------------------------------------------------------------**/
 bool Method::contains(string var) const{
 	for (int i=0; i<vars.size(); i++){
 		if (vars[i]->getName().compare(var)==0) return true;
@@ -18,6 +21,7 @@ bool Method::contains(string var) const{
 	return false;
 }
 
+/**--------------------------------------------------------------------------**/
 Fonction* Method::getFonction(string var) const{
 	for (int i=0; i<vars.size(); i++){
 		if (vars[i]->getName().compare(var)==0) return vars[i];
@@ -25,6 +29,7 @@ Fonction* Method::getFonction(string var) const{
 	return NULL;
 }
 
+/**--------------------------------------------------------------------------**/
 void Method::visit(Visitor& visitor) const {
   return visitor.visitMethod(this);
 }

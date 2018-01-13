@@ -17,7 +17,7 @@ class Class  {
 		Class(char* n, Data* d, Method* m);
 		Class(Class* mere, char* n, Data* d, Method* m);
 		~Class();
-
+		bool operator==(Class& rhs) const;
 		inline const Data* getData() const { return data; }
 		inline const Method* getMethod() const { return method; }
 		inline const string getName() const { return name; }

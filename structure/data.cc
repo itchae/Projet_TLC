@@ -1,9 +1,11 @@
 #include "headers/data.hh"
 
+/**--------------------------------------------------------------------------**/
 Data::Data(vector<Decl*> v) : vars(v)
 {
 }
 
+/**--------------------------------------------------------------------------**/
 Data::~Data() {
   while (vars.size()>0){
 	  delete vars.back();
@@ -11,6 +13,7 @@ Data::~Data() {
   }
 }
 
+/**--------------------------------------------------------------------------**/
 bool Data::contains(string var) const{
 	for (int i=0; i<vars.size(); i++){
 		if (vars[i]->getVar().compare(var)==0) return true;
@@ -18,13 +21,15 @@ bool Data::contains(string var) const{
 	return false;
 }
 
-Data* Decl::getDecl(string var) const{
+/**--------------------------------------------------------------------------**/
+Decl* Data::getDecl(string var) const{
 	for (int i=0; i<vars.size(); i++){
 		if (vars[i]->getVar().compare(var)==0) return vars[i];
 	}
 	return NULL;
 }
 
+/**--------------------------------------------------------------------------**/
 void Data::visit(Visitor& visitor) const {
   //return visitor.visitFonc(this);
 }

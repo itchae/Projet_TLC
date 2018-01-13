@@ -7,14 +7,14 @@
 
 class Affect : public Instruction {
 private:
-  vector<string> vars;
+  Decl* var;
   vector<Expression*> exprs;
 public:
-  Affect(vector<string> v, vector<Expression*> e);
-  Affect(string s, Expression* e);
+  Affect(Decl* v, vector<Expression*> e);
+  Affect(Decl* v, Expression* e);
   ~Affect();
 
-  inline vector<string> getVars() const { return vars; }
+  inline Decl* getVar() const { return var; }
   inline const vector<Expression*> getExprs() const { return exprs; }
 
   void visit(Visitor& visitor) const;

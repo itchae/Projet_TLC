@@ -1,14 +1,15 @@
 #include "headers/affect.hh"
 
 /**--------------------------------------------------------------------------**/
-Affect::Affect(vector<string> v, vector<Expression*> e)
-	: vars(v), exprs(e)
+Affect::Affect(Decl* v, vector<Expression*> e)
+	: var(v), exprs(e)
 {
 }
 
 /**--------------------------------------------------------------------------**/
-Affect::Affect(string s, Expression* e) {
-	vars.push_back(s);
+Affect::Affect(Decl* v, Expression* e)
+	: var(v)
+{
 	exprs.push_back(e);
 }
 

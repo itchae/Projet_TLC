@@ -1,17 +1,15 @@
 #include "headers/class.hh"
 
 /**--------------------------------------------------------------------------**/
-Class::Class(char* n, Data* d, Method* m)
-  : data(d), method(m)
+Class::Class(string n, Data* d, Method* m)
+  : name(n), data(d), method(m)
 {
-	name = strdup(n);
 }
 
 /**--------------------------------------------------------------------------**/
-Class::Class(Class* mere, char* n, Data* d, Method* m)
-  : mere(mere), data(d), method(m)
+Class::Class(Class* mere, string n, Data* d, Method* m)
+  : mere(mere), name(n), data(d), method(m)
 {
-	name = strdup(n);
   if (mere == NULL) throw invalid_argument("Classe mere");
 }
 

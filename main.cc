@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include "TLC_Gpe_14_Grammaire_v2.tab.h"
+#include "TLC_Gpe_14_Grammaire_v2.tab.hh"
 
 using namespace std;
 

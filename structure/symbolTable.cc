@@ -36,3 +36,35 @@ Class* SymbolTable::findClass(string name) const{
   }
   return NULL;
 }
+
+/**--------------------------------------------------------------------------**/
+void SymbolTable::addDecl(Decl* d{
+  for (int i=0; i<decls.size(); i++){
+    if (d->getVar().compare(decls[i]->getVar())==0) throw invalid_argument("declaration deja existante");
+  }
+  decls.push_back(d);
+}
+
+/**--------------------------------------------------------------------------**/
+Decl* SymbolTable::findDecl(string name) const{
+  for (int i=0; i<decls.size(); i++){
+    if (name.compare(decls[i]->getVar())==0) return decls[i];
+  }
+  return NULL;
+}
+
+/**--------------------------------------------------------------------------**/
+void SymbolTable::addAffect(Affect* a){
+  for (int i=0; i<affects.size(); i++){
+    if (a->getVar()->getVar().compare(affects[i]->getVar()->getVar())==0) throw invalid_argument("affectation deja existante");
+  }
+  affects.push_back(a);
+}
+
+/**--------------------------------------------------------------------------**/
+Decl* SymbolTable::findAffect(string name) const{
+  for (int i=0; i<affects.size(); i++){
+    if (name.compare(affects[i]->getVar()->getVar())==0) return affects[i];
+  }
+  return NULL;
+}

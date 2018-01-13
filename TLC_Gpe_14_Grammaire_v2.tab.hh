@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_TLC_GPE_14_GRAMMAIRE_V2_TAB_H_INCLUDED
-# define YY_YY_TLC_GPE_14_GRAMMAIRE_V2_TAB_H_INCLUDED
+#ifndef YY_YY_TLC_GPE_14_GRAMMAIRE_V2_TAB_HH_INCLUDED
+# define YY_YY_TLC_GPE_14_GRAMMAIRE_V2_TAB_HH_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -81,21 +81,21 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 28 "TLC_Gpe_14_Grammaire_v2.y" /* yacc.c:1909  */
+#line 38 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1909  */
 
     int ival;
     bool bval;
     float fval;
-    string sval;
+    char* sval;
 		Instruction* term;
 		Expression* exp;
-		Class* class;
+		Class* cl;
 		Method* meth;
 		Data* data;
-		vector<Decl*> params;
 		Fonction* fonc;
+    Decl* decl;
 
-#line 99 "TLC_Gpe_14_Grammaire_v2.tab.h" /* yacc.c:1909  */
+#line 99 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -108,4 +108,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_TLC_GPE_14_GRAMMAIRE_V2_TAB_H_INCLUDED  */
+#endif /* !YY_YY_TLC_GPE_14_GRAMMAIRE_V2_TAB_HH_INCLUDED  */

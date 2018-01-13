@@ -14,8 +14,8 @@ class Class  {
 		Class* mere;
 
 	public:
-		Class(char* n, Data* d, Method* m);
-		Class(Class* mere, char* n, Data* d, Method* m);
+		Class(string n, Data* d, Method* m);
+		Class(Class* mere, string n, Data* d, Method* m);
 		~Class();
 		bool operator==(Class& rhs) const;
 		inline const Data* getData() const { return data; }

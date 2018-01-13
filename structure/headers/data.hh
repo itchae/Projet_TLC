@@ -5,7 +5,7 @@
 #include <string.h>
 #include "decl.hh"
 
-class Data  {
+class Data {
 
 	private:
 		vector<Decl*> vars;

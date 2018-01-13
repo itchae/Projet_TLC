@@ -4,6 +4,8 @@
 #include <string.h>
 #include <vector>
 #include "class.hh"
+#include "affect.hh"
+#include "decl.hh"
 
 class SymbolTable  {
 
@@ -14,11 +16,17 @@ class SymbolTable  {
     SymbolTable();
     ~SymbolTable();
     static vector<Class*> classes;
+		static vector<Decl*> decls;
+		static vector<Affect*> affects;
 
 	public:
 		static SymbolTable& Instance();
     void addClass(Class* c);
 		Class* findClass(string name) const;
+		void addDecl(Decl* d);
+		Decl* findDecl(string name) const;
+		void addAffect(Affect* a);
+		Decl* findAffect(string name) const;
 };
 
 #endif

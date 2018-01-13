@@ -1,7 +1,7 @@
 #include "headers/decl.hh"
 
 /**--------------------------------------------------------------------------**/
-Decl::Decl(string var, string* type) : var(var), type(type) {
+Decl::Decl(string var, string type) : var(var), type(type) {
   /*if (type==NULL) throw invalid_argument("Type NULL");*/
 }
 

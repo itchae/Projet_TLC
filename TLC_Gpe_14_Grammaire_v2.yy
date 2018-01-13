@@ -11,6 +11,7 @@
 #include "structure/headers/data.hh"
 #include "structure/headers/fonc.hh"
 #include "structure/headers/decl.hh"
+#include "structure/headers/symbolTable.hh"
 
 
 using namespace std;
@@ -30,7 +31,7 @@ vector<Fonction*> fonctions;
 /**
  * table des symboles
  */
-SymbolTable symbol;
+SymbolTable& symbol = SymbolTable::Instance();
 
 void yyerror(const char* msg){
 	std::cerr << "ERROR : " << msg << std::endl;
@@ -71,7 +72,7 @@ string toString(char* msg){
 %type<data> data
 %type<meth> method
 %type<fonc> fonction
-%type<cl> type
+/*%type<cl> type*/
 %type<decl> declaration
 
 %left T_PLUS T_MINUS
@@ -98,8 +99,8 @@ data : T_DATA declaration  								{$$ = new Data(params);}
      ;
 
 /* Déclarations des variables */
-declaration : T_NAME T_IS type T_SEMICOLON declaration 	{$$ = new Decl(toString($1,$3));}
-            | 																					{}
+declaration : T_NAME T_IS T_NAME T_SEMICOLON declaration 	{$$ = new Decl(toString($1),toString($3));}
+            | 																					  {}
             ;
 
 /* Emplacement méthod contenant les fonctions */
@@ -113,19 +114,19 @@ fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction 		{
          ;
 
 /* Paramètres de la fonction */
-parametre : T_NAME T_COLON type T_COMMA parametre 		{ Decl* d = new Decl(toString($1),$3);
+parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toString($1),toString($3));
                                                         params.push_back(d);}
-		  		| T_NAME T_COLON type  											{ Decl* d = new Decl(new Decl(toString($1),$3));
+		  		| T_NAME T_COLON T_NAME  											{ Decl* d = new Decl(toString($1),toString($3));
                                                         params.push_back(d);}
           | 																					{}
           ;
 
 /* Types possibles des variables */
-type : T_TYPEBOOLEAN														{$$ = new Class("c",NULL,NULL);}
+/*type : T_TYPEBOOLEAN														{$$ = new Class("c",NULL,NULL);}
 	 	 | T_TYPEFLOAT 															{$$ = new Class("c",NULL,NULL);}
 	 	 | T_TYPEINTEGER														{$$ = new Class("c",NULL,NULL);}
 	 	 | T_NAME																		{$$ = new Class("c",NULL,NULL);}
-	 	 ;
+	 	 ;*/
 
 /* Corps de la fonction : affectation ou retourne une expression */
 corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
@@ -148,7 +149,7 @@ expression : expression T_PLUS expression 				{$$ = new Operator(PLUS,$1,$3);}
            | T_MINUS expression %prec NEG  				{$$ = $2;}
            | T_INTEGER 														{$$ = new Integer($1);}
            | T_FLOAT 															{$$ = new Float($1);}
-           | T_NAME																{$$ = symbol.findAffect($1)->getExprs();}
+           /*| T_NAME																{$$ = symbol.findAffect($1)->getExprs();}*/
 		   		 | T_BOOLEAN														{$$ = new Boolean($1);}
            | T_NAME T_POINT T_NAME								{printf("PARAM ");}
            ;

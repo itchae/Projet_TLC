@@ -7,9 +7,9 @@
 class Decl : public Instruction {
 private:
   string var;
-  string* type;
+  string type;
 public:
-  Decl(string var, string* type);
+  Decl(string var, string type);
   ~Decl();
 
   inline const string getVar() const { return var; }

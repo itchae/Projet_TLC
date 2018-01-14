@@ -4,6 +4,7 @@
 #include <vector>
 #include "inst.hh"
 #include "expr.hh"
+#include "symbolTable.hh"
 
 using namespace std;
 
@@ -13,14 +14,21 @@ using namespace std;
 class Affect : public Instruction {
 
   private:
-    Decl* var;
+    vector<Decl*> vars;
     vector<Expression*> exprs;
+    /**
+     * Renvoie vrai si les declarations et les expressions ont le meme type
+     * @return vrai si les declarations et les expressions ont le meme type
+     */
+    bool memeType(vector<Decl*> v, vector<Expression*> e);
 
   public:
     Affect(Decl* v, vector<Expression*> e);
     Affect(Decl* v, Expression* e);
+    Affect(vector<Decl*> v, vector<Expression*> e);
     ~Affect();
-    inline Decl* getVar() const { return var; }
+    bool operator==(Affect* rhs);
+    inline vector<Decl*> getVars() const { return vars; }
     inline const vector<Expression*> getExprs() const { return exprs; }
     void visit(Visitor& visitor) const;
 

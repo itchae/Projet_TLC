@@ -127,8 +127,8 @@ parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toStr
 /* Corps de la fonction : affectation ou retourne une expression */
 corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
 	  	| T_PLEFT assignment T_PRIGHT  						{$$ = new Affect(params,exprs);
-                                                  params.clean();
-                                                  exprs.clean();}
+                                                  params.clear();
+                                                  exprs.clear();}
       | T_RETURN expression		 									{$$ = $2;}
       ;
 

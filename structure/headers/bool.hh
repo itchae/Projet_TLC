@@ -17,6 +17,7 @@ class Boolean : public Expression {
     Boolean(bool v);
     ~Boolean();
     inline bool getValue() const { return value; }
+    string getType() const { return "boolean"; }
     void visit(Visitor& visitor) const;
 
 };

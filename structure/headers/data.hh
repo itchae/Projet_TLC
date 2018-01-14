@@ -20,6 +20,7 @@ class Data {
 		~Data();
 		bool contains(string var) const;
 		Decl* getDecl(string var) const;
+		inline vector<Decl*> getDecls() const { return vars; }
 		void visit(Visitor& visitor) const;
 
 };

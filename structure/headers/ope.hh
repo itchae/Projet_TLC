@@ -32,6 +32,7 @@ class Operator : public Expression {
     inline const Expression* getLeft() const { return left; }
     inline const Expression* getRight() const { return right; }
     inline const OperatorSymbol getSymbol() const { return symbol;}
+    string getType() const;
     void visit(Visitor& visitor) const;
 
 };

@@ -13,6 +13,11 @@ Operator::~Operator() {
 }
 
 /**--------------------------------------------------------------------------**/
+string Operator::getType() const {
+  return ""; //TODO
+}
+
+/**--------------------------------------------------------------------------**/
 void Operator::visit(Visitor& visitor) const {
   return visitor.visitOperator(this);
 }

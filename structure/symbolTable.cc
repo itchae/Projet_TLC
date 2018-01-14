@@ -2,6 +2,9 @@
 
 /**--------------------------------------------------------------------------**/
 SymbolTable SymbolTable::m_instance = SymbolTable();
+vector<Class*> SymbolTable::classes;
+vector<Decl*> SymbolTable::decls;
+vector<Affect*> SymbolTable::affects;
 
 /**--------------------------------------------------------------------------**/
 SymbolTable::SymbolTable(){

@@ -1,0 +1,62 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}             % Include the listings-package
+%%reduction espace avant titre
+\usepackage{titling}
+\setlength{\droptitle}{-3cm}
+%%reduction des marges
+\usepackage{geometry}
+\geometry{hmargin=2.5cm,vmargin=1.5cm}
+\makeatletter
+%%chapitre sur une ligne
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+   \Huge \bfseries\thechapter.\quad#1\par\nobreak
+   \vskip 20\p@
+  }}
+\makeatother
+\title{
+	\noindent\hrulefill\\
+	\vspace{0.4\baselineskip}	%%saut de 0.4 ligne
+	Compte-rendu de projet\\
+	{\large Théorie des langages et compilation}\\
+	\noindent\hrulefill
+	\vspace{2\baselineskip}
+}
+\author{
+	\textit{Auteur(s) :}\\
+	Romain CHARPENTIER\\
+	\textit{romain.charpentier@etu.univ-poitiers.fr}\\\\
+	Lucille MOISE\\
+	\textit{lucille.moise@etu.univ-poitiers.fr}\\\\\\
+}
+\date{\today}
+
+\begin{document}
+\lstset{language=C++}
+	\begin{figure}
+	\vspace{5\baselineskip}
+   	 \begin{minipage}[c]{.3\linewidth}
+   	     \centering
+   	     \includegraphics[scale=0.5]{../../../Images/universite.png} 
+ 	   \end{minipage}
+  	  \hfill
+  	  \begin{minipage}[c]{.3\linewidth}
+   	     \centering
+    	    \includegraphics[scale=0.5]{../../../Images/sfa.jpg}
+    	\end{minipage}
+	\end{figure}
+	\maketitle
+	\newpage
+	\section{Description des fonctionnalités}
+	\section{Choix de structuration}
+	\section{Jeux d'essais}
+\end{document}
+	

@@ -10,9 +10,14 @@
   extern int yylex();
 
   /**
-   * parametres d'une methode
+   * parametres d'une methode, affectation, ...
    */
   vector<Decl*> params;
+
+  /**
+   * vector d'expressions utilisées pour les affectations multiples
+   */
+  vector<Expression*> exprs;
 
   /**
    * fonctions declarees dans un emplacement method
@@ -109,25 +114,29 @@ parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toStr
                                                         params.push_back(d);}
 		  		| T_NAME T_COLON T_NAME  											{ Decl* d = new Decl(toString($1),toString($3));
                                                         params.push_back(d);}
-          | 																					{}
+          | 																					  {}
           ;
 
 /* Types possibles des variables */
 /*type : T_TYPEBOOLEAN														{$$ = new Class("c",NULL,NULL);}
-	 	 | T_TYPEFLOAT 															{$$ = new Class("c",NULL,NULL);}
-	 	 | T_TYPEINTEGER														{$$ = new Class("c",NULL,NULL);}
-	 	 | T_NAME																		{$$ = new Class("c",NULL,NULL);}
-	 	 ;*/
+  	 	 | T_TYPEFLOAT 															{$$ = new Class("c",NULL,NULL);}
+  	 	 | T_TYPEINTEGER														{$$ = new Class("c",NULL,NULL);}
+  	 	 | T_NAME																		{$$ = new Class("c",NULL,NULL);}
+	 	   ;*/
 
 /* Corps de la fonction : affectation ou retourne une expression */
 corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
-	  	| T_PLEFT assignment T_PRIGHT  						{printf("FIN ");}
-      | T_RETURN expression		 									{printf("RETURN ");}
+	  	| T_PLEFT assignment T_PRIGHT  						{$$ = new Affect(params,exprs);
+                                                  params.clean();
+                                                  exprs.clean();}
+      | T_RETURN expression		 									{$$ = $2;}
       ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */
-assignment : T_NAME T_COMMA assignment T_COMMA expression						{printf("MULTIASSIGN1 ");}
-		   		 | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression				{printf("MULTIASSIGN2 ");}
+assignment : T_NAME T_COMMA assignment T_COMMA expression						{params.push_back(symbol.findDecl(toString($1)));
+                                                                      exprs.insert(exprs.begin(),$5);}
+		   		 | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression				{params.push_back(symbol.findDecl(toString($1)));
+                                                                      exprs.insert(exprs.begin(),$5);}
 		   		 ;
 
 expression : expression T_PLUS expression 				{$$ = new Operator(PLUS,$1,$3);}

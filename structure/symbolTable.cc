@@ -13,10 +13,7 @@ SymbolTable::SymbolTable(){
 
 /**--------------------------------------------------------------------------**/
 SymbolTable::~SymbolTable(){
-  while (classes.size()>0){
-    delete classes.back();
-    classes.pop_back();
-  }
+  cleanAll();
 }
 
 /**--------------------------------------------------------------------------**/
@@ -25,8 +22,26 @@ SymbolTable& SymbolTable::Instance(){
 }
 
 /**--------------------------------------------------------------------------**/
+void SymbolTable::cleanAll(){
+  //on vide les vecteurs et supprime les objets de la mémoire
+  while (classes.size()>0){
+    delete classes.back();
+    classes.pop_back();
+  }
+  while (decls.size()>0){
+    delete decls.back();
+    decls.pop_back();
+  }
+  while (affects.size()>0){
+    delete affects.back();
+    affects.pop_back();
+  }
+}
+
+/**--------------------------------------------------------------------------**/
 void SymbolTable::addClass(Class* c){
   for (int i=0; i<classes.size(); i++){
+    //on ne peut pas avoir deux classes portant le meme nom
     if (c->getName().compare(classes[i]->getName())==0) throw invalid_argument("classe deja existante");
   }
   classes.push_back(c);
@@ -43,6 +58,7 @@ Class* SymbolTable::findClass(string name) const{
 /**--------------------------------------------------------------------------**/
 void SymbolTable::addDecl(Decl* d){
   for (int i=0; i<decls.size(); i++){
+    //on ne peut pas avoir deux variables portant le meme nom
     if (d->getVar().compare(decls[i]->getVar())==0) throw invalid_argument("declaration deja existante");
   }
   decls.push_back(d);
@@ -59,7 +75,10 @@ Decl* SymbolTable::findDecl(string name) const{
 /**--------------------------------------------------------------------------**/
 void SymbolTable::addAffect(Affect* a){
   for (int i=0; i<affects.size(); i++){
-    if (a->getVar()->getVar().compare(affects[i]->getVar()->getVar())==0) throw invalid_argument("affectation deja existante");
+    if (a->getVar()->getVar().compare(affects[i]->getVar()->getVar())==0){
+      //on garde seulement la derniere affectation (qui correspond donc a la valeur actuelle de la variable)
+      affects[i] = a;
+    }
   }
   affects.push_back(a);
 }

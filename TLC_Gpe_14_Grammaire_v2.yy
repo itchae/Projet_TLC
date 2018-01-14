@@ -1,37 +1,37 @@
 %{
-#include <iostream>
-#include "stdio.h"
-#include <vector>
-#include <string>
-#include "structure/headers/vivacite.hh"
+  #include <iostream>
+  #include "stdio.h"
+  #include <vector>
+  #include <string>
+  #include "structure/headers/vivacite.hh"
 
-using namespace std;
+  using namespace std;
 
-extern int yylex();
+  extern int yylex();
 
-/**
- * parametres d'une methode
- */
-vector<Decl*> params;
+  /**
+   * parametres d'une methode
+   */
+  vector<Decl*> params;
 
-/**
- * fonctions declarees dans un emplacement method
- */
-vector<Fonction*> fonctions;
+  /**
+   * fonctions declarees dans un emplacement method
+   */
+  vector<Fonction*> fonctions;
 
-/**
- * table des symboles
- */
-SymbolTable& symbol = SymbolTable::Instance();
+  /**
+   * table des symboles
+   */
+  SymbolTable& symbol = SymbolTable::Instance();
 
-void yyerror(const char* msg){
-	std::cerr << "ERROR : " << msg << std::endl;
-}
+  void yyerror(const char* msg){
+  	cerr << "ERROR : " << msg << endl;
+  }
 
-string toString(char* msg){
-  string res(msg);
-  return res;
-}
+  string toString(char* msg){
+    string res(msg);
+    return res;
+  }
 
 %}
 

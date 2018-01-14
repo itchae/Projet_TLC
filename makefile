@@ -18,11 +18,11 @@ $(EXEC): $(OBJ)
 $(NAME)_v2.tab.cc: $(NAME)_v2.yy
 	bison -d $< -v
 
-lex.yy.cc: $(NAME).ll $(NAME)_v2.tab.cc
+lex.yy.c: $(NAME).ll $(NAME)_v2.tab.cc
 	flex $<
 
 clean:
-	rm -rf $(NAME)_v2.tab.cc $(NAME)_v2.tab.hh lex.yy.c
+	rm -rf $(NAME)_v2.tab.cc $(NAME)_v2.tab.hh $(NAME)_v2.output lex.yy.c
 
 mrproper: clean
 	rm -rf $(EXEC)

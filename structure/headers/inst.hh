@@ -3,10 +3,13 @@
 
 #include "term.hh"
 
+using namespace std;
+
 class Instruction : public Term {
-public:
-  ~Instruction() { }
-  
+
+  public:
+    ~Instruction() { }
+
 };
 
 #endif

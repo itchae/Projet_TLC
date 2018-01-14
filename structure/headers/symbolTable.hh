@@ -1,12 +1,17 @@
 #ifndef _SYMBOLTABLE_H
 #define _SYMBOLTABLE_H
 
-#include <string.h>
+#include <string>
 #include <vector>
 #include "class.hh"
 #include "affect.hh"
 #include "decl.hh"
 
+using namespace std;
+
+/**
+ * Table des symboles contenant les declarations faites dans le programme et qui sont accessibles
+ */
 class SymbolTable  {
 
 	private:

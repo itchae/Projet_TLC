@@ -15,5 +15,6 @@
 #include "interpretor.hh"
 #include "visitor.hh"
 #include "bool.hh"
+#include "symbolTable.hh"
 
 #endif

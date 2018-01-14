@@ -3,17 +3,22 @@
 
 #include "expr.hh"
 
+using namespace std;
 
+/**
+ * Classe représentant un boolean
+ */
 class Boolean : public Expression {
-private:
-  bool value;
-public:
-  Boolean(bool v);
-  ~Boolean();
 
-  inline bool getValue() const { return value; }
+  private:
+    bool value;
 
-  void visit(Visitor& visitor) const;
+  public:
+    Boolean(bool v);
+    ~Boolean();
+    inline bool getValue() const { return value; }
+    void visit(Visitor& visitor) const;
+
 };
 
 #endif

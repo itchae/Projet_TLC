@@ -2,17 +2,8 @@
 #include <iostream>
 #include "stdio.h"
 #include <vector>
-#include <string.h>
+#include <string>
 #include "structure/headers/vivacite.hh"
-#include "structure/headers/inst.hh"
-#include "structure/headers/expr.hh"
-#include "structure/headers/class.hh"
-#include "structure/headers/method.hh"
-#include "structure/headers/data.hh"
-#include "structure/headers/fonc.hh"
-#include "structure/headers/decl.hh"
-#include "structure/headers/symbolTable.hh"
-
 
 using namespace std;
 

@@ -3,17 +3,19 @@
 
 #include "expr.hh"
 
+using namespace std;
 
 class Float : public Expression {
-private:
-  double value;
-public:
-  Float(double v);
-  ~Float();
 
-  inline double getValue() const { return value; }
+  private:
+    double value;
 
-  void visit(Visitor& visitor) const;
+  public:
+    Float(double v);
+    ~Float();
+    inline double getValue() const { return value; }
+    void visit(Visitor& visitor) const;
+
 };
 
 #endif

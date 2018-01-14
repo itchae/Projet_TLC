@@ -4,17 +4,22 @@
 #include "inst.hh"
 //#include "class.hh"
 
+using namespace std;
+
+/**
+ * Declaration des variables de classe
+ */
 class Decl : public Instruction {
-private:
-  string var;
-  string type;
-public:
-  Decl(string var, string type);
-  ~Decl();
+  
+  private:
+    string var;
+    string type;
 
-  inline const string getVar() const { return var; }
-
-  void visit(Visitor& visitor) const;
+  public:
+    Decl(string var, string type);
+    ~Decl();
+    inline const string getVar() const { return var; }
+    void visit(Visitor& visitor) const;
 
 };
 

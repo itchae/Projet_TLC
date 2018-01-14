@@ -3,17 +3,16 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
-
 #include "visitor.hh"
 
-class Term {
- public:
-  virtual ~Term() { }
+using namespace std;
 
-  
-  
-  virtual void visit(Visitor& visitor) const = 0;
+class Term {
+
+  public:
+    virtual ~Term() { }
+    virtual void visit(Visitor& visitor) const = 0;
+
 };
 
 #endif

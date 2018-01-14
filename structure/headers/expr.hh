@@ -3,9 +3,13 @@
 
 #include "term.hh"
 
+using namespace std;
+
 class Expression : public Term {
-public:
-  ~Expression() { }
+
+  public:
+    ~Expression() { }
+
 };
 
 #endif

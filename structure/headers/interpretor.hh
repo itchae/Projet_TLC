@@ -1,6 +1,5 @@
-#ifndef _PRINTER_H
-#define _PRINTER_H
-
+#ifndef _INTERPRETOR_H
+#define _INTERPRETOR_H
 
 #include "visitor.hh"
 #include "affect.hh"
@@ -11,17 +10,20 @@
 #include "method.hh"
 #include "int.hh"
 
+using namespace std;
 
-class Printer : public Visitor {
-public:
-  void visitFloat(const Float *f);
-  void visitInteger(const Integer *i);
-  void visitOperator(const Operator *o);
-  void visitAffect(const Affect *a);
-  void visitDecl(const Decl *d);
-  void visitClass(const Class *c);
-  void visitFonc(const Fonction *f);
-  void visitMethod(const Method *m);
+class Interpretor : public Visitor {
+
+  public:
+    void visitFloat(const Float *f);
+    void visitInteger(const Integer *i);
+    void visitOperator(const Operator *o);
+    void visitAffect(const Affect *a);
+    void visitDecl(const Decl *d);
+    void visitClass(const Class *c);
+    void visitFonc(const Fonction *f);
+    void visitMethod(const Method *m);
+
 };
 
 

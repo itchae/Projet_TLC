@@ -86,9 +86,11 @@ axiome : classe axiome        {}
        | instruction          {}
 
 /* signature de la classe */
-classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ Class* c = new Class(toString($2),$4,$5);
+classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");
+                                                                                      Class* c = new Class(toString($2),$4,$5);
                                                                                       symbol.addClass(c);}
-	  	 | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{ Class* mere = symbol.findClass($4);
+	  	 | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{ if (toString($2).compare(toString($9))!=0) yyerror("nom de debut et de fin de classe non identitiques");
+                                                                                      Class* mere = symbol.findClass($4);
                                                                                       Class* c = new Class(mere,toString($2),$6,$7);
                                                                                       symbol.addClass(c);}
 	  	;
@@ -162,7 +164,7 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT        {$$ = symbol.findResultOfMethodOfClass($1,$3,exprs);
                                                                       exprs.clear();}
            | T_NAME                                                  {Affect *a = symbol.findAffect($1);
-                                                                      if (a==NULL) yyerror("number starts with 0");
+                                                                      if (a==NULL) yyerror("valeur de variable non trouvee");
                                                                       $$ = a->getExprs()[0];}
            ;
 

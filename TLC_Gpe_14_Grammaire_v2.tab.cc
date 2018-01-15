@@ -69,6 +69,7 @@
   #include <stdlib.h>
   #include <vector>
   #include <string>
+  #include <string.h>
   #include "structure/headers/vivacite.hh"
 
   using namespace std;
@@ -106,7 +107,7 @@
   }
 
 
-#line 110 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:339  */
+#line 111 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -177,7 +178,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 45 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:355  */
+#line 46 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:355  */
 
     int ival;
     bool bval;
@@ -191,7 +192,7 @@ union YYSTYPE
 		Fonction* fonc;
     Decl* decl;
 
-#line 195 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:355  */
+#line 196 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -208,7 +209,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 212 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:358  */
+#line 213 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -448,18 +449,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  13
+#define YYFINAL  12
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   104
+#define YYLAST   108
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  31
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  13
+#define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  38
+#define YYNRULES  42
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  94
+#define YYNSTATES  101
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -508,10 +509,11 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    85,    85,    86,    89,    92,    99,   100,   104,   105,
-     109,   110,   114,   115,   119,   121,   123,   134,   135,   139,
-     140,   143,   147,   149,   153,   154,   155,   156,   157,   158,
-     159,   160,   161,   162,   163,   164,   166,   171,   172
+       0,    86,    86,    87,    90,    93,   100,   101,   105,   106,
+     110,   111,   115,   116,   120,   122,   124,   128,   132,   136,
+     140,   144,   145,   149,   150,   153,   157,   159,   163,   164,
+     165,   166,   167,   168,   169,   170,   171,   172,   173,   174,
+     176,   181,   182
 };
 #endif
 
@@ -526,8 +528,8 @@ static const char *const yytname[] =
   "T_PRIGHT", "T_COMMA", "T_POINT", "T_COLON", "T_SEMICOLON",
   "T_ASSIGNMENT", "T_CLASS", "T_EXTENDS", "T_DATA", "T_IS", "T_METHOD",
   "T_RETURN", "T_END", "NEG", "$accept", "axiome", "classe", "data",
-  "declaration", "method", "fonction", "parametre", "corps", "instruction",
-  "assignment", "expression", "paramUtil", YY_NULLPTR
+  "declaration", "method", "fonction", "parametre", "type", "corps",
+  "instruction", "assignment", "expression", "paramUtil", YY_NULLPTR
 };
 #endif
 
@@ -543,10 +545,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -27
+#define YYPACT_NINF -41
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-27)))
+  (!!((Yystate) == (-41)))
 
 #define YYTABLE_NINF -1
 
@@ -557,16 +559,17 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -2,   -20,    15,    19,    24,    -2,   -27,   -27,     4,    51,
-      22,    38,   -21,   -27,   -27,    43,   -27,   -27,   -27,     4,
-      48,     4,    47,    42,    44,    15,   -27,    62,    45,    64,
-      54,     4,    31,     4,     4,     4,     4,    65,    68,    56,
-      55,    49,    68,    50,    58,    39,   -27,    23,    23,    54,
-      54,   -27,    52,   -27,     4,     4,    45,   -27,    73,    53,
-       4,   -27,    47,    47,    50,    67,   -27,    77,    20,    69,
-      59,    78,    63,     4,   -27,    82,    70,    72,   -27,   -27,
-      66,    88,    71,   -27,    74,     1,    78,     4,    75,   -27,
-     -27,    47,    73,   -27
+      -1,   -10,     7,    17,    21,    -1,   -41,     3,    36,    50,
+      38,   -21,   -41,   -41,     5,   -41,   -41,   -41,     3,    41,
+       3,    52,    40,    47,     7,   -41,    67,    46,    69,    59,
+       3,    31,     3,     3,     3,     3,    70,    72,    60,    61,
+      54,    72,    55,    62,    39,   -41,    23,    23,    59,    59,
+     -41,    57,   -41,     3,     3,    46,   -41,    74,    56,     3,
+     -41,    51,    52,    52,    55,    65,   -41,    81,    20,    71,
+     -41,   -41,   -41,   -41,    68,    63,    83,    73,     3,   -41,
+      72,    87,    75,    76,   -41,   -41,   -41,    77,    88,    78,
+     -41,    79,     1,    83,     3,    80,   -41,   -41,    52,    74,
+     -41
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -574,30 +577,31 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       9,     0,     0,     0,     0,     9,    21,     3,     0,     0,
-       0,     0,     0,     1,     2,    36,    32,    33,    34,     0,
-       0,     0,    19,     0,     0,     0,    20,     0,     7,     0,
-      31,     0,     0,     0,     0,     0,     0,     0,     9,     0,
-       0,     0,     9,    11,     0,     0,    30,    24,    25,    26,
-      27,    29,     0,     8,     0,     0,     7,     6,    13,     0,
-       0,    28,    23,    22,    11,     0,    10,     0,    38,     0,
-       0,    16,     0,     0,    35,     0,     0,     0,     4,    37,
-       0,     0,     0,     5,    15,     9,    16,     0,     0,    17,
-      14,    18,    13,    12
+       0,     0,     0,     0,     0,     0,     3,     0,     0,     0,
+       0,     0,     1,     2,    40,    36,    37,    38,     0,     0,
+       0,    23,     0,     0,     0,    24,     0,     7,     0,    35,
+       0,     0,     0,     0,     0,     0,     0,     9,     0,     0,
+       0,     9,    11,     0,     0,    34,    28,    29,    30,    31,
+      33,     0,    25,     0,     0,     7,     6,    13,     0,     0,
+      32,     0,    27,    26,    11,     0,    10,     0,    42,     0,
+      20,    18,    17,    19,     0,     0,    16,     0,     0,    39,
+       9,     0,     0,     0,     4,    41,     8,     0,     0,     0,
+       5,    15,     0,    16,     0,     0,    21,    14,    22,    13,
+      12
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -27,    89,   -27,    37,   -26,    34,     3,    13,   -27,    16,
-      79,    -8,    27
+     -41,    91,   -41,    44,   -40,    42,     4,     9,   -41,   -41,
+       8,    84,    -7,    27
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     4,     5,    43,     6,    59,    66,    77,    88,     7,
-      11,    68,    69
+      -1,     4,     5,    42,    52,    58,    66,    83,    74,    95,
+       6,    10,    68,    69
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -605,66 +609,69 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      22,     1,     8,    27,     1,    28,     9,    15,    16,    17,
-      18,    30,    53,    32,     2,    19,    57,     2,    10,    20,
-      21,     3,    12,    45,    13,    47,    48,    49,    50,    87,
-      33,    34,    35,    36,    37,    35,    36,    37,    73,    24,
-      25,    33,    34,    35,    36,    37,    62,    63,    46,    33,
-      34,    35,    36,    37,    23,    26,    61,    33,    34,    35,
-      36,    37,    29,    38,    31,    41,    39,    44,    37,    51,
-      42,    52,    54,    55,    60,    56,    65,    58,     9,    91,
-      72,    76,    67,    71,    78,    80,    74,    83,    75,    82,
-      81,    84,    86,    64,    14,    93,    92,    85,    70,    90,
-      79,    89,     0,     0,    40
+      21,    56,     1,    26,     1,    27,    14,    15,    16,    17,
+       9,    29,     7,    31,    18,     2,     8,     2,    19,    20,
+      11,    12,     3,    44,    28,    46,    47,    48,    49,    94,
+      32,    33,    34,    35,    36,    34,    35,    36,    78,    22,
+      86,    32,    33,    34,    35,    36,    62,    63,    45,    32,
+      33,    34,    35,    36,    70,    25,    60,    30,    71,    72,
+      73,    37,    32,    33,    34,    35,    36,    23,    24,    38,
+      40,    41,    43,    36,    50,    51,    53,    65,    59,    54,
+      55,    76,    57,    61,    77,    67,    82,    98,    79,    80,
+      87,    91,    81,    89,    84,    88,    13,    93,    90,    64,
+      96,    99,    97,   100,    92,    85,    75,     0,    39
 };
 
 static const yytype_int8 yycheck[] =
 {
-       8,     3,    22,    24,     3,    26,    26,     3,     4,     5,
-       6,    19,    38,    21,    16,    11,    42,    16,     3,    15,
-      16,    23,     3,    31,     0,    33,    34,    35,    36,    28,
-      10,    11,    12,    13,    14,    12,    13,    14,    18,    17,
-      18,    10,    11,    12,    13,    14,    54,    55,    17,    10,
-      11,    12,    13,    14,     3,    17,    17,    10,    11,    12,
-      13,    14,    19,    21,    16,     3,    22,     3,    14,     4,
-      25,     3,    16,    18,    16,    26,     3,    27,    26,    87,
-       3,     3,    29,    16,    21,     3,    17,    21,    29,    17,
-      20,     3,    18,    56,     5,    92,    21,    26,    64,    86,
-      73,    85,    -1,    -1,    25
+       7,    41,     3,    24,     3,    26,     3,     4,     5,     6,
+       3,    18,    22,    20,    11,    16,    26,    16,    15,    16,
+       3,     0,    23,    30,    19,    32,    33,    34,    35,    28,
+      10,    11,    12,    13,    14,    12,    13,    14,    18,     3,
+      80,    10,    11,    12,    13,    14,    53,    54,    17,    10,
+      11,    12,    13,    14,     3,    17,    17,    16,     7,     8,
+       9,    21,    10,    11,    12,    13,    14,    17,    18,    22,
+       3,    25,     3,    14,     4,     3,    16,     3,    16,    18,
+      26,    16,    27,    26,     3,    29,     3,    94,    17,    21,
+       3,     3,    29,    17,    21,    20,     5,    18,    21,    55,
+      92,    21,    93,    99,    26,    78,    64,    -1,    24
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,    16,    23,    32,    33,    35,    40,    22,    26,
-       3,    41,     3,     0,    32,     3,     4,     5,     6,    11,
-      15,    16,    42,     3,    17,    18,    17,    24,    26,    19,
-      42,    16,    42,    10,    11,    12,    13,    14,    21,    22,
-      41,     3,    25,    34,     3,    42,    17,    42,    42,    42,
-      42,     4,     3,    35,    16,    18,    26,    35,    27,    36,
-      16,    17,    42,    42,    34,     3,    37,    29,    42,    43,
-      36,    16,     3,    18,    17,    29,     3,    38,    21,    43,
-       3,    20,    17,    21,     3,    26,    18,    28,    39,    40,
-      38,    42,    21,    37
+       0,     3,    16,    23,    32,    33,    41,    22,    26,     3,
+      42,     3,     0,    32,     3,     4,     5,     6,    11,    15,
+      16,    43,     3,    17,    18,    17,    24,    26,    19,    43,
+      16,    43,    10,    11,    12,    13,    14,    21,    22,    42,
+       3,    25,    34,     3,    43,    17,    43,    43,    43,    43,
+       4,     3,    35,    16,    18,    26,    35,    27,    36,    16,
+      17,    26,    43,    43,    34,     3,    37,    29,    43,    44,
+       3,     7,     8,     9,    39,    36,    16,     3,    18,    17,
+      21,    29,     3,    38,    21,    44,    35,     3,    20,    17,
+      21,     3,    26,    18,    28,    40,    41,    38,    43,    21,
+      37
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
        0,    31,    32,    32,    33,    33,    34,    34,    35,    35,
-      36,    36,    37,    37,    38,    38,    38,    39,    39,    40,
-      40,    40,    41,    41,    42,    42,    42,    42,    42,    42,
-      42,    42,    42,    42,    42,    42,    42,    43,    43
+      36,    36,    37,    37,    38,    38,    38,    39,    39,    39,
+      39,    40,    40,    41,    41,    41,    42,    42,    43,    43,
+      43,    43,    43,    43,    43,    43,    43,    43,    43,    43,
+      43,    44,    44
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     2,     1,     8,    10,     2,     0,     5,     0,
-       2,     0,     8,     0,     5,     3,     0,     1,     2,     3,
-       3,     1,     5,     5,     3,     3,     3,     3,     4,     3,
-       3,     2,     1,     1,     1,     6,     1,     3,     1
+       2,     0,     8,     0,     5,     3,     0,     1,     1,     1,
+       1,     1,     2,     3,     3,     5,     5,     5,     3,     3,
+       3,     3,     4,     3,     3,     2,     1,     1,     1,     6,
+       1,     3,     1
 };
 
 
@@ -1341,243 +1348,276 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 85 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 86 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {}
-#line 1347 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1354 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 86 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 87 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {}
-#line 1353 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1360 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 89 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 90 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     { if (toString((yyvsp[-6].sval)).compare(toString((yyvsp[-1].sval)))!=0) yyerror("nom de debut et de fin de classe non identitiques");
                                                                                       Class* c = new Class(toString((yyvsp[-6].sval)),(yyvsp[-4].data),(yyvsp[-3].meth));
                                                                                       symbol.addClass(c);}
-#line 1361 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1368 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 92 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 93 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     { if (toString((yyvsp[-8].sval)).compare(toString((yyvsp[-1].sval)))!=0) yyerror("nom de debut et de fin de classe non identitiques");
                                                                                       Class* mere = symbol.findClass((yyvsp[-6].sval));
                                                                                       Class* c = new Class(mere,toString((yyvsp[-8].sval)),(yyvsp[-4].data),(yyvsp[-3].meth));
                                                                                       symbol.addClass(c);}
-#line 1370 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1377 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 99 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.data) = new Data(params);}
-#line 1376 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 100 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.data) = new Data(params); params.clear();}
+#line 1383 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 100 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.data) = new Data(params);}
-#line 1382 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 101 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.data) = new Data(params); params.clear();}
+#line 1389 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 104 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.decl) = new Decl(toString((yyvsp[-4].sval)),toString((yyvsp[-2].sval)));}
-#line 1388 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 105 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {Decl* d = new Decl(toString((yyvsp[-4].sval)),toString((yyvsp[-2].sval))); params.push_back(d);}
+#line 1395 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 105 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 106 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {}
-#line 1394 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1401 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 109 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 110 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {(yyval.meth) = new Method(fonctions);}
-#line 1400 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1407 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 110 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 111 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {}
-#line 1406 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1413 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 114 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 115 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {(yyval.fonc) = new Fonction(toString((yyvsp[-7].sval)),params,(yyvsp[-2].inst));}
-#line 1412 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1419 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 115 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 116 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {}
-#line 1418 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
-    break;
-
-  case 14:
-#line 119 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    { Decl* d = new Decl(toString((yyvsp[-4].sval)),toString((yyvsp[-2].sval)));
-                                                        params.push_back(d);}
 #line 1425 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
-  case 15:
-#line 121 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    { Decl* d = new Decl(toString((yyvsp[-2].sval)),toString((yyvsp[0].sval)));
+  case 14:
+#line 120 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    { Decl* d = new Decl(toString((yyvsp[-4].sval)),toString((yyvsp[-2].sval)));
                                                         params.push_back(d);}
 #line 1432 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
+  case 15:
+#line 122 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    { Decl* d = new Decl(toString((yyvsp[-2].sval)),toString((yyvsp[0].sval)));
+                                                        params.push_back(d);}
+#line 1439 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
   case 16:
-#line 123 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 124 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {}
-#line 1438 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1445 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 134 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.inst) = (yyvsp[0].inst);}
-#line 1444 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 128 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {string str = "boolean";
+                                                    char *cstr = new char[str.length() + 1];
+                                                    strcpy(cstr, str.c_str());
+                                                    (yyval.sval) = cstr;}
+#line 1454 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 135 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.inst) = new Return((yyvsp[0].exp));}
-#line 1450 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 132 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {string str = "float";
+                                                   char *cstr = new char[str.length() + 1];
+                                                   strcpy(cstr, str.c_str());
+                                                   (yyval.sval) = cstr;}
+#line 1463 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 139 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.inst) = new Affect(symbol.findDecl(toString((yyvsp[-2].sval))),(yyvsp[0].exp));}
-#line 1456 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 136 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {string str = "integer";
+                                                   char *cstr = new char[str.length() + 1];
+                                                   strcpy(cstr, str.c_str());
+                                                   (yyval.sval) = cstr;}
+#line 1472 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 140 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.inst) = new Affect(params,exprs);
-                                                        params.clear();
-                                                        exprs.clear();}
-#line 1464 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    {(yyval.sval) = (yyvsp[0].sval);}
+#line 1478 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 143 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.inst) = (yyvsp[0].decl);}
-#line 1470 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 144 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.inst) = (yyvsp[0].inst);}
+#line 1484 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 147 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {params.push_back(symbol.findDecl(toString((yyvsp[-4].sval))));
-                                                                      exprs.insert(exprs.begin(),(yyvsp[0].exp));}
-#line 1477 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 145 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.inst) = new Return((yyvsp[0].exp));}
+#line 1490 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 149 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {params.push_back(symbol.findDecl(toString((yyvsp[-4].sval))));
-                                                                      exprs.insert(exprs.begin(),(yyvsp[0].exp));}
-#line 1484 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
-    break;
-
-  case 24:
-#line 153 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Operator(PLUS,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1490 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
-    break;
-
-  case 25:
-#line 154 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Operator(MOINS,(yyvsp[-2].exp),(yyvsp[0].exp));}
+    {(yyval.inst) = new Affect(symbol.findDecl(toString((yyvsp[-2].sval))),(yyvsp[0].exp));}
 #line 1496 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
+  case 24:
+#line 150 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.inst) = new Affect(params,exprs);
+                                                            params.clear();
+                                                            exprs.clear();}
+#line 1504 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
+  case 25:
+#line 153 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.inst) = new Decl(toString((yyvsp[-4].sval)),toString((yyvsp[-2].sval)));}
+#line 1510 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
   case 26:
-#line 155 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Operator(MULT,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1502 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 157 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {params.push_back(symbol.findDecl(toString((yyvsp[-4].sval))));
+                                                                      exprs.insert(exprs.begin(),(yyvsp[0].exp));}
+#line 1517 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 156 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Operator(DIV,(yyvsp[-2].exp),(yyvsp[0].exp));}
-#line 1508 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 159 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {params.push_back(symbol.findDecl(toString((yyvsp[-4].sval))));
+                                                                      exprs.insert(exprs.begin(),(yyvsp[0].exp));}
+#line 1524 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 157 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = (yyvsp[-1].exp);}
-#line 1514 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 163 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Operator(PLUS,(yyvsp[-2].exp),(yyvsp[0].exp));}
+#line 1530 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 158 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = (yyvsp[-2].exp);}
-#line 1520 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 164 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Operator(MOINS,(yyvsp[-2].exp),(yyvsp[0].exp));}
+#line 1536 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 159 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = (yyvsp[-1].exp);}
-#line 1526 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 165 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Operator(MULT,(yyvsp[-2].exp),(yyvsp[0].exp));}
+#line 1542 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 160 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = (yyvsp[0].exp);}
-#line 1532 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 166 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Operator(DIV,(yyvsp[-2].exp),(yyvsp[0].exp));}
+#line 1548 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 161 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Integer((yyvsp[0].ival));}
-#line 1538 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 167 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = (yyvsp[-1].exp);}
+#line 1554 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 162 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Float((yyvsp[0].fval));}
-#line 1544 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 168 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = (yyvsp[-2].exp);}
+#line 1560 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 163 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new Boolean((yyvsp[0].bval));}
-#line 1550 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 169 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = (yyvsp[-1].exp);}
+#line 1566 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 164 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = symbol.findResultOfMethodOfClass((yyvsp[-5].sval),(yyvsp[-3].sval),exprs);
-                                                                      exprs.clear();}
-#line 1557 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 170 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = (yyvsp[0].exp);}
+#line 1572 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 166 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {Affect *a = symbol.findAffect((yyvsp[0].sval));
-                                                                      if (a==NULL) yyerror("valeur de variable non trouvee");
-                                                                      (yyval.exp) = a->getExprs()[0];}
-#line 1565 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 171 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Integer((yyvsp[0].ival));}
+#line 1578 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 171 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {exprs.push_back((yyvsp[-2].exp));}
-#line 1571 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 172 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Float((yyvsp[0].fval));}
+#line 1584 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 172 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+#line 173 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = new Boolean((yyvsp[0].bval));}
+#line 1590 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 174 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {(yyval.exp) = symbol.findResultOfMethodOfClass((yyvsp[-5].sval),(yyvsp[-3].sval),exprs);
+                                                                      exprs.clear();}
+#line 1597 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 176 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {Affect *a = symbol.findAffect((yyvsp[0].sval));
+                                                                      if (a==NULL) yyerror("valeur de variable non trouvee");
+                                                                      (yyval.exp) = a->getExprs()[0];}
+#line 1605 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 181 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
+    {exprs.push_back((yyvsp[-2].exp));}
+#line 1611 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    break;
+
+  case 42:
+#line 182 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     {exprs.push_back((yyvsp[0].exp));}
-#line 1577 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1617 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1581 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1621 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1805,5 +1845,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 175 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1906  */
+#line 185 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1906  */
 

@@ -4,6 +4,7 @@
   #include <stdlib.h>
   #include <vector>
   #include <string>
+  #include <string.h>
   #include "structure/headers/vivacite.hh"
 
   using namespace std;
@@ -70,7 +71,7 @@
 %type<meth> method
 %type<fonc> fonction
 %type<inst> instruction corps
-%type<decl> declaration
+%type<sval> type
 
 %left T_PLUS T_MINUS
 %left T_TIMES T_DIVIDE
@@ -96,12 +97,12 @@ classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if
 	  	;
 
 /* Emplacement data contenant les déclarations des variables */
-data : T_DATA declaration  								{$$ = new Data(params);}
-     | 																		{$$ = new Data(params);}
+data : T_DATA declaration  								{$$ = new Data(params); params.clear();}
+     | 																		{$$ = new Data(params); params.clear();}
      ;
 
 /* Déclarations des variables */
-declaration : T_NAME T_IS T_NAME T_SEMICOLON declaration 	{$$ = new Decl(toString($1),toString($3));}
+declaration : T_NAME T_IS type T_SEMICOLON declaration 	  {Decl* d = new Decl(toString($1),toString($3)); params.push_back(d);}
             | 																					  {}
             ;
 
@@ -124,11 +125,20 @@ parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toStr
           ;
 
 /* Types possibles des variables */
-/*type : T_TYPEBOOLEAN														{$$ = new Class("c",NULL,NULL);}
-  	 	 | T_TYPEFLOAT 															{$$ = new Class("c",NULL,NULL);}
-  	 	 | T_TYPEINTEGER														{$$ = new Class("c",NULL,NULL);}
-  	 	 | T_NAME																		{$$ = new Class("c",NULL,NULL);}
-	 	   ;*/
+type : T_TYPEBOOLEAN														{string str = "boolean";
+                                                    char *cstr = new char[str.length() + 1];
+                                                    strcpy(cstr, str.c_str());
+                                                    $$ = cstr;}
+	 	 | T_TYPEFLOAT 															{string str = "float";
+                                                   char *cstr = new char[str.length() + 1];
+                                                   strcpy(cstr, str.c_str());
+                                                   $$ = cstr;}
+	 	 | T_TYPEINTEGER														{string str = "integer";
+                                                   char *cstr = new char[str.length() + 1];
+                                                   strcpy(cstr, str.c_str());
+                                                   $$ = cstr;}
+	 	 | T_NAME																		{$$ = $1;}
+ 	   ;
 
 /* Corps de la fonction : affectation ou retourne une expression */
 corps : instruction                             {$$ = $1;}
@@ -136,11 +146,11 @@ corps : instruction                             {$$ = $1;}
       ;
 
 /* Definit les instructions possibles */
-instruction : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
-	  	      | T_PLEFT assignment T_PRIGHT  						{$$ = new Affect(params,exprs);
-                                                        params.clear();
-                                                        exprs.clear();}
-            | declaration                             {$$ = $1;}
+instruction : T_NAME T_ASSIGNMENT expression					     {$$ = new Affect(symbol.findDecl(toString($1)),$3);}
+	  	      | T_PLEFT assignment T_PRIGHT  						     {$$ = new Affect(params,exprs);
+                                                            params.clear();
+                                                            exprs.clear();}
+            | T_NAME T_IS T_NAME T_SEMICOLON declaration 	 {$$ = new Decl(toString($1),toString($3));}
             ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */

@@ -28,7 +28,7 @@ class SymbolTable  {
 	public:
 		static SymbolTable& Instance();
 		void cleanAll();
-    void addClass(Class* c);
+        void addClass(Class* c);
 		Class* findClass(string name) const;
 		void addDecl(Decl* d);
 		Decl* findDecl(string name) const;

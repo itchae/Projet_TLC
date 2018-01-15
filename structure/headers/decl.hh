@@ -11,8 +11,9 @@ using namespace std;
 class Decl : public Instruction {
 
   private:
-    string var;
-    string type;
+    string var; //Nom de la variable
+    string type; //Type de la variable (enum ? )
+    //Valeur ?
 
   public:
     Decl(string var, string type);

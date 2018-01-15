@@ -14,10 +14,11 @@ using namespace std;
 class Class  : Expression {
 
 	private:
-		Data* data;
-		Method* method;
-		string name;
-		Class* mere;
+		Class* mere; // Classe mère
+		string name; // Nom
+		Data* data; // Attributs
+		Method* method; // Méthodes
+		
 
 	public:
 		Class(string n, Data* d, Method* m);

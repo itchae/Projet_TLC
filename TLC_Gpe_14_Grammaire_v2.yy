@@ -1,6 +1,7 @@
 %{
   #include <iostream>
   #include "stdio.h"
+  #include <stdlib.h>
   #include <vector>
   #include <string>
   #include "structure/headers/vivacite.hh"
@@ -31,6 +32,7 @@
 
   void yyerror(const char* msg){
   	cerr << "ERROR : " << msg << endl;
+    exit (EXIT_FAILURE);
   }
 
   string toString(char* msg){
@@ -152,7 +154,9 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
            | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT        {$$ = symbol.findResultOfMethodOfClass($1,$3,exprs);
                                                                       exprs.clear();}
-           | T_NAME                                                  {$$ = symbol.findAffect($1)->getExprs()[0];}
+           | T_NAME                                                  {Affect *a = symbol.findAffect($1);
+                                                                      if (a==NULL) yyerror("number starts with 0");
+                                                                      $$ = a->getExprs()[0];}
            ;
 
 paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}

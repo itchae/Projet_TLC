@@ -6,6 +6,7 @@
 #include "class.hh"
 #include "affect.hh"
 #include "decl.hh"
+#include "expr.hh"
 
 using namespace std;
 
@@ -33,6 +34,13 @@ class SymbolTable  {
 		Decl* findDecl(string name) const;
 		void addAffect(Affect* a);
 		Affect* findAffect(string name) const;
+		/**
+		 * Permet de retrouver le resultat de l
+		 * @param  d [description]
+		 * @param  m [description]
+		 * @return   [description]
+		 */
+		Expression* findResultOfMethodOfClass(string d, string m, vector<Expression*> e) const;
 };
 
 #endif

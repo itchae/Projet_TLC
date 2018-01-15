@@ -4,13 +4,14 @@
 #include <string>
 #include "data.hh"
 #include "method.hh"
+#include "expr.hh"
 
 using namespace std;
 
 /**
  * Classe permettant de stocker toutes les informations relatives à une classe
  */
-class Class  {
+class Class  : Expression {
 
 	private:
 		Data* data;
@@ -24,6 +25,7 @@ class Class  {
 		Class(Data *data);
 		~Class();
 		bool operator==(Class& rhs) const;
+		string getType() const;
 		inline const Data* getData() const { return data; }
 		inline const Method* getMethod() const { return method; }
 		inline const string getName() const { return name; }

@@ -2,7 +2,6 @@
 #define _DECL_H
 
 #include "inst.hh"
-//#include "class.hh"
 
 using namespace std;
 

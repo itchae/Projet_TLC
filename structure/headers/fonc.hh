@@ -5,13 +5,15 @@
 #include <string>
 #include "decl.hh"
 #include "inst.hh"
+#include "expr.hh"
+#include "return.hh"
 
 using namespace std;
 
 /**
  * Classe permettant de stocker les informations d'une fonction déclarée (nom, parametres, instructions)
  */
-class Fonction  {
+class Fonction : Expression {
 
 	private:
 		string name;
@@ -28,6 +30,7 @@ class Fonction  {
 		bool noParam() const;
 		bool containsParam(string var) const;
 		Decl* getParam(string var) const;
+		string getType() const;
 		inline const string getName() const { return name; }
 		inline const Instruction* getInst() const { return instruct; }
 		void visit(Visitor& visitor) const;

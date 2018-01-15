@@ -37,6 +37,15 @@ bool Fonction::noParam() const{
 }
 
 /**--------------------------------------------------------------------------**/
+string Fonction::getType() const{
+	Return* r = dynamic_cast<Return*>(instruct);
+	if ( r != NULL )
+	  return r->getType();
+	else
+	  return "void";
+}
+
+/**--------------------------------------------------------------------------**/
 void Fonction::visit(Visitor& visitor) const {
   return visitor.visitFonc(this);
 }

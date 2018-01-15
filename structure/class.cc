@@ -27,6 +27,11 @@ bool Class::operator==(Class& rhs) const{
 }
 
 //--------------------------------------------------------------------------//
+string Class::getType() const {
+  return "class";
+}
+
+//--------------------------------------------------------------------------//
 void Class::visit(Visitor& visitor) const {
   return visitor.visitClass(this);
 }

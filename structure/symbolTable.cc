@@ -94,3 +94,8 @@ Affect* SymbolTable::findAffect(string name) const{
   }
   return NULL;
 }
+
+/**--------------------------------------------------------------------------**/
+Expression* SymbolTable::findResultOfMethodOfClass(string d, string m, vector<Expression*> e) const{
+  return NULL;
+}

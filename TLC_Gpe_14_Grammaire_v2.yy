@@ -129,7 +129,7 @@ corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toSt
 	  	| T_PLEFT assignment T_PRIGHT  						{$$ = new Affect(params,exprs);
                                                   params.clear();
                                                   exprs.clear();}
-      | T_RETURN expression		 									{$$ = $2;}
+      | T_RETURN expression		 									{$$ = new Return($2);}
       ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */
@@ -139,19 +139,24 @@ assignment : T_NAME T_COMMA assignment T_COMMA expression						{params.push_back
                                                                       exprs.insert(exprs.begin(),$5);}
 		   		 ;
 
-expression : expression T_PLUS expression 				{$$ = new Operator(PLUS,$1,$3);}
-           | expression T_MINUS expression 				{$$ = new Operator(MOINS,$1,$3);}
-           | expression T_TIMES expression 				{$$ = new Operator(MULT,$1,$3);}
-           | expression T_DIVIDE expression 			{$$ = new Operator(DIV,$1,$3);}
-           | T_SQRT T_PLEFT expression T_PRIGHT 	{$$ = $3;}
-           | expression T_POWER T_INTEGER 		 		{$$ = $1;}
-           | T_PLEFT expression T_PRIGHT 			   	{$$ = $2;;}
-           | T_MINUS expression %prec NEG  				{$$ = $2;}
-           | T_INTEGER 														{$$ = new Integer($1);}
-           | T_FLOAT 															{$$ = new Float($1);}
-           /*| T_NAME																{$$ = symbol.findAffect($1)->getExprs();}*/
-		   		 | T_BOOLEAN														{$$ = new Boolean($1);}
-           | T_NAME T_POINT T_NAME								{printf("PARAM ");}
+expression : expression T_PLUS expression 				                   {$$ = new Operator(PLUS,$1,$3);}
+           | expression T_MINUS expression 				                   {$$ = new Operator(MOINS,$1,$3);}
+           | expression T_TIMES expression 				                   {$$ = new Operator(MULT,$1,$3);}
+           | expression T_DIVIDE expression 			                   {$$ = new Operator(DIV,$1,$3);}
+           | T_SQRT T_PLEFT expression T_PRIGHT 	                   {$$ = $3;}
+           | expression T_POWER T_INTEGER 		 		                   {$$ = $1;}
+           | T_PLEFT expression T_PRIGHT 			   	                   {$$ = $2;}
+           | T_MINUS expression %prec NEG  				                   {$$ = $2;}
+           | T_INTEGER 														                   {$$ = new Integer($1);}
+           | T_FLOAT 															                   {$$ = new Float($1);}
+		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
+           | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT        {$$ = symbol.findResultOfMethodOfClass($1,$3,exprs);
+                                                                      exprs.clear();}
+           | T_NAME                                                  {$$ = symbol.findAffect($1)->getExprs()[0];}
            ;
+
+paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}
+          | expression                               {exprs.push_back($1);}
+          ;
 
 %%

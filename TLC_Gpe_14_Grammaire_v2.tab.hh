@@ -87,7 +87,7 @@ union YYSTYPE
     bool bval;
     float fval;
     char* sval;
-		Instruction* term;
+		Instruction* inst;
 		Expression* exp;
 		Class* cl;
 		Method* meth;

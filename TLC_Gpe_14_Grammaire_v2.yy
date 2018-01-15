@@ -47,7 +47,7 @@
     bool bval;
     float fval;
     char* sval;
-		Instruction* term;
+		Instruction* inst;
 		Expression* exp;
 		Class* cl;
 		Method* meth;
@@ -66,11 +66,10 @@
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
 %type<exp> expression
-%type<term> corps
 %type<data> data
 %type<meth> method
 %type<fonc> fonction
-/*%type<cl> type*/
+%type<inst> instruction corps
 %type<decl> declaration
 
 %left T_PLUS T_MINUS
@@ -79,11 +78,14 @@
 %left NEG
 %right T_POWER
 
-%start classe
+%start axiome
 
 %%
 
-/* Axiome : signature de la classe */
+axiome : classe axiome        {}
+       | instruction          {}
+
+/* signature de la classe */
 classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ Class* c = new Class(toString($2),$4,$5);
                                                                                       symbol.addClass(c);}
 	  	 | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{ Class* mere = symbol.findClass($4);
@@ -127,12 +129,17 @@ parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toStr
 	 	   ;*/
 
 /* Corps de la fonction : affectation ou retourne une expression */
-corps : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
-	  	| T_PLEFT assignment T_PRIGHT  						{$$ = new Affect(params,exprs);
-                                                  params.clear();
-                                                  exprs.clear();}
+corps : instruction                             {$$ = $1;}
       | T_RETURN expression		 									{$$ = new Return($2);}
       ;
+
+/* Definit les instructions possibles */
+instruction : T_NAME T_ASSIGNMENT expression					{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
+	  	      | T_PLEFT assignment T_PRIGHT  						{$$ = new Affect(params,exprs);
+                                                        params.clear();
+                                                        exprs.clear();}
+            | declaration                             {$$ = $1;}
+            ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */
 assignment : T_NAME T_COMMA assignment T_COMMA expression						{params.push_back(symbol.findDecl(toString($1)));

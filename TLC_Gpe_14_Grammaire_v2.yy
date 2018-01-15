@@ -83,8 +83,8 @@
 
 %%
 
-axiome : classe axiome        {}
-       | instruction          {}
+axiome : classe axiome            {}
+       | instruction axiome       {}
 
 /* signature de la classe */
 classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");

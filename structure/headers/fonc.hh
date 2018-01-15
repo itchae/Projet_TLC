@@ -13,7 +13,7 @@ using namespace std;
 /**
  * Classe permettant de stocker les informations d'une fonction déclarée (nom, parametres, instructions)
  */
-class Fonction : Expression {
+class Fonction : public Expression, public Instruction {
 
 	private:
 		string name;

@@ -517,7 +517,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "TLC_Gpe_14_Grammaire.ll"
 #line 2 "TLC_Gpe_14_Grammaire.ll"
-  #include <string>
+  #include <string.h>
   #include "structure/headers/vivacite.hh"
   #include "TLC_Gpe_14_Grammaire_v2.tab.hh"
 #line 524 "lex.yy.c"

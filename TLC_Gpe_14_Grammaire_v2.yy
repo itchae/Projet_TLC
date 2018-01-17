@@ -85,6 +85,7 @@
 
 axiome : classe axiome            {}
        | instruction axiome       {}
+       ;
 
 /* signature de la classe */
 classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");
@@ -146,11 +147,11 @@ corps : instruction                             {$$ = $1;}
       ;
 
 /* Definit les instructions possibles */
-instruction : T_NAME T_ASSIGNMENT expression					     {$$ = new Affect(symbol.findDecl(toString($1)),$3);}
-	  	      | T_PLEFT assignment T_PRIGHT  						     {$$ = new Affect(params,exprs);
+instruction : T_NAME T_ASSIGNMENT expression	T_SEMICOLON		{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
+	  	      | T_PLEFT assignment T_PRIGHT T_SEMICOLON 			{$$ = new Affect(params,exprs);
                                                             params.clear();
                                                             exprs.clear();}
-            | T_NAME T_IS T_NAME T_SEMICOLON declaration 	 {$$ = new Decl(toString($1),toString($3));}
+            | T_NAME T_IS T_NAME T_SEMICOLON                {$$ = new Decl(toString($1),toString($3));}
             ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */

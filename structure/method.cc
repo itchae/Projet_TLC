@@ -31,5 +31,5 @@ Fonction* Method::getFonction(string var) const{
 
 /**--------------------------------------------------------------------------**/
 void Method::visit(Visitor& visitor) const {
-  return visitor.visitMethod(this);
+  //return visitor.visitMethod(this);
 }

@@ -56,5 +56,5 @@ bool Affect::operator==(Affect* rhs) {
 
 /**--------------------------------------------------------------------------**/
 void Affect::visit(Visitor& visitor) const {
-  return visitor.visitAffect(this);
+  //return visitor.visitAffect(this);
 }

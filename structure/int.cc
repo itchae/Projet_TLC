@@ -12,5 +12,5 @@ Integer::~Integer() {
 
 /**--------------------------------------------------------------------------**/
 void Integer::visit(Visitor& visitor) const {
-  return visitor.visitInteger(this);
+  //return visitor.visitInteger(this);
 }

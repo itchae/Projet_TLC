@@ -11,5 +11,5 @@ Decl::~Decl() {
 
 /**--------------------------------------------------------------------------**/
 void Decl::visit(Visitor& visitor) const {
-  return visitor.visitDecl(this);
+  //return visitor.visitDecl(this);
 }

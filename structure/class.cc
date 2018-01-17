@@ -33,5 +33,5 @@ string Class::getType() const {
 
 //--------------------------------------------------------------------------//
 void Class::visit(Visitor& visitor) const {
-  return visitor.visitClass(this);
+  //return visitor.visitClass(this);
 }

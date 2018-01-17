@@ -1,93 +1,123 @@
+Non-terminaux inutiles dans la grammaire
+
+   axiome
+   classe
+   data
+   declaration
+   method
+   fonction
+   parametre
+   type
+   corps
+
+
+Terminaux inutilisés dans la grammaire
+
+   T_TYPEFLOAT
+   T_TYPEBOOLEAN
+   T_TYPEINTEGER
+   T_COLON
+   T_CLASS
+   T_EXTENDS
+   T_DATA
+   T_METHOD
+   T_RETURN
+   T_END
+
+
+Règles inutiles dans la grammaire
+
+   21 axiome: classe axiome
+   22       | instruction axiome
+
+   23 classe: T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
+   24       | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
+
+   25 data: T_DATA declaration
+   26     | %empty
+
+   27 declaration: T_NAME T_IS type T_SEMICOLON declaration
+   28            | %empty
+
+   29 method: T_METHOD fonction
+   30       | %empty
+
+   31 fonction: T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction
+   32         | %empty
+
+   33 parametre: T_NAME T_COLON T_NAME T_COMMA parametre
+   34          | T_NAME T_COLON T_NAME
+   35          | %empty
+
+   36 type: T_TYPEBOOLEAN
+   37     | T_TYPEFLOAT
+   38     | T_TYPEINTEGER
+   39     | T_NAME
+
+   40 corps: instruction
+   41      | T_RETURN expression
+
+
 Grammaire
 
-    0 $accept: axiome $end
+    0 $accept: instruction $end
 
-    1 axiome: classe axiome
-    2       | instruction
+    1 instruction: T_NAME T_ASSIGNMENT expression T_SEMICOLON
+    2            | T_PLEFT assignment T_PRIGHT T_SEMICOLON
+    3            | T_NAME T_IS T_NAME T_SEMICOLON
 
-    3 classe: T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
-    4       | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
+    4 assignment: T_NAME T_COMMA assignment T_COMMA expression
+    5           | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression
 
-    5 data: T_DATA declaration
-    6     | %empty
+    6 expression: expression T_PLUS expression
+    7           | expression T_MINUS expression
+    8           | expression T_TIMES expression
+    9           | expression T_DIVIDE expression
+   10           | T_SQRT T_PLEFT expression T_PRIGHT
+   11           | expression T_POWER T_INTEGER
+   12           | T_PLEFT expression T_PRIGHT
+   13           | T_MINUS expression
+   14           | T_INTEGER
+   15           | T_FLOAT
+   16           | T_BOOLEAN
+   17           | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT
+   18           | T_NAME
 
-    7 declaration: T_NAME T_IS type T_SEMICOLON declaration
-    8            | %empty
-
-    9 method: T_METHOD fonction
-   10       | %empty
-
-   11 fonction: T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction
-   12         | %empty
-
-   13 parametre: T_NAME T_COLON T_NAME T_COMMA parametre
-   14          | T_NAME T_COLON T_NAME
-   15          | %empty
-
-   16 type: T_TYPEBOOLEAN
-   17     | T_TYPEFLOAT
-   18     | T_TYPEINTEGER
-   19     | T_NAME
-
-   20 corps: instruction
-   21      | T_RETURN expression
-
-   22 instruction: T_NAME T_ASSIGNMENT expression
-   23            | T_PLEFT assignment T_PRIGHT
-   24            | T_NAME T_IS T_NAME T_SEMICOLON declaration
-
-   25 assignment: T_NAME T_COMMA assignment T_COMMA expression
-   26           | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression
-
-   27 expression: expression T_PLUS expression
-   28           | expression T_MINUS expression
-   29           | expression T_TIMES expression
-   30           | expression T_DIVIDE expression
-   31           | T_SQRT T_PLEFT expression T_PRIGHT
-   32           | expression T_POWER T_INTEGER
-   33           | T_PLEFT expression T_PRIGHT
-   34           | T_MINUS expression
-   35           | T_INTEGER
-   36           | T_FLOAT
-   37           | T_BOOLEAN
-   38           | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT
-   39           | T_NAME
-
-   40 paramUtil: expression T_COMMA paramUtil
-   41          | expression
+   19 paramUtil: expression T_COMMA paramUtil
+   20          | expression
 
 
 Terminaux, suivis des règles où ils apparaissent
 
 $end (0) 0
 error (256)
-T_NAME (258) 3 4 7 11 13 14 19 22 24 25 26 38 39
-T_INTEGER (259) 32 35
-T_FLOAT (260) 36
-T_BOOLEAN (261) 37
-T_TYPEFLOAT (262) 17
-T_TYPEBOOLEAN (263) 16
-T_TYPEINTEGER (264) 18
-T_PLUS (265) 27
-T_MINUS (266) 28 34
-T_TIMES (267) 29
-T_DIVIDE (268) 30
-T_POWER (269) 32
-T_SQRT (270) 31
-T_PLEFT (271) 11 23 26 31 33 38
-T_PRIGHT (272) 11 23 26 31 33 38
-T_COMMA (273) 13 25 40
-T_POINT (274) 38
-T_COLON (275) 13 14
-T_SEMICOLON (276) 3 4 7 11 24
-T_ASSIGNMENT (277) 22 26
-T_CLASS (278) 3 4
-T_EXTENDS (279) 4
-T_DATA (280) 5
-T_IS (281) 3 4 7 11 24
-T_METHOD (282) 9
-T_RETURN (283) 21
-T_END (284) 3 4
+T_NAME (258) 1 3 4 5 17 18
+T_INTEGER (259) 11 14
+T_FLOAT (260) 15
+T_BOOLEAN (261) 16
+T_TYPEFLOAT (262)
+T_TYPEBOOLEAN (263)
+T_TYPEINTEGER (264)
+T_PLUS (265) 6
+T_MINUS (266) 7 13
+T_TIMES (267) 8
+T_DIVIDE (268) 9
+T_POWER (269) 11
+T_SQRT (270) 10
+T_PLEFT (271) 2 5 10 12 17
+T_PRIGHT (272) 2 5 10 12 17
+T_COMMA (273) 4 19
+T_POINT (274) 17
+T_COLON (275)
+T_SEMICOLON (276) 1 2 3
+T_ASSIGNMENT (277) 1 5
+T_CLASS (278)
+T_EXTENDS (279)
+T_DATA (280)
+T_IS (281) 3
+T_METHOD (282)
+T_RETURN (283)
+T_END (284)
 NEG (285)
 
 
@@ -95,1044 +125,606 @@ Non-terminaux, suivis des règles où ils apparaissent
 
 $accept (31)
     à gauche: 0
-axiome (32)
-    à gauche: 1 2, à droite: 0 1
-classe (33)
-    à gauche: 3 4, à droite: 1
-data (34)
-    à gauche: 5 6, à droite: 3 4
-declaration (35)
-    à gauche: 7 8, à droite: 5 7 24
-method (36)
-    à gauche: 9 10, à droite: 3 4
-fonction (37)
-    à gauche: 11 12, à droite: 9 11
-parametre (38)
-    à gauche: 13 14 15, à droite: 11 13
-type (39)
-    à gauche: 16 17 18 19, à droite: 7
-corps (40)
-    à gauche: 20 21, à droite: 11
-instruction (41)
-    à gauche: 22 23 24, à droite: 2 20
-assignment (42)
-    à gauche: 25 26, à droite: 23 25
-expression (43)
-    à gauche: 27 28 29 30 31 32 33 34 35 36 37 38 39, à droite: 21
-    22 25 26 27 28 29 30 31 32 33 34 40 41
-paramUtil (44)
-    à gauche: 40 41, à droite: 38 40
+instruction (32)
+    à gauche: 1 2 3, à droite: 0
+assignment (33)
+    à gauche: 4 5, à droite: 2 4
+expression (34)
+    à gauche: 6 7 8 9 10 11 12 13 14 15 16 17 18, à droite: 1 4 5
+    6 7 8 9 10 11 12 13 19 20
+paramUtil (35)
+    à gauche: 19 20, à droite: 17 19
 
 
 État 0
 
-    0 $accept: . axiome $end
+    0 $accept: . instruction $end
 
     T_NAME   décalage et aller à l'état 1
     T_PLEFT  décalage et aller à l'état 2
-    T_CLASS  décalage et aller à l'état 3
 
-    axiome       aller à l'état 4
-    classe       aller à l'état 5
-    instruction  aller à l'état 6
+    instruction  aller à l'état 3
 
 
 État 1
 
-   22 instruction: T_NAME . T_ASSIGNMENT expression
-   24            | T_NAME . T_IS T_NAME T_SEMICOLON declaration
+    1 instruction: T_NAME . T_ASSIGNMENT expression T_SEMICOLON
+    3            | T_NAME . T_IS T_NAME T_SEMICOLON
 
-    T_ASSIGNMENT  décalage et aller à l'état 7
-    T_IS          décalage et aller à l'état 8
+    T_ASSIGNMENT  décalage et aller à l'état 4
+    T_IS          décalage et aller à l'état 5
 
 
 État 2
 
-   23 instruction: T_PLEFT . assignment T_PRIGHT
+    2 instruction: T_PLEFT . assignment T_PRIGHT T_SEMICOLON
 
-    T_NAME  décalage et aller à l'état 9
+    T_NAME  décalage et aller à l'état 6
 
-    assignment  aller à l'état 10
+    assignment  aller à l'état 7
 
 
 État 3
 
-    3 classe: T_CLASS . T_NAME T_IS data method T_END T_NAME T_SEMICOLON
-    4       | T_CLASS . T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
+    0 $accept: instruction . $end
 
-    T_NAME  décalage et aller à l'état 11
+    $end  décalage et aller à l'état 8
 
 
 État 4
 
-    0 $accept: axiome . $end
+    1 instruction: T_NAME T_ASSIGNMENT . expression T_SEMICOLON
 
-    $end  décalage et aller à l'état 12
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 16
 
 
 État 5
 
-    1 axiome: classe . axiome
+    3 instruction: T_NAME T_IS . T_NAME T_SEMICOLON
 
-    T_NAME   décalage et aller à l'état 1
-    T_PLEFT  décalage et aller à l'état 2
-    T_CLASS  décalage et aller à l'état 3
-
-    axiome       aller à l'état 13
-    classe       aller à l'état 5
-    instruction  aller à l'état 6
+    T_NAME  décalage et aller à l'état 17
 
 
 État 6
 
-    2 axiome: instruction .
+    4 assignment: T_NAME . T_COMMA assignment T_COMMA expression
+    5           | T_NAME . T_PRIGHT T_ASSIGNMENT T_PLEFT expression
 
-    $défaut  réduction par utilisation de la règle 2 (axiome)
+    T_PRIGHT  décalage et aller à l'état 18
+    T_COMMA   décalage et aller à l'état 19
 
 
 État 7
 
-   22 instruction: T_NAME T_ASSIGNMENT . expression
+    2 instruction: T_PLEFT assignment . T_PRIGHT T_SEMICOLON
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 21
+    T_PRIGHT  décalage et aller à l'état 20
 
 
 État 8
 
-   24 instruction: T_NAME T_IS . T_NAME T_SEMICOLON declaration
-
-    T_NAME  décalage et aller à l'état 22
-
-
-État 9
-
-   25 assignment: T_NAME . T_COMMA assignment T_COMMA expression
-   26           | T_NAME . T_PRIGHT T_ASSIGNMENT T_PLEFT expression
-
-    T_PRIGHT  décalage et aller à l'état 23
-    T_COMMA   décalage et aller à l'état 24
-
-
-État 10
-
-   23 instruction: T_PLEFT assignment . T_PRIGHT
-
-    T_PRIGHT  décalage et aller à l'état 25
-
-
-État 11
-
-    3 classe: T_CLASS T_NAME . T_IS data method T_END T_NAME T_SEMICOLON
-    4       | T_CLASS T_NAME . T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON
-
-    T_EXTENDS  décalage et aller à l'état 26
-    T_IS       décalage et aller à l'état 27
-
-
-État 12
-
-    0 $accept: axiome $end .
+    0 $accept: instruction $end .
 
     $défaut  accepter
 
 
+État 9
+
+   17 expression: T_NAME . T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT
+   18           | T_NAME .
+
+    T_POINT  décalage et aller à l'état 21
+
+    $défaut  réduction par utilisation de la règle 18 (expression)
+
+
+État 10
+
+   14 expression: T_INTEGER .
+
+    $défaut  réduction par utilisation de la règle 14 (expression)
+
+
+État 11
+
+   15 expression: T_FLOAT .
+
+    $défaut  réduction par utilisation de la règle 15 (expression)
+
+
+État 12
+
+   16 expression: T_BOOLEAN .
+
+    $défaut  réduction par utilisation de la règle 16 (expression)
+
+
 État 13
 
-    1 axiome: classe axiome .
+   13 expression: T_MINUS . expression
 
-    $défaut  réduction par utilisation de la règle 1 (axiome)
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 22
 
 
 État 14
 
-   38 expression: T_NAME . T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT
-   39           | T_NAME .
+   10 expression: T_SQRT . T_PLEFT expression T_PRIGHT
 
-    T_POINT  décalage et aller à l'état 28
-
-    $défaut  réduction par utilisation de la règle 39 (expression)
+    T_PLEFT  décalage et aller à l'état 23
 
 
 État 15
 
-   35 expression: T_INTEGER .
+   12 expression: T_PLEFT . expression T_PRIGHT
 
-    $défaut  réduction par utilisation de la règle 35 (expression)
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 24
 
 
 État 16
 
-   36 expression: T_FLOAT .
+    1 instruction: T_NAME T_ASSIGNMENT expression . T_SEMICOLON
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
 
-    $défaut  réduction par utilisation de la règle 36 (expression)
+    T_PLUS       décalage et aller à l'état 25
+    T_MINUS      décalage et aller à l'état 26
+    T_TIMES      décalage et aller à l'état 27
+    T_DIVIDE     décalage et aller à l'état 28
+    T_POWER      décalage et aller à l'état 29
+    T_SEMICOLON  décalage et aller à l'état 30
 
 
 État 17
 
-   37 expression: T_BOOLEAN .
+    3 instruction: T_NAME T_IS T_NAME . T_SEMICOLON
 
-    $défaut  réduction par utilisation de la règle 37 (expression)
+    T_SEMICOLON  décalage et aller à l'état 31
 
 
 État 18
 
-   34 expression: T_MINUS . expression
+    5 assignment: T_NAME T_PRIGHT . T_ASSIGNMENT T_PLEFT expression
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 29
+    T_ASSIGNMENT  décalage et aller à l'état 32
 
 
 État 19
 
-   31 expression: T_SQRT . T_PLEFT expression T_PRIGHT
+    4 assignment: T_NAME T_COMMA . assignment T_COMMA expression
 
-    T_PLEFT  décalage et aller à l'état 30
+    T_NAME  décalage et aller à l'état 6
+
+    assignment  aller à l'état 33
 
 
 État 20
 
-   33 expression: T_PLEFT . expression T_PRIGHT
+    2 instruction: T_PLEFT assignment T_PRIGHT . T_SEMICOLON
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 31
+    T_SEMICOLON  décalage et aller à l'état 34
 
 
 État 21
 
-   22 instruction: T_NAME T_ASSIGNMENT expression .
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
+   17 expression: T_NAME T_POINT . T_NAME T_PLEFT paramUtil T_PRIGHT
 
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-
-    $défaut  réduction par utilisation de la règle 22 (instruction)
+    T_NAME  décalage et aller à l'état 35
 
 
 État 22
 
-   24 instruction: T_NAME T_IS T_NAME . T_SEMICOLON declaration
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
+   13           | T_MINUS expression .
 
-    T_SEMICOLON  décalage et aller à l'état 37
+    T_POWER  décalage et aller à l'état 29
+
+    $défaut  réduction par utilisation de la règle 13 (expression)
 
 
 État 23
 
-   26 assignment: T_NAME T_PRIGHT . T_ASSIGNMENT T_PLEFT expression
+   10 expression: T_SQRT T_PLEFT . expression T_PRIGHT
 
-    T_ASSIGNMENT  décalage et aller à l'état 38
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 36
 
 
 État 24
 
-   25 assignment: T_NAME T_COMMA . assignment T_COMMA expression
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
+   12           | T_PLEFT expression . T_PRIGHT
 
-    T_NAME  décalage et aller à l'état 9
-
-    assignment  aller à l'état 39
+    T_PLUS    décalage et aller à l'état 25
+    T_MINUS   décalage et aller à l'état 26
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
+    T_PRIGHT  décalage et aller à l'état 37
 
 
 État 25
 
-   23 instruction: T_PLEFT assignment T_PRIGHT .
+    6 expression: expression T_PLUS . expression
 
-    $défaut  réduction par utilisation de la règle 23 (instruction)
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 38
 
 
 État 26
 
-    4 classe: T_CLASS T_NAME T_EXTENDS . T_NAME T_IS data method T_END T_NAME T_SEMICOLON
+    7 expression: expression T_MINUS . expression
 
-    T_NAME  décalage et aller à l'état 40
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 39
 
 
 État 27
 
-    3 classe: T_CLASS T_NAME T_IS . data method T_END T_NAME T_SEMICOLON
+    8 expression: expression T_TIMES . expression
 
-    T_DATA  décalage et aller à l'état 41
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
 
-    $défaut  réduction par utilisation de la règle 6 (data)
-
-    data  aller à l'état 42
+    expression  aller à l'état 40
 
 
 État 28
 
-   38 expression: T_NAME T_POINT . T_NAME T_PLEFT paramUtil T_PRIGHT
+    9 expression: expression T_DIVIDE . expression
 
-    T_NAME  décalage et aller à l'état 43
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 41
 
 
 État 29
 
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
-   34           | T_MINUS expression .
+   11 expression: expression T_POWER . T_INTEGER
 
-    T_POWER  décalage et aller à l'état 36
-
-    $défaut  réduction par utilisation de la règle 34 (expression)
+    T_INTEGER  décalage et aller à l'état 42
 
 
 État 30
 
-   31 expression: T_SQRT T_PLEFT . expression T_PRIGHT
+    1 instruction: T_NAME T_ASSIGNMENT expression T_SEMICOLON .
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 44
+    $défaut  réduction par utilisation de la règle 1 (instruction)
 
 
 État 31
 
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
-   33           | T_PLEFT expression . T_PRIGHT
+    3 instruction: T_NAME T_IS T_NAME T_SEMICOLON .
 
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-    T_PRIGHT  décalage et aller à l'état 45
+    $défaut  réduction par utilisation de la règle 3 (instruction)
 
 
 État 32
 
-   27 expression: expression T_PLUS . expression
+    5 assignment: T_NAME T_PRIGHT T_ASSIGNMENT . T_PLEFT expression
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 46
+    T_PLEFT  décalage et aller à l'état 43
 
 
 État 33
 
-   28 expression: expression T_MINUS . expression
+    4 assignment: T_NAME T_COMMA assignment . T_COMMA expression
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 47
+    T_COMMA  décalage et aller à l'état 44
 
 
 État 34
 
-   29 expression: expression T_TIMES . expression
+    2 instruction: T_PLEFT assignment T_PRIGHT T_SEMICOLON .
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 48
+    $défaut  réduction par utilisation de la règle 2 (instruction)
 
 
 État 35
 
-   30 expression: expression T_DIVIDE . expression
+   17 expression: T_NAME T_POINT T_NAME . T_PLEFT paramUtil T_PRIGHT
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 49
+    T_PLEFT  décalage et aller à l'état 45
 
 
 État 36
 
-   32 expression: expression T_POWER . T_INTEGER
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   10           | T_SQRT T_PLEFT expression . T_PRIGHT
+   11           | expression . T_POWER T_INTEGER
 
-    T_INTEGER  décalage et aller à l'état 50
+    T_PLUS    décalage et aller à l'état 25
+    T_MINUS   décalage et aller à l'état 26
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
+    T_PRIGHT  décalage et aller à l'état 46
 
 
 État 37
 
-   24 instruction: T_NAME T_IS T_NAME T_SEMICOLON . declaration
+   12 expression: T_PLEFT expression T_PRIGHT .
 
-    T_NAME  décalage et aller à l'état 51
-
-    $défaut  réduction par utilisation de la règle 8 (declaration)
-
-    declaration  aller à l'état 52
+    $défaut  réduction par utilisation de la règle 12 (expression)
 
 
 État 38
 
-   26 assignment: T_NAME T_PRIGHT T_ASSIGNMENT . T_PLEFT expression
+    6 expression: expression . T_PLUS expression
+    6           | expression T_PLUS expression .
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
 
-    T_PLEFT  décalage et aller à l'état 53
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
+
+    $défaut  réduction par utilisation de la règle 6 (expression)
 
 
 État 39
 
-   25 assignment: T_NAME T_COMMA assignment . T_COMMA expression
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    7           | expression T_MINUS expression .
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
 
-    T_COMMA  décalage et aller à l'état 54
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
+
+    $défaut  réduction par utilisation de la règle 7 (expression)
 
 
 État 40
 
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME . T_IS data method T_END T_NAME T_SEMICOLON
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    8           | expression T_TIMES expression .
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
 
-    T_IS  décalage et aller à l'état 55
+    T_POWER  décalage et aller à l'état 29
+
+    $défaut  réduction par utilisation de la règle 8 (expression)
 
 
 État 41
 
-    5 data: T_DATA . declaration
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+    9           | expression T_DIVIDE expression .
+   11           | expression . T_POWER T_INTEGER
 
-    T_NAME  décalage et aller à l'état 51
+    T_POWER  décalage et aller à l'état 29
 
-    $défaut  réduction par utilisation de la règle 8 (declaration)
-
-    declaration  aller à l'état 56
+    $défaut  réduction par utilisation de la règle 9 (expression)
 
 
 État 42
 
-    3 classe: T_CLASS T_NAME T_IS data . method T_END T_NAME T_SEMICOLON
+   11 expression: expression T_POWER T_INTEGER .
 
-    T_METHOD  décalage et aller à l'état 57
-
-    $défaut  réduction par utilisation de la règle 10 (method)
-
-    method  aller à l'état 58
+    $défaut  réduction par utilisation de la règle 11 (expression)
 
 
 État 43
 
-   38 expression: T_NAME T_POINT T_NAME . T_PLEFT paramUtil T_PRIGHT
+    5 assignment: T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT . expression
 
-    T_PLEFT  décalage et aller à l'état 59
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 47
 
 
 État 44
 
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   31           | T_SQRT T_PLEFT expression . T_PRIGHT
-   32           | expression . T_POWER T_INTEGER
+    4 assignment: T_NAME T_COMMA assignment T_COMMA . expression
 
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-    T_PRIGHT  décalage et aller à l'état 60
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 48
 
 
 État 45
 
-   33 expression: T_PLEFT expression T_PRIGHT .
+   17 expression: T_NAME T_POINT T_NAME T_PLEFT . paramUtil T_PRIGHT
 
-    $défaut  réduction par utilisation de la règle 33 (expression)
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 49
+    paramUtil   aller à l'état 50
 
 
 État 46
 
-   27 expression: expression . T_PLUS expression
-   27           | expression T_PLUS expression .
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
+   10 expression: T_SQRT T_PLEFT expression T_PRIGHT .
 
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-
-    $défaut  réduction par utilisation de la règle 27 (expression)
+    $défaut  réduction par utilisation de la règle 10 (expression)
 
 
 État 47
 
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   28           | expression T_MINUS expression .
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
+    5 assignment: T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression .
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
 
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
+    T_PLUS    décalage et aller à l'état 25
+    T_MINUS   décalage et aller à l'état 26
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
 
-    $défaut  réduction par utilisation de la règle 28 (expression)
+    $défaut  réduction par utilisation de la règle 5 (assignment)
 
 
 État 48
 
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   29           | expression T_TIMES expression .
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
+    4 assignment: T_NAME T_COMMA assignment T_COMMA expression .
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
 
-    T_POWER  décalage et aller à l'état 36
+    T_PLUS    décalage et aller à l'état 25
+    T_MINUS   décalage et aller à l'état 26
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
 
-    $défaut  réduction par utilisation de la règle 29 (expression)
+    $défaut  réduction par utilisation de la règle 4 (assignment)
 
 
 État 49
 
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   30           | expression T_DIVIDE expression .
-   32           | expression . T_POWER T_INTEGER
+    6 expression: expression . T_PLUS expression
+    7           | expression . T_MINUS expression
+    8           | expression . T_TIMES expression
+    9           | expression . T_DIVIDE expression
+   11           | expression . T_POWER T_INTEGER
+   19 paramUtil: expression . T_COMMA paramUtil
+   20          | expression .
 
-    T_POWER  décalage et aller à l'état 36
+    T_PLUS    décalage et aller à l'état 25
+    T_MINUS   décalage et aller à l'état 26
+    T_TIMES   décalage et aller à l'état 27
+    T_DIVIDE  décalage et aller à l'état 28
+    T_POWER   décalage et aller à l'état 29
+    T_COMMA   décalage et aller à l'état 51
 
-    $défaut  réduction par utilisation de la règle 30 (expression)
+    $défaut  réduction par utilisation de la règle 20 (paramUtil)
 
 
 État 50
 
-   32 expression: expression T_POWER T_INTEGER .
+   17 expression: T_NAME T_POINT T_NAME T_PLEFT paramUtil . T_PRIGHT
 
-    $défaut  réduction par utilisation de la règle 32 (expression)
+    T_PRIGHT  décalage et aller à l'état 52
 
 
 État 51
 
-    7 declaration: T_NAME . T_IS type T_SEMICOLON declaration
+   19 paramUtil: expression T_COMMA . paramUtil
 
-    T_IS  décalage et aller à l'état 61
+    T_NAME     décalage et aller à l'état 9
+    T_INTEGER  décalage et aller à l'état 10
+    T_FLOAT    décalage et aller à l'état 11
+    T_BOOLEAN  décalage et aller à l'état 12
+    T_MINUS    décalage et aller à l'état 13
+    T_SQRT     décalage et aller à l'état 14
+    T_PLEFT    décalage et aller à l'état 15
+
+    expression  aller à l'état 49
+    paramUtil   aller à l'état 53
 
 
 État 52
 
-   24 instruction: T_NAME T_IS T_NAME T_SEMICOLON declaration .
+   17 expression: T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT .
 
-    $défaut  réduction par utilisation de la règle 24 (instruction)
+    $défaut  réduction par utilisation de la règle 17 (expression)
 
 
 État 53
 
-   26 assignment: T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT . expression
+   19 paramUtil: expression T_COMMA paramUtil .
 
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 62
-
-
-État 54
-
-   25 assignment: T_NAME T_COMMA assignment T_COMMA . expression
-
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 63
-
-
-État 55
-
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME T_IS . data method T_END T_NAME T_SEMICOLON
-
-    T_DATA  décalage et aller à l'état 41
-
-    $défaut  réduction par utilisation de la règle 6 (data)
-
-    data  aller à l'état 64
-
-
-État 56
-
-    5 data: T_DATA declaration .
-
-    $défaut  réduction par utilisation de la règle 5 (data)
-
-
-État 57
-
-    9 method: T_METHOD . fonction
-
-    T_NAME  décalage et aller à l'état 65
-
-    $défaut  réduction par utilisation de la règle 12 (fonction)
-
-    fonction  aller à l'état 66
-
-
-État 58
-
-    3 classe: T_CLASS T_NAME T_IS data method . T_END T_NAME T_SEMICOLON
-
-    T_END  décalage et aller à l'état 67
-
-
-État 59
-
-   38 expression: T_NAME T_POINT T_NAME T_PLEFT . paramUtil T_PRIGHT
-
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 68
-    paramUtil   aller à l'état 69
-
-
-État 60
-
-   31 expression: T_SQRT T_PLEFT expression T_PRIGHT .
-
-    $défaut  réduction par utilisation de la règle 31 (expression)
-
-
-État 61
-
-    7 declaration: T_NAME T_IS . type T_SEMICOLON declaration
-
-    T_NAME         décalage et aller à l'état 70
-    T_TYPEFLOAT    décalage et aller à l'état 71
-    T_TYPEBOOLEAN  décalage et aller à l'état 72
-    T_TYPEINTEGER  décalage et aller à l'état 73
-
-    type  aller à l'état 74
-
-
-État 62
-
-   26 assignment: T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression .
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
-
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-
-    $défaut  réduction par utilisation de la règle 26 (assignment)
-
-
-État 63
-
-   25 assignment: T_NAME T_COMMA assignment T_COMMA expression .
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
-
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-
-    $défaut  réduction par utilisation de la règle 25 (assignment)
-
-
-État 64
-
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME T_IS data . method T_END T_NAME T_SEMICOLON
-
-    T_METHOD  décalage et aller à l'état 57
-
-    $défaut  réduction par utilisation de la règle 10 (method)
-
-    method  aller à l'état 75
-
-
-État 65
-
-   11 fonction: T_NAME . T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction
-
-    T_PLEFT  décalage et aller à l'état 76
-
-
-État 66
-
-    9 method: T_METHOD fonction .
-
-    $défaut  réduction par utilisation de la règle 9 (method)
-
-
-État 67
-
-    3 classe: T_CLASS T_NAME T_IS data method T_END . T_NAME T_SEMICOLON
-
-    T_NAME  décalage et aller à l'état 77
-
-
-État 68
-
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
-   40 paramUtil: expression . T_COMMA paramUtil
-   41          | expression .
-
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-    T_COMMA   décalage et aller à l'état 78
-
-    $défaut  réduction par utilisation de la règle 41 (paramUtil)
-
-
-État 69
-
-   38 expression: T_NAME T_POINT T_NAME T_PLEFT paramUtil . T_PRIGHT
-
-    T_PRIGHT  décalage et aller à l'état 79
-
-
-État 70
-
-   19 type: T_NAME .
-
-    $défaut  réduction par utilisation de la règle 19 (type)
-
-
-État 71
-
-   17 type: T_TYPEFLOAT .
-
-    $défaut  réduction par utilisation de la règle 17 (type)
-
-
-État 72
-
-   16 type: T_TYPEBOOLEAN .
-
-    $défaut  réduction par utilisation de la règle 16 (type)
-
-
-État 73
-
-   18 type: T_TYPEINTEGER .
-
-    $défaut  réduction par utilisation de la règle 18 (type)
-
-
-État 74
-
-    7 declaration: T_NAME T_IS type . T_SEMICOLON declaration
-
-    T_SEMICOLON  décalage et aller à l'état 80
-
-
-État 75
-
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method . T_END T_NAME T_SEMICOLON
-
-    T_END  décalage et aller à l'état 81
-
-
-État 76
-
-   11 fonction: T_NAME T_PLEFT . parametre T_PRIGHT T_IS corps T_SEMICOLON fonction
-
-    T_NAME  décalage et aller à l'état 82
-
-    $défaut  réduction par utilisation de la règle 15 (parametre)
-
-    parametre  aller à l'état 83
-
-
-État 77
-
-    3 classe: T_CLASS T_NAME T_IS data method T_END T_NAME . T_SEMICOLON
-
-    T_SEMICOLON  décalage et aller à l'état 84
-
-
-État 78
-
-   40 paramUtil: expression T_COMMA . paramUtil
-
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 68
-    paramUtil   aller à l'état 85
-
-
-État 79
-
-   38 expression: T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT .
-
-    $défaut  réduction par utilisation de la règle 38 (expression)
-
-
-État 80
-
-    7 declaration: T_NAME T_IS type T_SEMICOLON . declaration
-
-    T_NAME  décalage et aller à l'état 51
-
-    $défaut  réduction par utilisation de la règle 8 (declaration)
-
-    declaration  aller à l'état 86
-
-
-État 81
-
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END . T_NAME T_SEMICOLON
-
-    T_NAME  décalage et aller à l'état 87
-
-
-État 82
-
-   13 parametre: T_NAME . T_COLON T_NAME T_COMMA parametre
-   14          | T_NAME . T_COLON T_NAME
-
-    T_COLON  décalage et aller à l'état 88
-
-
-État 83
-
-   11 fonction: T_NAME T_PLEFT parametre . T_PRIGHT T_IS corps T_SEMICOLON fonction
-
-    T_PRIGHT  décalage et aller à l'état 89
-
-
-État 84
-
-    3 classe: T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON .
-
-    $défaut  réduction par utilisation de la règle 3 (classe)
-
-
-État 85
-
-   40 paramUtil: expression T_COMMA paramUtil .
-
-    $défaut  réduction par utilisation de la règle 40 (paramUtil)
-
-
-État 86
-
-    7 declaration: T_NAME T_IS type T_SEMICOLON declaration .
-
-    $défaut  réduction par utilisation de la règle 7 (declaration)
-
-
-État 87
-
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME . T_SEMICOLON
-
-    T_SEMICOLON  décalage et aller à l'état 90
-
-
-État 88
-
-   13 parametre: T_NAME T_COLON . T_NAME T_COMMA parametre
-   14          | T_NAME T_COLON . T_NAME
-
-    T_NAME  décalage et aller à l'état 91
-
-
-État 89
-
-   11 fonction: T_NAME T_PLEFT parametre T_PRIGHT . T_IS corps T_SEMICOLON fonction
-
-    T_IS  décalage et aller à l'état 92
-
-
-État 90
-
-    4 classe: T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON .
-
-    $défaut  réduction par utilisation de la règle 4 (classe)
-
-
-État 91
-
-   13 parametre: T_NAME T_COLON T_NAME . T_COMMA parametre
-   14          | T_NAME T_COLON T_NAME .
-
-    T_COMMA  décalage et aller à l'état 93
-
-    $défaut  réduction par utilisation de la règle 14 (parametre)
-
-
-État 92
-
-   11 fonction: T_NAME T_PLEFT parametre T_PRIGHT T_IS . corps T_SEMICOLON fonction
-
-    T_NAME    décalage et aller à l'état 1
-    T_PLEFT   décalage et aller à l'état 2
-    T_RETURN  décalage et aller à l'état 94
-
-    corps        aller à l'état 95
-    instruction  aller à l'état 96
-
-
-État 93
-
-   13 parametre: T_NAME T_COLON T_NAME T_COMMA . parametre
-
-    T_NAME  décalage et aller à l'état 82
-
-    $défaut  réduction par utilisation de la règle 15 (parametre)
-
-    parametre  aller à l'état 97
-
-
-État 94
-
-   21 corps: T_RETURN . expression
-
-    T_NAME     décalage et aller à l'état 14
-    T_INTEGER  décalage et aller à l'état 15
-    T_FLOAT    décalage et aller à l'état 16
-    T_BOOLEAN  décalage et aller à l'état 17
-    T_MINUS    décalage et aller à l'état 18
-    T_SQRT     décalage et aller à l'état 19
-    T_PLEFT    décalage et aller à l'état 20
-
-    expression  aller à l'état 98
-
-
-État 95
-
-   11 fonction: T_NAME T_PLEFT parametre T_PRIGHT T_IS corps . T_SEMICOLON fonction
-
-    T_SEMICOLON  décalage et aller à l'état 99
-
-
-État 96
-
-   20 corps: instruction .
-
-    $défaut  réduction par utilisation de la règle 20 (corps)
-
-
-État 97
-
-   13 parametre: T_NAME T_COLON T_NAME T_COMMA parametre .
-
-    $défaut  réduction par utilisation de la règle 13 (parametre)
-
-
-État 98
-
-   21 corps: T_RETURN expression .
-   27 expression: expression . T_PLUS expression
-   28           | expression . T_MINUS expression
-   29           | expression . T_TIMES expression
-   30           | expression . T_DIVIDE expression
-   32           | expression . T_POWER T_INTEGER
-
-    T_PLUS    décalage et aller à l'état 32
-    T_MINUS   décalage et aller à l'état 33
-    T_TIMES   décalage et aller à l'état 34
-    T_DIVIDE  décalage et aller à l'état 35
-    T_POWER   décalage et aller à l'état 36
-
-    $défaut  réduction par utilisation de la règle 21 (corps)
-
-
-État 99
-
-   11 fonction: T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON . fonction
-
-    T_NAME  décalage et aller à l'état 65
-
-    $défaut  réduction par utilisation de la règle 12 (fonction)
-
-    fonction  aller à l'état 100
-
-
-État 100
-
-   11 fonction: T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction .
-
-    $défaut  réduction par utilisation de la règle 11 (fonction)
+    $défaut  réduction par utilisation de la règle 19 (paramUtil)

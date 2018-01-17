@@ -47,5 +47,5 @@ string Fonction::getType() const{
 
 /**--------------------------------------------------------------------------**/
 void Fonction::visit(Visitor& visitor) const {
-  return visitor.visitFonc(this);
+  //return visitor.visitFonc(this);
 }

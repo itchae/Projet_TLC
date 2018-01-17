@@ -24,7 +24,7 @@ string Operator::getType() const {
 
 /**--------------------------------------------------------------------------**/
 void Operator::visit(Visitor& visitor) const {
-  return visitor.visitOperator(this);
+  //return visitor.visitOperator(this);
 }
 
 /**--------------------------------------------------------------------------**/

@@ -13,7 +13,7 @@ class Expression : public Term {
     virtual string getType() const = 0;
 
 
-    virtual Expression* operator +(const Expression& val)const = 0;
+    /*virtual Expression* operator +(const Expression& val)const = 0;
     virtual Expression* operator -(const Expression& val)const = 0;/
     virtual Expression* operator * (const Expression& val)const = 0;
     virtual Expression* operator /(const Expression& val)const = 0;
@@ -57,7 +57,7 @@ class Expression : public Term {
 
     virtual Expression* superieurEgal(const IntValue& val)const = 0;
     virtual Expression* superieurEgal(const FloatValue& val)const = 0;
-    virtual Expression* superieurEgal(const BoolValue& val)const = 0;
+    virtual Expression* superieurEgal(const BoolValue& val)const = 0;*/
 
 };
 

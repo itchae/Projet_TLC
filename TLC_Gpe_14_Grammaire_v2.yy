@@ -85,6 +85,7 @@
 
 axiome : classe axiome            {}
        | instruction axiome       {}
+       |                          {}
        ;
 
 /* signature de la classe */
@@ -151,7 +152,7 @@ instruction : T_NAME T_ASSIGNMENT expression	T_SEMICOLON		{$$ = new Affect(symbo
 	  	      | T_PLEFT assignment T_PRIGHT T_SEMICOLON 			{$$ = new Affect(params,exprs);
                                                             params.clear();
                                                             exprs.clear();}
-            | T_NAME T_IS T_NAME T_SEMICOLON                {$$ = new Decl(toString($1),toString($3));}
+            | T_NAME T_IS type T_SEMICOLON                 {$$ = new Decl(toString($1),toString($3));}
             ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */

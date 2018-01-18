@@ -7,13 +7,15 @@
 
 using namespace std;
 
+//réalise les instructions
+//ajoute les variables et déclarations à la table des symboles
 class Interpretor {
 
   public:
     void visitDecl(const Decl *d);
     void visitAffect(const Affect *a);
     void visitFonction(const Fonction *f);
-    
+
 };
 
 

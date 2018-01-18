@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include "decl.hh"
-#include "inst.hh"
 #include "expr.hh"
 #include "return.hh"
 
@@ -13,11 +12,11 @@ using namespace std;
 /**
  * Classe permettant de stocker les informations d'une fonction déclarée (nom, parametres, instructions)
  */
-class Fonction : public Expression, public Instruction {
+class Fonction : public Expression  {
 
 	private:
 		string name;
-		vector<Decl*> param;
+		vector<Decl*> params;
 		Instruction* instruct;
 
 	public:
@@ -27,7 +26,7 @@ class Fonction : public Expression, public Instruction {
 		 * renvoie vrai si la fonction n'a pas de parametre (vector vide)
 		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
 		 */
-		bool noParam() const;
+		bool noParams() const;
 		bool containsParam(string var) const;
 		Decl* getParam(string var) const;
 		string getType() const;

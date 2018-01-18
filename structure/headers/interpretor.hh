@@ -4,6 +4,7 @@
 #include "affect.hh"
 #include "decl.hh"
 #include "fonc.hh"
+#include "call.hh"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Interpretor {
     void visitDecl(const Decl *d);
     void visitAffect(const Affect *a);
     void visitFonction(const Fonction *f);
+    void visitCall(const Call *c);
 
 };
 

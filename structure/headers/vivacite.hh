@@ -2,6 +2,7 @@
 #define _VIVACITE_H
 
 #include "affect.hh"
+#include "call.hh"
 #include "data.hh"
 #include "decl.hh"
 #include "float.hh"

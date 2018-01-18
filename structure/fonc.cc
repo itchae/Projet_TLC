@@ -2,38 +2,38 @@
 
 /**--------------------------------------------------------------------------**/
 Fonction::Fonction(string name, vector<Decl*> v, Instruction* i)
-	: name(name), instruct(i), param(v)
+	: name(name), instruct(i), params(v)
 {
 }
 
 /**--------------------------------------------------------------------------**/
 Fonction::~Fonction() {
-  while (param.size()>0){
-	  delete param.back();
-	  param.pop_back();
+  while (params.size()>0){
+	  delete params.back();
+	  params.pop_back();
   }
   delete instruct;
 }
 
 /**--------------------------------------------------------------------------**/
 bool Fonction::containsParam(string var) const{
-	for (int i=0; i<param.size(); i++){
-		if (param[i]->getVar().compare(var)==0) return true;
+	for (int i=0; i<params.size(); i++){
+		if (params[i]->getVar().compare(var)==0) return true;
 	}
 	return false;
 }
 
 /**--------------------------------------------------------------------------**/
 Decl* Fonction::getParam(string var) const{
-	for (int i=0; i<param.size(); i++){
-		if (param[i]->getVar().compare(var)==0) return param[i];
+	for (int i=0; i<params.size(); i++){
+		if (params[i]->getVar().compare(var)==0) return params[i];
 	}
 	return NULL;
 }
 
 /**--------------------------------------------------------------------------**/
-bool Fonction::noParam() const{
-	return param.empty();
+bool Fonction::noParams() const{
+	return params.empty();
 }
 
 /**--------------------------------------------------------------------------**/

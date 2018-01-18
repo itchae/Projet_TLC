@@ -9,6 +9,7 @@ class Instruction : public Term {
 
   public:
     ~Instruction() { }
+    virtual void visit(Visitor& visitor) const = 0;
 
 };
 

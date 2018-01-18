@@ -31,6 +31,11 @@
    */
   SymbolTable& symbol = SymbolTable::Instance();
 
+  /**
+   * interpretateur des instructions du langage
+   */
+  Interpretor interpretor();
+
   void yyerror(const char* msg){
   	cerr << "ERROR : " << msg << endl;
     exit (EXIT_FAILURE);
@@ -83,10 +88,26 @@
 
 %%
 
-axiome : classe axiome            {}
-       | instruction axiome       {}
-       |                          {}
+axiome : classe axiome                        {/*Classe* c = $1; c->visit(interpretor); delete c;*/}
+       | instruction T_SEMICOLON axiome       {Instruction* i = $1; i->visit(interpretor); delete i;}
+       |                                      {}
        ;
+
+/* Definit les instructions possibles */
+instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(symbol.findDecl(toString($1)),$3);}
+	  	      | T_PLEFT assignment T_PRIGHT 			                {$$ = new Affect(params,exprs);
+                                                                  params.clear();
+                                                                  exprs.clear();}
+           | T_NAME T_IS type                                   {$$ = new Decl(toString($1),toString($3));}
+           | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT   {$$ = new Call(toString($1),toString($3),exprs); exprs.clear();}
+           ;
+
+/**
+* parametres pour utiliser une methode, exemple : fonction(1,h) les parametres sont 1 et h
+*/
+paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}
+          | expression                               {exprs.push_back($1);}
+          ;
 
 /* signature de la classe */
 classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");
@@ -147,14 +168,6 @@ corps : instruction                             {$$ = $1;}
       | T_RETURN expression		 									{$$ = new Return($2);}
       ;
 
-/* Definit les instructions possibles */
-instruction : T_NAME T_ASSIGNMENT expression	T_SEMICOLON		{$$ = new Affect(symbol.findDecl(toString($1)),$3);}
-	  	      | T_PLEFT assignment T_PRIGHT T_SEMICOLON 			{$$ = new Affect(params,exprs);
-                                                            params.clear();
-                                                            exprs.clear();}
-            | T_NAME T_IS type T_SEMICOLON                 {$$ = new Decl(toString($1),toString($3));}
-            ;
-
 /* Affectations multiples (ex : (x,y):=(1,2) */
 assignment : T_NAME T_COMMA assignment T_COMMA expression						{params.push_back(symbol.findDecl(toString($1)));
                                                                       exprs.insert(exprs.begin(),$5);}
@@ -162,6 +175,9 @@ assignment : T_NAME T_COMMA assignment T_COMMA expression						{params.push_back
                                                                       exprs.insert(exprs.begin(),$5);}
 		   		 ;
 
+/**
+ * definit une expression, par exemple : 45+6 est une expression
+ */
 expression : expression T_PLUS expression 				                   {$$ = new Operator(PLUS,$1,$3);}
            | expression T_MINUS expression 				                   {$$ = new Operator(MOINS,$1,$3);}
            | expression T_TIMES expression 				                   {$$ = new Operator(MULT,$1,$3);}
@@ -179,9 +195,5 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
                                                                       if (a==NULL) yyerror("valeur de variable non trouvee");
                                                                       $$ = a->getExprs()[0];}
            ;
-
-paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}
-          | expression                               {exprs.push_back($1);}
-          ;
 
 %%

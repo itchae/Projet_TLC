@@ -14,5 +14,10 @@ void Interpretor::visitAffect(const Affect *a){
 
 /**--------------------------------------------------------------------------**/
 void Interpretor::visitFonction(const Fonction *f){
+  
+}
+
+/**--------------------------------------------------------------------------**/
+void Interpretor::visitCall(const Call *c){
 
 }

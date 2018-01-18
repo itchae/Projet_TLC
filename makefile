@@ -9,11 +9,14 @@ FFLAGS = -lfl
 
 all: $(EXEC)
 
+
 $(EXEC): $(OBJ)
 	$(CXX) -o $@ $^ $(FFLAGS)
 
+
 %.o : %.cc
-	$(CC) -I $(CFLAGS) -o $@ -c $<
+	$(CXX) -I $(CFLAGS) -o $@ -c $<
+
 
 $(NAME)_v2.tab.cc: $(NAME)_v2.yy
 	bison -d $< -v

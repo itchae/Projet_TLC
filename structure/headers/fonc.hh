@@ -34,6 +34,7 @@ class Fonction : public Expression  {
 		inline const Instruction* getInst() const { return instruct; }
 		void visit(Visitor& visitor);
 
+
 };
 
 #endif

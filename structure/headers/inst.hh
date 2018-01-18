@@ -8,7 +8,7 @@ using namespace std;
 class Instruction : public Term {
 
   public:
-    ~Instruction() { }
+    virtual ~Instruction() { }
     virtual void visit(Visitor& visitor) = 0;
 
 };

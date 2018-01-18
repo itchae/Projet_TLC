@@ -14,23 +14,23 @@ using namespace std;
 class Affect : public Instruction {
 
   private:
-    vector<Decl*> vars;
+    vector<string> vars;
     vector<Expression*> exprs;
     /**
      * Renvoie vrai si les declarations et les expressions ont le meme type
      * @return vrai si les declarations et les expressions ont le meme type
      */
-    bool memeType(vector<Decl*> v, vector<Expression*> e);
+    bool memeType(vector<string> v, vector<Expression*> e);
 
   public:
-    Affect(Decl* v, vector<Expression*> e);
-    Affect(Decl* v, Expression* e);
-    Affect(vector<Decl*> v, vector<Expression*> e);
+    Affect(string v, vector<Expression*> e);
+    Affect(string v, Expression* e);
+    Affect(vector<string> v, vector<Expression*> e);
     ~Affect();
     bool operator==(Affect* rhs);
-    inline vector<Decl*> getVars() const { return vars; }
+    inline vector<string> getVars() const { return vars; }
     inline const vector<Expression*> getExprs() const { return exprs; }
-    void visit(Visitor& visitor) const;
+    void visit(Visitor& visitor);
 
 };
 

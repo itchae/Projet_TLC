@@ -32,6 +32,6 @@ string Class::getType() const {
 }
 
 //--------------------------------------------------------------------------//
-void Class::visit(Visitor& visitor) const {
+void Class::visit(Visitor& visitor) {
   //return visitor.visitClass(this);
 }

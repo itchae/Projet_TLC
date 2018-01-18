@@ -1,23 +1,26 @@
 #include "headers/interpretor.hh"
 
+#include <iostream>
+
 using namespace std;
 
 /**--------------------------------------------------------------------------**/
-void Interpretor::visitDecl(const Decl *d){
+void Interpretor::visitDecl(Decl *d){
+  SymbolTable& symbol = SymbolTable::Instance();
+  symbol.addDecl(d);
+}
+
+/**--------------------------------------------------------------------------**/
+void Interpretor::visitAffect(Affect *a){
   //TODO add to the global symbol table
 }
 
 /**--------------------------------------------------------------------------**/
-void Interpretor::visitAffect(const Affect *a){
-  //TODO add to the global symbol table
+void Interpretor::visitFonction(Fonction *f){
+
 }
 
 /**--------------------------------------------------------------------------**/
-void Interpretor::visitFonction(const Fonction *f){
-  
-}
-
-/**--------------------------------------------------------------------------**/
-void Interpretor::visitCall(const Call *c){
-
+void Interpretor::visitCall(Call *c){
+  cout << "heheh" << endl;
 }

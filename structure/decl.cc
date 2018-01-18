@@ -10,6 +10,6 @@ Decl::~Decl() {
 }
 
 /**--------------------------------------------------------------------------**/
-void Decl::visit(Visitor& visitor) const {
-  //return visitor.visitDecl(this);
+void Decl::visit(Visitor& visitor) {
+  return visitor.visitDecl(this);
 }

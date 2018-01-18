@@ -18,7 +18,7 @@ class Class  : Expression {
 		string name; // Nom
 		Data* data; // Attributs
 		Method* method; // Méthodes
-		
+
 
 	public:
 		Class(string n, Data* d, Method* m);
@@ -30,7 +30,7 @@ class Class  : Expression {
 		inline const Data* getData() const { return data; }
 		inline const Method* getMethod() const { return method; }
 		inline const string getName() const { return name; }
-		void visit(Visitor& visitor) const;
+		void visit(Visitor& visitor);
 
 };
 

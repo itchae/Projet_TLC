@@ -15,7 +15,7 @@ class Float : public Expression {
     ~Float();
     inline double getValue() const { return value; }
     string getType() const { return "float"; }
-    void visit(Visitor& visitor) const;
+    void visit(Visitor& visitor);
 
 };
 

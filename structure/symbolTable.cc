@@ -74,24 +74,18 @@ Decl* SymbolTable::findDecl(string name) const{
 
 /**--------------------------------------------------------------------------**/
 void SymbolTable::addAffect(Affect* a){
-  for (int i=0; i<affects.size(); i++){
+  /*for (int i=0; i<affects.size(); i++){
     if (*affects[i]==a){
       //on garde seulement la derniere affectation (qui correspond donc a la valeur actuelle de la variable)
       affects[i] = a;
       return;
     }
   }
-  affects.push_back(a);
+  affects.push_back(a);*/
 }
 
 /**--------------------------------------------------------------------------**/
 Affect* SymbolTable::findAffect(string name) const{
-  for (int i=0; i<affects.size(); i++){
-    if (affects[i]->getVars().size()==1){
-      //TODO verification des types pour l'affectation
-      if (name.compare(affects[i]->getVars()[0]->getVar())==0) return affects[i];
-    }
-  }
   return NULL;
 }
 

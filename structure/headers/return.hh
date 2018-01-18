@@ -19,7 +19,7 @@ class Return : public Instruction, public Expression {
     ~Return();
     string getType() const;
     inline const Expression* getExpr() const { return expr; }
-    void visit(Visitor& visitor) const;
+    void visit(Visitor& visitor);
 
 };
 

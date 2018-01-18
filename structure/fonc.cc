@@ -46,6 +46,6 @@ string Fonction::getType() const{
 }
 
 /**--------------------------------------------------------------------------**/
-void Fonction::visit(Visitor& visitor) const {
+void Fonction::visit(Visitor& visitor) {
   //return visitor.visitFonc(this);
 }

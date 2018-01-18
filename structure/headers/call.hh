@@ -21,7 +21,7 @@ class Call : public Instruction {
 	public:
 		Call(string o, string m, vector<Expression*> p);
 		~Call();
-		void visit(Visitor& visitor) const;
+		void visit(Visitor& visitor);
 
 };
 

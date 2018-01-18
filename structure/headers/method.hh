@@ -20,7 +20,7 @@ class Method  {
 		~Method();
 		bool contains(string var) const;
 		Fonction* getFonction(string var) const;
-		void visit(Visitor& visitor) const;
+		void visit(Visitor& visitor);
 
 };
 

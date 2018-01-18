@@ -11,9 +11,8 @@
 
   extern int yylex();
 
-  /**
-   * parametres d'une methode, affectation, ...
-   */
+  vector<string> vars;
+
   vector<Decl*> params;
 
   /**
@@ -94,9 +93,9 @@ axiome : classe axiome                        {/*Classe* c = $1; c->visit(interp
        ;
 
 /* Definit les instructions possibles */
-instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(symbol.findDecl(toString($1)),$3);}
-	  	      | T_PLEFT assignment T_PRIGHT 			                {$$ = new Affect(params,exprs);
-                                                                  params.clear();
+instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(toString($1),$3);}
+	  	      | T_PLEFT assignment T_PRIGHT 			                {$$ = new Affect(vars,exprs);
+                                                                  vars.clear();
                                                                   exprs.clear();}
            | T_NAME T_IS type                                   {$$ = new Decl(toString($1),toString($3));}
            | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT   {$$ = new Call(toString($1),toString($3),exprs); exprs.clear();}
@@ -141,9 +140,9 @@ fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction 		{
 
 /* Paramètres de la fonction */
 parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toString($1),toString($3));
-                                                        params.push_back(d);}
+                                                          params.push_back(d);}
 		  		| T_NAME T_COLON T_NAME  											{ Decl* d = new Decl(toString($1),toString($3));
-                                                        params.push_back(d);}
+                                                          params.push_back(d);}
           | 																					  {}
           ;
 
@@ -169,9 +168,9 @@ corps : instruction                             {$$ = $1;}
       ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */
-assignment : T_NAME T_COMMA assignment T_COMMA expression						{params.push_back(symbol.findDecl(toString($1)));
+assignment : T_NAME T_COMMA assignment T_COMMA expression						{vars.push_back(toString($1));
                                                                       exprs.insert(exprs.begin(),$5);}
-		   		 | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression				{params.push_back(symbol.findDecl(toString($1)));
+		   		 | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression				{vars.push_back(toString($1));
                                                                       exprs.insert(exprs.begin(),$5);}
 		   		 ;
 

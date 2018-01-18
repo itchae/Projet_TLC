@@ -32,7 +32,7 @@ class Fonction : public Expression  {
 		string getType() const;
 		inline const string getName() const { return name; }
 		inline const Instruction* getInst() const { return instruct; }
-		void visit(Visitor& visitor) const;
+		void visit(Visitor& visitor);
 
 };
 

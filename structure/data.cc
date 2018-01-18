@@ -30,6 +30,6 @@ Decl* Data::getDecl(string var) const{
 }
 
 /**--------------------------------------------------------------------------**/
-void Data::visit(Visitor& visitor) const {
+void Data::visit(Visitor& visitor) {
   //return visitor.visitFonc(this);
 }

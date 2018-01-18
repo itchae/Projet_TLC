@@ -14,10 +14,10 @@ using namespace std;
 class Interpretor : public Visitor{
 
   public:
-    void visitDecl(const Decl *d);
-    void visitAffect(const Affect *a);
-    void visitFonction(const Fonction *f);
-    void visitCall(const Call *c);
+    void visitDecl(Decl *d);
+    void visitAffect(Affect *a);
+    void visitFonction(Fonction *f);
+    void visitCall(Call *c);
 
 };
 

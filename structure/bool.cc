@@ -11,6 +11,6 @@ Boolean::~Boolean() {
 }
 
 /**--------------------------------------------------------------------------**/
-void Boolean::visit(Visitor& visitor) const {
+void Boolean::visit(Visitor& visitor) {
   //return visitor.visitFloat(this);
 }

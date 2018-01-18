@@ -17,6 +17,6 @@ string Return::getType() const {
 }
 
 /**--------------------------------------------------------------------------**/
-void Return::visit(Visitor& visitor) const {
+void Return::visit(Visitor& visitor) {
   //return visitor.visitDecl(this);
 }

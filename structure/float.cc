@@ -11,6 +11,6 @@ Float::~Float() {
 }
 
 /**--------------------------------------------------------------------------**/
-void Float::visit(Visitor& visitor) const {
+void Float::visit(Visitor& visitor) {
   //return visitor.visitFloat(this);
 }

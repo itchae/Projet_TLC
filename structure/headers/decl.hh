@@ -12,15 +12,14 @@ class Decl : public Instruction {
 
   private:
     string var; //Nom de la variable
-    string type; //Type de la variable (enum ? )
-    //Valeur ?
+    string type; //Type de la variable
 
   public:
     Decl(string var, string type);
     ~Decl();
     inline const string getVar() const { return var; }
     inline const string getType() const { return type; }
-    void visit(Visitor& visitor) const;
+    void visit(Visitor& visitor);
 
 };
 

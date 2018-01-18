@@ -15,6 +15,6 @@ Call::~Call() {
 }
 
 /**--------------------------------------------------------------------------**/
-void Call::visit(Visitor& visitor) const {
+void Call::visit(Visitor& visitor) {
   return visitor.visitCall(this);
 }

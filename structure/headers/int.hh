@@ -15,7 +15,7 @@ class Integer : public Expression {
     ~Integer();
     inline int getValue() const { return value; }
     string getType() const { return "integer"; }
-    void visit(Visitor& visitor) const;
+    void visit(Visitor& visitor);
 
 };
 

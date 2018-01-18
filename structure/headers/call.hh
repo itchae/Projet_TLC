@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "expr.hh"
+#include "inst.hh"
 
 using namespace std;
 

@@ -34,7 +34,7 @@
   /**
    * interpretateur des instructions du langage
    */
-  Interpretor interpretor();
+  Interpretor interpretor;
 
   void yyerror(const char* msg){
   	cerr << "ERROR : " << msg << endl;

@@ -5,12 +5,13 @@
 #include "decl.hh"
 #include "fonc.hh"
 #include "call.hh"
+#include "visitor.hh"
 
 using namespace std;
 
 //réalise les instructions
 //ajoute les variables et déclarations à la table des symboles
-class Interpretor {
+class Interpretor : public Visitor{
 
   public:
     void visitDecl(const Decl *d);

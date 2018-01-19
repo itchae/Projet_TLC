@@ -33,3 +33,10 @@ Decl* Data::getDecl(string var) const{
 void Data::visit(Visitor& visitor) {
   //return visitor.visitFonc(this);
 }
+
+void Data::print(){
+  for (auto var : vars){
+    var->print();
+    cout<<",";
+  }
+}

@@ -21,7 +21,7 @@ class Integer : public Expression {
     inline int getValue() const { return value; }
     string getType() const { return "integer"; }
     void visit(Visitor& visitor);
-
+    void print() const;
 
 
 

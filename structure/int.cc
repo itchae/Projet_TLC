@@ -15,6 +15,9 @@ void Integer::visit(Visitor& visitor) {
   //return visitor.visitInteger(this);
 }
 
+void Integer::print() const{
+  cout<<value<<endl; 
+}
 
 Expression* Integer::operator +(const Expression& val)const {
   return val.plus(*this);

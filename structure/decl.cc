@@ -12,3 +12,7 @@ Decl::~Decl() {
 void Decl::visit(Visitor& visitor) {
   return visitor.visitDecl(this);
 }
+
+void Decl::print(){
+  cout<<getVar()<<"."<<<<endl; 
+}

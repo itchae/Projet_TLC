@@ -49,3 +49,7 @@ string Fonction::getType() const{
 void Fonction::visit(Visitor& visitor) {
   //return visitor.visitFonc(this);
 }
+
+void Fonction::print() const{
+	cout<<name<<endl; 
+}

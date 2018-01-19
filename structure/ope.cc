@@ -48,3 +48,7 @@ void Operator::calcul(){
 
   }
 }
+
+void Operator::print() const{
+  cout<<symbol<<endl; 
+}

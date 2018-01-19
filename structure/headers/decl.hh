@@ -20,6 +20,7 @@ class Decl : public Instruction {
     inline const string getVar() const { return var; }
     inline const string getType() const { return type; }
     void visit(Visitor& visitor);
+    void print(); 
 
 };
 

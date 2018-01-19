@@ -1,5 +1,6 @@
 #include "headers/class.hh"
 
+
 //--------------------------------------------------------------------------//
 Class::Class(string n, Data* d, Method* m)
   : nom(n), data(d), method(m)
@@ -32,4 +33,12 @@ string Class::getType() const {
 //--------------------------------------------------------------------------//
 void Class::visit(Visitor& visitor) {
   //return visitor.visitClass(this);
+}
+
+void Class::print() const{
+	cout<<"(";
+  data->print();
+
+
+  cout<<")"<<endl;
 }

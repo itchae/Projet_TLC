@@ -14,16 +14,15 @@ using namespace std;
 class Class  : Expression {
 
 	private:
-		Class* mere; // Classe mère
-		string name; // Nom
+		string mere; // Classe mère
+		string nom; // Nom de la classe
 		Data* data; // Attributs
 		Method* method; // Méthodes
 
 
 	public:
 		Class(string n, Data* d, Method* m);
-		Class(Class* mere, string n, Data* d, Method* m);
-		Class(Data *data);
+		Class(string mere, string n, Data* d, Method* m);
 		~Class();
 		bool operator==(Class& rhs) const;
 		string getType() const;

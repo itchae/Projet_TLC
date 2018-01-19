@@ -76,6 +76,7 @@
 %type<fonc> fonction
 %type<inst> instruction corps
 %type<sval> type
+%type<cl> classe
 
 %left T_PLUS T_MINUS
 %left T_TIMES T_DIVIDE
@@ -110,12 +111,10 @@ paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}
 
 /* signature de la classe */
 classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");
-                                                                                      Class* c = new Class(toString($2),$4,$5);
-                                                                                      symbol.addClass(c);}
+                                                                                      $$ = new Class(toString($2),$4,$5);}
 	  	 | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{ if (toString($2).compare(toString($9))!=0) yyerror("nom de debut et de fin de classe non identitiques");
-                                                                                      Class* mere = symbol.findClass($4);
-                                                                                      Class* c = new Class(mere,toString($2),$6,$7);
-                                                                                      symbol.addClass(c);}
+                                                                                        if (toString($2).compare(toString($4))==0) yyerror("classe mere identique a la classe");
+                                                                                      $$ = new Class(toString($4),toString($2),$6,$7);}
 	  	;
 
 /* Emplacement data contenant les déclarations des variables */

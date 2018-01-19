@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "decl.hh"
+#include "var.hh"
 
 using namespace std;
 
@@ -13,14 +13,14 @@ using namespace std;
 class Data {
 
 	private:
-		vector<Decl*> vars;
+		vector<Variable*> vars;
 
 	public:
-		Data(vector<Decl*> v);
+		Data(vector<Variable*> v);
 		~Data();
 		bool contains(string var) const;
-		Decl* getDecl(string var) const;
-		inline vector<Decl*> getDecls() const { return vars; }
+		Variable* getVar(string var) const;
+		inline vector<Variable*> getVars() const { return vars; }
 		void visit(Visitor& visitor);
 
 };

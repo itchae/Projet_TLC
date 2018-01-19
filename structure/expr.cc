@@ -1,153 +1,153 @@
 #include "headers/expr.hh"
 
 
-Expression* Expression::operator +(const Expression& val)const{
+Expression* Expression::operator +( Expression& val){
   throw runtime_error("Operation + impossible");
 }
-Expression* Expression::operator -(const Expression& val)const{
+Expression* Expression::operator -( Expression& val){
   throw runtime_error("Operation - impossible");
 }
-Expression* Expression::operator * (const Expression& val)const{
+Expression* Expression::operator * ( Expression& val){
   throw runtime_error("Operation * impossible");
 }
-Expression* Expression::operator /(const Expression& val)const{
+Expression* Expression::operator /( Expression& val){
   throw runtime_error("Operation / impossible");
 }
 
-Expression* Expression::operator < (const Expression& val)const{
+Expression* Expression::operator < ( Expression& val){
   throw runtime_error("Operation < impossible");
 }
-Expression* Expression::operator <=(const Expression& val)const{
+Expression* Expression::operator <=( Expression& val){
   throw runtime_error("Operation <= impossible");
 }
-Expression* Expression::operator > (const Expression& val)const{
+Expression* Expression::operator > ( Expression& val){
   throw runtime_error("Operation > impossible");
 }
-Expression* Expression::operator >=(const Expression& val)const{
+Expression* Expression::operator >=( Expression& val){
   throw runtime_error("Operation >= impossible");
 }
 
-Expression* Expression::plus(const Integer& val)const{
+Expression* Expression::plus( Integer& val){
   throw runtime_error("Operation plus impossible");
 }
-Expression* Expression::plus(const Float& val)const{
+Expression* Expression::plus( Float& val){
   throw runtime_error("Operation plus impossible");
 }
-Expression* Expression::plus(const Boolean& val)const{
+Expression* Expression::plus( Boolean& val){
   throw runtime_error("Operation plus impossible");
 }
 
-Expression* Expression::moins(const Integer& val)const{
+Expression* Expression::moins( Integer& val){
   throw runtime_error("Operation moins impossible");
 }
-Expression* Expression::moins(const Float& val)const{
+Expression* Expression::moins( Float& val){
   throw runtime_error("Operation moins impossible");
 }
-Expression* Expression::moins(const Boolean& val)const{
+Expression* Expression::moins( Boolean& val){
   throw runtime_error("Operation moins impossible");
 }
 
-Expression* Expression::mult(const Integer& val)const{
+Expression* Expression::mult( Integer& val){
   throw runtime_error("Operation mult impossible");
 }
-Expression* Expression::mult(const Float& val)const{
+Expression* Expression::mult( Float& val){
   throw runtime_error("Operation mult impossible");
 }
-Expression* Expression::mult(const Boolean& val)const{
+Expression* Expression::mult( Boolean& val){
   throw runtime_error("Operation mult impossible");
 }
 
-Expression* Expression::div(const Integer& val)const{
+Expression* Expression::div( Integer& val){
   throw runtime_error("Operation div impossible");
 }
-Expression* Expression::div(const Float& val)const{
+Expression* Expression::div( Float& val){
   throw runtime_error("Operation div impossible");
 }
-Expression* Expression::div(const Boolean& val)const{
+Expression* Expression::div( Boolean& val){
   throw runtime_error("Operation div impossible");
 }
 
 
-Expression* Expression::pow(const Integer& val)const{
+Expression* Expression::pow( Integer& val){
   throw runtime_error("Operation pow impossible");
 }
-Expression* Expression::pow(const Float& val)const{
+Expression* Expression::pow( Float& val){
   throw runtime_error("Operation pow impossible");
 }
-Expression* Expression::pow(const Boolean& val)const{
+Expression* Expression::pow( Boolean& val){
   throw runtime_error("Operation pow impossible");
 }
 
-Expression* Expression::sqrt(const Integer& val)const{
+Expression* Expression::sqrt( Integer& val){
   throw runtime_error("Operation sqrt impossible");
 }
-Expression* Expression::sqrt(const Float& val)const{
+Expression* Expression::sqrt( Float& val){
   throw runtime_error("Operation sqrt impossible");
 }
-Expression* Expression::sqrt(const Boolean& val)const{
+Expression* Expression::sqrt( Boolean& val){
   throw runtime_error("Operation sqrt impossible");
 }
 
 
-Expression* Expression::inferieur(const Integer& val)const{
+Expression* Expression::inferieur( Integer& val){
   throw runtime_error("Operation inferieur impossible");
 }
-Expression* Expression::inferieur(const Float& val)const{
+Expression* Expression::inferieur( Float& val){
   throw runtime_error("Operation inferieur impossible");
 }
-Expression* Expression::inferieur(const Boolean& val)const{
+Expression* Expression::inferieur( Boolean& val){
   throw runtime_error("Operation inferieur impossible");
 }
 
 
-Expression* Expression::inferieurEgal(const Integer& val)const{
+Expression* Expression::inferieurEgal( Integer& val){
   throw runtime_error("Operation inferieurEgal impossible");
 }
-Expression* Expression::inferieurEgal(const Float& val)const{
+Expression* Expression::inferieurEgal( Float& val){
   throw runtime_error("Operation inferieurEgal impossible");
 }
-Expression* Expression::inferieurEgal(const Boolean& val)const{
+Expression* Expression::inferieurEgal( Boolean& val){
   throw runtime_error("Operation inferieurEgal impossible");
 }
 
 
-Expression* Expression::superieur (const Integer& val)const{
+Expression* Expression::superieur ( Integer& val){
   throw runtime_error("Operation superieur impossible");
 }
-Expression* Expression::superieur (const Float& val)const{
+Expression* Expression::superieur ( Float& val){
   throw runtime_error("Operation superieur impossible");
 }
-Expression* Expression::superieur (const Boolean& val)const{
+Expression* Expression::superieur ( Boolean& val){
   throw runtime_error("Operation superieur impossible");
 }
 
 
-Expression* Expression::superieurEgal(const Integer& val)const{
+Expression* Expression::superieurEgal( Integer& val){
   throw runtime_error("Operation superieurEgal impossible");
 }
-Expression* Expression::superieurEgal(const Float& val)const{
+Expression* Expression::superieurEgal( Float& val){
   throw runtime_error("Operation superieurEgal impossible");
 }
-Expression* Expression::superieurEgal(const Boolean& val)const{
+Expression* Expression::superieurEgal( Boolean& val){
   throw runtime_error("Operation superieurEgal impossible");
 }
 
-Expression* Expression::diff(const Integer& val)const{
+Expression* Expression::diff( Integer& val){
   throw runtime_error("Operation diff impossible");
 }
-Expression* Expression::diff(const Float& val)const{
+Expression* Expression::diff( Float& val){
   throw runtime_error("Operation diff impossible");
 }
-Expression* Expression::diff(const Boolean& val)const{
+Expression* Expression::diff( Boolean& val){
   throw runtime_error("Operation diff impossible");
 }
 
-Expression* Expression::egalite(const Integer& val)const{
+Expression* Expression::egalite( Integer& val){
   throw runtime_error("Operation egalité impossible");
 }
-Expression* Expression::egalite(const Float& val)const{
+Expression* Expression::egalite( Float& val){
   throw runtime_error("Operation egalité impossible");
 }
-Expression* Expression::egalite(const Boolean& val)const{
+Expression* Expression::egalite( Boolean& val){
   throw runtime_error("Operation egalité impossible");
 }

@@ -15,166 +15,166 @@ void Integer::visit(Visitor& visitor) {
   //return visitor.visitInteger(this);
 }
 
-void Integer::print() const{
+void Integer::print() {
   cout<<value<<endl;
 }
 
-Expression* Integer::operator +(const Expression& val)const {
+Expression* Integer::operator +( Expression& val) {
   return val.plus(*this);
 }
 
-Expression* Integer::operator -(const Expression& val)const{
+Expression* Integer::operator -( Expression& val){
   return val.moins(*this);
 }
-Expression* Integer::operator * (const Expression& val)const{
+Expression* Integer::operator * ( Expression& val){
   return val.mult(*this);
 }
-Expression* Integer::operator /(const Expression& val)const{
+Expression* Integer::operator /( Expression& val){
   return val.div(*this);
 }
 
-Expression* Integer::operator < (const Expression& val)const{
+Expression* Integer::operator < ( Expression& val){
   return val.inferieur(*this);
 }
-Expression* Integer::operator <=(const Expression& val)const{
+Expression* Integer::operator <=( Expression& val){
   return val.inferieurEgal(*this);
 }
-Expression* Integer::operator > (const Expression& val)const{
+Expression* Integer::operator > ( Expression& val){
   return val.superieur(*this);
 }
-Expression* Integer::operator >=(const Expression& val)const{
+Expression* Integer::operator >=( Expression& val){
   return val.superieurEgal(*this);
 }
 
-Expression* Integer::plus(const Integer& val)const{
+Expression* Integer::plus( Integer& val){
   return new Integer(((int)val.value) + this->value);
 }
 
-Expression* Integer::plus(const Float& val)const{
+Expression* Integer::plus( Float& val){
   throw runtime_error("Addition entre int et float");
 }
 
-Expression* Integer::plus(const Boolean& val)const{
+Expression* Integer::plus( Boolean& val){
   throw runtime_error("Addition entre int et bool");
 }
 
-Expression* Integer::moins(const Integer& val)const{
+Expression* Integer::moins( Integer& val){
   return new Integer(((int)val.value) - this->value);
 }
 
-Expression* Integer::moins(const Float& val)const{
+Expression* Integer::moins( Float& val){
   throw runtime_error("Soustraction entre int et float");
 }
 
-Expression* Integer::moins(const Boolean& val)const{
+Expression* Integer::moins( Boolean& val){
   throw runtime_error("Soustraction  entre int et bool");
 }
 
-Expression* Integer::mult(const Integer& val)const{
+Expression* Integer::mult( Integer& val){
   return new Integer(((int)val.value) * this->value);
 }
 
-Expression* Integer::mult(const Float& val)const{
+Expression* Integer::mult( Float& val){
   throw runtime_error("Multiplication entre int et float");
 }
 
-Expression* Integer::mult(const Boolean& val)const{
+Expression* Integer::mult( Boolean& val){
   throw runtime_error("Multiplication entre int et bool");
 }
 
-Expression* Integer::div(const Integer& val)const{
+Expression* Integer::div( Integer& val){
   return new Integer(((int)val.value) / this->value);
 }
 
-Expression* Integer::div(const Float& val)const{
+Expression* Integer::div( Float& val){
   throw runtime_error("Division entre int et float");
 }
-Expression* Integer::div(const Boolean& val)const{
+Expression* Integer::div( Boolean& val){
   throw runtime_error("Division entre int et bool");
 }
 
 
-Expression* Integer::pow(const Integer& val)const{
+Expression* Integer::pow( Integer& val){
   throw runtime_error("Operation pow impossible entre int et int");
 }
-Expression* Integer::pow(const Float& val)const{
+Expression* Integer::pow( Float& val){
   throw runtime_error("Operation pow impossible entre int et float");
 }
-Expression* Integer::pow(const Boolean& val)const{
+Expression* Integer::pow( Boolean& val){
   throw runtime_error("Operation pow impossible entre int et bool");
 }
 
-Expression* Integer::sqrt(const Integer& val)const{
+Expression* Integer::sqrt( Integer& val){
   throw runtime_error("Operation sqrt impossible entre int et int");
 }
-Expression* Integer::sqrt(const Float& val)const{
+Expression* Integer::sqrt( Float& val){
   throw runtime_error("Operation sqrt impossible entre int et float");
 }
-Expression* Integer::sqrt(const Boolean& val)const{
+Expression* Integer::sqrt( Boolean& val){
   throw runtime_error("Operation sqrt impossible entre int et bool");
 }
 
 
-Expression* Integer::inferieur(const Integer& val)const{
+Expression* Integer::inferieur( Integer& val){
   return new Boolean(this->value<val.value);
 }
-Expression* Integer::inferieur(const Float& val)const{
+Expression* Integer::inferieur( Float& val){
   throw runtime_error("Comparaison entre int et float");
 }
-Expression* Integer::inferieur(const Boolean& val)const{
+Expression* Integer::inferieur( Boolean& val){
   throw runtime_error("Comparaison entre int et bool");
 }
 
 
-Expression* Integer::inferieurEgal(const Integer& val)const{
+Expression* Integer::inferieurEgal( Integer& val){
   return new Boolean(this->value<=val.value);
 }
-Expression* Integer::inferieurEgal(const Float& val)const{
+Expression* Integer::inferieurEgal( Float& val){
   throw runtime_error("Comparaison entre int et float");
 }
-Expression* Integer::inferieurEgal(const Boolean& val)const{
+Expression* Integer::inferieurEgal( Boolean& val){
   throw runtime_error("Comparaison entre int et bool");
 }
 
 
-Expression* Integer::superieur (const Integer& val)const{
+Expression* Integer::superieur ( Integer& val){
   return new Boolean(this->value>val.value);
 }
-Expression* Integer::superieur (const Float& val)const{
+Expression* Integer::superieur ( Float& val){
   throw runtime_error("Comparaison entre int et float");
 }
-Expression* Integer::superieur (const Boolean& val)const{
+Expression* Integer::superieur ( Boolean& val){
   throw runtime_error("Comparaison entre int et bool");
 }
 
 
-Expression* Integer::superieurEgal(const Integer& val)const{
+Expression* Integer::superieurEgal( Integer& val){
   return new Boolean(this->value>=val.value);
 }
-Expression* Integer::superieurEgal(const Float& val)const{
+Expression* Integer::superieurEgal( Float& val){
   throw runtime_error("Comparaison entre int et float");
 }
-Expression* Integer::superieurEgal(const Boolean& val)const{
+Expression* Integer::superieurEgal( Boolean& val){
   throw runtime_error("Comparaison entre int et bool");
 }
 
 
-Expression* Integer::diff(const Integer& val)const{
+Expression* Integer::diff( Integer& val){
   throw runtime_error("Comparaison entre int et int");
 }
-Expression* Integer::diff(const Float& val)const{
+Expression* Integer::diff( Float& val){
   throw runtime_error("Comparaison entre int et float");
 }
-Expression* Integer::diff(const Boolean& val)const{
+Expression* Integer::diff( Boolean& val){
   throw runtime_error("Comparaison entre int et bool");
 }
 
-Expression* Integer::egalite(const Integer& val)const{
+Expression* Integer::egalite( Integer& val){
   throw runtime_error("Comparaison entre int et int");
 }
-Expression* Integer::egalite(const Float& val)const{
+Expression* Integer::egalite( Float& val){
   throw runtime_error("Comparaison entre int et float");
 }
-Expression* Integer::egalite(const Boolean& val)const{
+Expression* Integer::egalite( Boolean& val){
   throw runtime_error("Comparaison entre int et bool");
 }

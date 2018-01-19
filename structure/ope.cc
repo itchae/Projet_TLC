@@ -1,7 +1,7 @@
 #include "headers/ope.hh"
 
 /**--------------------------------------------------------------------------**/
-Operator::Operator(OperatorSymbol symbol, const Expression *left, const Expression *right)
+Operator::Operator(OperatorSymbol symbol, Expression *left, Expression *right)
   : symbol(symbol), left(left), right(right)
 {
   if(left->getType().compare(right->getType()) != 0){
@@ -44,9 +44,9 @@ Expression* Operator::calculOperation(){
           break;
     case SUP : return (left->superieur(*right));
           break;
-    case SUPEG : return (left->supeg(*right));
+    case SUPEG : return (left->superieurEgal(*right));
           break;
-    case INFEG : return (left->infeg(*right));
+    case INFEG : return (left->inferieurEgal(*right));
           break;
     case EGALITE : return (left->egalite(*right));
           break;
@@ -59,6 +59,6 @@ Expression* Operator::calculOperation(){
   return NULL;
 }
 
-void Operator::print() const{
+void Operator::print(){
   cout<<symbol<<endl;
 }

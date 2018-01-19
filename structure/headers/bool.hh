@@ -19,72 +19,72 @@ class Boolean : public Expression {
   public:
     Boolean(bool v);
     ~Boolean();
-    inline bool getValue() const { return value; }
-    string getType() const { return "boolean"; }
+    inline bool getValue()  { return value; }
+    string getType()  { return "boolean"; }
     Expression* calcul() { return this; }
     void visit(Visitor& visitor);
-    void print() const;
+    void print() ;
 
-    Expression* operator +(const Expression& val)const;
-    Expression* operator -(const Expression& val)const;
-    Expression* operator * (const Expression& val)const;
-    Expression* operator /(const Expression& val)const;
+    Expression* operator +( Expression& val);
+    Expression* operator -( Expression& val);
+    Expression* operator * ( Expression& val);
+    Expression* operator /( Expression& val);
 
-    Expression* operator < (const Expression& val)const;
-    Expression* operator <=(const Expression& val)const;
-    Expression* operator > (const Expression& val)const;
-    Expression* operator >=(const Expression& val)const;
+    Expression* operator < ( Expression& val);
+    Expression* operator <=( Expression& val);
+    Expression* operator > ( Expression& val);
+    Expression* operator >=( Expression& val);
 
-    Expression* plus(const Integer& val)const;
-    Expression* plus(const Float& val)const;
-    Expression* plus(const Boolean& val)const;
+    Expression* plus( Integer& val);
+    Expression* plus( Float& val);
+    Expression* plus( Boolean& val);
 
-    Expression* moins(const Integer& val)const;
-    Expression* moins(const Float& val)const;
-    Expression* moins(const Boolean& val)const;
+    Expression* moins( Integer& val);
+    Expression* moins( Float& val);
+    Expression* moins( Boolean& val);
 
-    Expression* mult(const Integer& val)const;
-    Expression* mult(const Float& val)const;
-    Expression* mult(const Boolean& val)const;
+    Expression* mult( Integer& val);
+    Expression* mult( Float& val);
+    Expression* mult( Boolean& val);
 
-    Expression* div(const Integer& val)const;
-    Expression* div(const Float& val)const;
-    Expression* div(const Boolean& val)const;
+    Expression* div( Integer& val);
+    Expression* div( Float& val);
+    Expression* div( Boolean& val);
 
-    Expression* pow(const Integer& val)const;
-    Expression* pow(const Float& val)const;
-    Expression* pow(const Boolean& val)const;
+    Expression* pow( Integer& val);
+    Expression* pow( Float& val);
+    Expression* pow( Boolean& val);
 
-    Expression* sqrt(const Integer& val)const;
-    Expression* sqrt(const Float& val)const;
-    Expression* sqrt(const Boolean& val)const;
+    Expression* sqrt( Integer& val);
+    Expression* sqrt( Float& val);
+    Expression* sqrt( Boolean& val);
 
-    Expression* inferieur(const Integer& val)const;
-    Expression* inferieur(const Float& val)const;
-    Expression* inferieur(const Boolean& val)const;
-
-
-    Expression* inferieurEgal(const Integer& val)const;
-    Expression* inferieurEgal(const Float& val)const;
-    Expression* inferieurEgal(const Boolean& val)const;
+    Expression* inferieur( Integer& val);
+    Expression* inferieur( Float& val);
+    Expression* inferieur( Boolean& val);
 
 
-    Expression* superieur (const Integer& val)const;
-    Expression* superieur (const Float& val)const;
-    Expression* superieur (const Boolean& val)const;
+    Expression* inferieurEgal( Integer& val);
+    Expression* inferieurEgal( Float& val);
+    Expression* inferieurEgal( Boolean& val);
 
 
-    Expression* superieurEgal(const Integer& val)const;
-    Expression* superieurEgal(const Float& val)const;
-    Expression* superieurEgal(const Boolean& val)const;
+    Expression* superieur ( Integer& val);
+    Expression* superieur ( Float& val);
+    Expression* superieur ( Boolean& val);
 
-    Expression* diff(const Integer& val)const;
-    Expression* diff(const Float& val)const;
-    Expression* diff(const Boolean& val)const;
 
-    Expression* egalite(const Integer& val)const;
-    Expression* egalite(const Float& val)const;
-    Expression* egalite(const Boolean& val)const;
+    Expression* superieurEgal( Integer& val);
+    Expression* superieurEgal( Float& val);
+    Expression* superieurEgal( Boolean& val);
+
+    Expression* diff( Integer& val);
+    Expression* diff( Float& val);
+    Expression* diff( Boolean& val);
+
+    Expression* egalite( Integer& val);
+    Expression* egalite( Float& val);
+    Expression* egalite( Boolean& val);
 };
 
 #endif

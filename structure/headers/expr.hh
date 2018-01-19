@@ -14,70 +14,70 @@ class Expression : public Term {
 
   public:
     virtual ~Expression() = default;
-    virtual string getType() const = 0;
-    virtual void print() const = 0;
+    virtual string getType()  = 0;
+    virtual void print()  = 0;
     virtual Expression* calcul();
 
-    virtual Expression* operator +(const Expression& val)const;
-    virtual Expression* operator -(const Expression& val)const;
-    virtual Expression* operator * (const Expression& val)const;
-    virtual Expression* operator /(const Expression& val)const;
+    virtual Expression* operator +( Expression& val);
+    virtual Expression* operator -( Expression& val);
+    virtual Expression* operator * ( Expression& val);
+    virtual Expression* operator /( Expression& val);
 
-    virtual Expression* operator < (const Expression& val)const;
-    virtual Expression* operator <=(const Expression& val)const;
-    virtual Expression* operator > (const Expression& val)const;
-    virtual Expression* operator >=(const Expression& val)const;
+    virtual Expression* operator < ( Expression& val);
+    virtual Expression* operator <=( Expression& val);
+    virtual Expression* operator > ( Expression& val);
+    virtual Expression* operator >=( Expression& val);
 
-    virtual Expression* plus(const Integer& val)const;
-    virtual Expression* plus(const Float& val)const;
-    virtual Expression* plus(const Boolean& val)const;
+    virtual Expression* plus( Integer& val);
+    virtual Expression* plus( Float& val);
+    virtual Expression* plus( Boolean& val);
 
-    virtual Expression* moins(const Integer& val)const;
-    virtual Expression* moins(const Float& val)const;
-    virtual Expression* moins(const Boolean& val)const;
+    virtual Expression* moins( Integer& val);
+    virtual Expression* moins( Float& val);
+    virtual Expression* moins( Boolean& val);
 
-    virtual Expression* mult(const Integer& val)const;
-    virtual Expression* mult(const Float& val)const;
-    virtual Expression* mult(const Boolean& val)const;
+    virtual Expression* mult( Integer& val);
+    virtual Expression* mult( Float& val);
+    virtual Expression* mult( Boolean& val);
 
-    virtual Expression* div(const Integer& val)const;
-    virtual Expression* div(const Float& val)const;
-    virtual Expression* div(const Boolean& val)const;
+    virtual Expression* div( Integer& val);
+    virtual Expression* div( Float& val);
+    virtual Expression* div( Boolean& val);
 
-    virtual Expression* pow(const Integer& val)const;
-    virtual Expression* pow(const Float& val)const;
-    virtual Expression* pow(const Boolean& val)const;
+    virtual Expression* pow( Integer& val);
+    virtual Expression* pow( Float& val);
+    virtual Expression* pow( Boolean& val);
 
-    virtual Expression* sqrt(const Integer& val)const;
-    virtual Expression* sqrt(const Float& val)const;
-    virtual Expression* sqrt(const Boolean& val)const;
+    virtual Expression* sqrt( Integer& val);
+    virtual Expression* sqrt( Float& val);
+    virtual Expression* sqrt( Boolean& val);
 
-    virtual Expression* inferieur(const Integer& val)const;
-    virtual Expression* inferieur(const Float& val)const;
-    virtual Expression* inferieur(const Boolean& val)const;
-
-
-    virtual Expression* inferieurEgal(const Integer& val)const;
-    virtual Expression* inferieurEgal(const Float& val)const;
-    virtual Expression* inferieurEgal(const Boolean& val)const;
+    virtual Expression* inferieur( Integer& val);
+    virtual Expression* inferieur( Float& val);
+    virtual Expression* inferieur( Boolean& val);
 
 
-    virtual Expression* superieur (const Integer& val)const;
-    virtual Expression* superieur (const Float& val)const;
-    virtual Expression* superieur (const Boolean& val)const;
+    virtual Expression* inferieurEgal( Integer& val);
+    virtual Expression* inferieurEgal( Float& val);
+    virtual Expression* inferieurEgal( Boolean& val);
 
 
-    virtual Expression* superieurEgal(const Integer& val)const;
-    virtual Expression* superieurEgal(const Float& val)const;
-    virtual Expression* superieurEgal(const Boolean& val)const;
+    virtual Expression* superieur ( Integer& val);
+    virtual Expression* superieur ( Float& val);
+    virtual Expression* superieur ( Boolean& val);
 
-    virtual Expression* diff(const Integer& val)const;
-    virtual Expression* diff(const Float& val)const;
-    virtual Expression* diff(const Boolean& val)const;
 
-    virtual Expression* egalite(const Integer& val)const;
-    virtual Expression* egalite(const Float& val)const;
-    virtual Expression* egalite(const Boolean& val)const;
+    virtual Expression* superieurEgal( Integer& val);
+    virtual Expression* superieurEgal( Float& val);
+    virtual Expression* superieurEgal( Boolean& val);
+
+    virtual Expression* diff( Integer& val);
+    virtual Expression* diff( Float& val);
+    virtual Expression* diff( Boolean& val);
+
+    virtual Expression* egalite( Integer& val);
+    virtual Expression* egalite( Float& val);
+    virtual Expression* egalite( Boolean& val);
 
 
 

@@ -3,4 +3,3 @@ end blabla;
 ite is integer;
 ite :=2;
 ite.print();
-

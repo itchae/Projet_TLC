@@ -8,6 +8,7 @@
 #include "expr.hh"
 #include "object.hh"
 #include "returnFonction.hh"
+#include <iostream>
 
 using namespace std;
 
@@ -48,7 +49,7 @@ class SymbolTable  {
 		 * @param  name le nom de la classe que l'on cherche
 		 * @return la classe correspondant au nom sinon renvoie NULL
 		 */
-		Class* findClass(string name) const;
+		Class* findClass(string name);
 
 		/**
 		 * Ajoute la variable si elle n'existe pas deja dans la table des symboles
@@ -61,7 +62,7 @@ class SymbolTable  {
 		 * @param  s le nom de la classe que l'on cherche
 		 * @return la variable correspondant au nom sinon renvoie NULL
 		 */
-		Variable* findVar(vector<string> s) const;
+		Variable* findVar(vector<string> s);
 
 		/**
 		 * Renvoie le resultat d'une fonction de type return fonction
@@ -69,7 +70,7 @@ class SymbolTable  {
 		 * @param  e liste des parametres
 		 * @return renvoie le resultat de la methode, sinon NULL
 		 */
-		Expression* resultOfReturnFonction(vector<string> s, vector<Expression*> e) const;
+		Expression* resultOfReturnFonction(vector<string> s, vector<Expression*> e);
 };
 
 #endif

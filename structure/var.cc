@@ -39,7 +39,7 @@ void Variable::visit(Visitor& visitor){
 
 //--------------------------------------------------------------------------//
 void Variable::print(){
-  cout<<"Variable"<<name<<" = ";
+  cout<<"Variable "<<name<<" = ";
   var->print();
 
 }

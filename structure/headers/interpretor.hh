@@ -8,6 +8,7 @@
 #include "visitor.hh"
 #include "voidFonction.hh"
 #include "bloc.hh"
+#include "var.hh"
 
 using namespace std;
 

@@ -43,7 +43,7 @@ void SymbolTable::addClass(Class* c){
 }
 
 /**--------------------------------------------------------------------------**/
-Class* SymbolTable::findClass(string name) const{
+Class* SymbolTable::findClass(string name){
   for (int i=0; i<classes.size(); i++){
     if (name.compare(classes[i]->getName())==0) return classes[i];
   }
@@ -60,7 +60,7 @@ void SymbolTable::addVar(Variable* v){
 }
 
 /**--------------------------------------------------------------------------**/
-Variable* SymbolTable::findVar(vector<string> s) const{
+Variable* SymbolTable::findVar(vector<string> s){
   Variable* tmp = NULL;
   for (int i=0; i<vars.size(); i++){
     if (vars[i]->getName().compare(s[i])==0) tmp = vars[i];
@@ -78,7 +78,7 @@ Variable* SymbolTable::findVar(vector<string> s) const{
 }
 
 /**--------------------------------------------------------------------------**/
-Expression* SymbolTable::resultOfReturnFonction(vector<string> s, vector<Expression*> e) const{
+Expression* SymbolTable::resultOfReturnFonction(vector<string> s, vector<Expression*> e){
   //le vector s contient les noms des variables, exemple si c'est var.v, il contient var puis v
   //on cherche donc si la premiere variable est présente dans la table des symboles
   Variable* tmp = NULL;

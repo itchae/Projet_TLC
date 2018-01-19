@@ -38,6 +38,7 @@ void Interpretor::visitCall(Call *c){
   SymbolTable& symbol = SymbolTable::Instance();
   //on cherche la variable dans la table des symboles
   Variable* v = symbol.findVar(c->getObjs());
+  cout<<"test"<<endl;
   if (v==NULL) throw invalid_argument("la variable n'existe pas");
   //si c'est la methode print
   if (c->getName().compare("print")==0){

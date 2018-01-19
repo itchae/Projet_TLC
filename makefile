@@ -8,6 +8,7 @@ FFLAGS = -lfl
 .PHONY: clean
 
 all: $(EXEC)
+	./test < testSimple.txt
 
 
 $(EXEC): $(OBJ)

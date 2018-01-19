@@ -51,3 +51,10 @@ void Interpretor::visitCall(Call *c){
     f->visit(*this);
   }
 }
+
+/**--------------------------------------------------------------------------**/
+void Interpretor::visitBloc(Bloc *b){
+  for (int i=0; i<b->getInsts().size(); i++){
+    b->getInsts()[i]->visit(*this);
+  }
+}

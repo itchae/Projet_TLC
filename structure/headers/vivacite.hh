@@ -21,5 +21,6 @@
 #include "voidFonction.hh"
 #include "returnFonction.hh"
 #include "var.hh"
+#include "bloc.hh"
 
 #endif

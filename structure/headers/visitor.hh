@@ -3,6 +3,7 @@
 
 using namespace std;
 
+class Bloc;
 class Decl;
 class Affect;
 class Fonction;
@@ -15,6 +16,7 @@ class Visitor {
     virtual void visitAffect(Affect *a)=0;
     virtual void visitFonction(Fonction *f)=0;
     virtual void visitCall(Call *c)=0;
+    virtual void visitBloc(Bloc *b)=0;
 
 };
 

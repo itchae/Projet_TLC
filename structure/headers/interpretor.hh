@@ -7,6 +7,7 @@
 #include "call.hh"
 #include "visitor.hh"
 #include "voidFonction.hh"
+#include "bloc.hh"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class Interpretor : public Visitor{
     void visitAffect(Affect *a);
     void visitFonction(Fonction *f);
     void visitCall(Call *c);
+    void visitBloc(Bloc *b);
 
 };
 

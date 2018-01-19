@@ -15,6 +15,8 @@
 
   vector<Decl*> params;
 
+  vector<Instruction*> insts;
+
   /**
    * vector d'expressions utilisées pour les affectations multiples
    */
@@ -95,8 +97,12 @@
 
 %%
 
-axiome : instruction T_SEMICOLON axiome       {Instruction* i = $1; i->visit(interpretor); delete i;}
-       |                                      {}
+axiome : bloc               {Bloc* b = new Bloc(insts); b->visit(interpretor); delete b;}
+       |                    {}
+       ;
+
+bloc   :  instruction T_SEMICOLON bloc  {insts.insert(insts.begin(),$1);}
+       |                                {}
        ;
 
 /* Definit les instructions possibles */
@@ -114,8 +120,10 @@ instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(t
 */
 call  : T_NAME T_PLEFT paramUtil T_PRIGHT   { $$ = new Call(toString($1),vars,exprs);
                                               exprs.clear(); vars.clear();}
-     | T_NAME T_POINT call                 { vars.push_back($1); $$ = $3; }
-     ;
+      | T_NAME T_PLEFT T_PRIGHT             { $$ = new Call(toString($1),vars,exprs);
+                                              exprs.clear(); vars.clear();}
+      | T_NAME T_POINT call                 { vars.push_back($1); $$ = $3; }
+      ;
 
 /**
 * parametres pour utiliser une methode, exemple : fonction(1,h) les parametres sont 1 et h

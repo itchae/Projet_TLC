@@ -22,7 +22,7 @@ class Data {
 		Decl* getDecl(string var) const;
 		inline vector<Decl*> getVars() const { return vars; }
 		void visit(Visitor& visitor);
-
+		void print(); 
 };
 
 #endif

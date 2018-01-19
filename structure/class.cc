@@ -1,5 +1,6 @@
 #include "headers/class.hh"
 
+
 //--------------------------------------------------------------------------//
 Class::Class(string n, Data* d, Method* m)
   : nom(n), data(d), method(m)
@@ -35,5 +36,9 @@ void Class::visit(Visitor& visitor) {
 }
 
 void Class::print() const{
-	cout<<nom<<endl; 
+	cout<<"(";
+  data->print();
+
+
+  cout<<")"<<endl;
 }

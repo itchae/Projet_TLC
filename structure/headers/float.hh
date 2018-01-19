@@ -7,9 +7,6 @@
 
 using namespace std;
 
-//class Integer;
-//class Boolean;
-
 class Float : public Expression {
 
   private:

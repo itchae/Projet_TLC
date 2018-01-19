@@ -10,7 +10,6 @@ using namespace std;
 /**
  * Classe représentant un boolean
  */
-
 class Boolean : public Expression {
 
   private:

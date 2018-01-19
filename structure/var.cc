@@ -28,7 +28,7 @@ void Variable::setVar(Expression* e) {
 }
 
 //--------------------------------------------------------------------------//
-string Variable::getType() const {
+string Variable::getType() {
   return type;
 }
 
@@ -38,7 +38,7 @@ void Variable::visit(Visitor& visitor){
 }
 
 //--------------------------------------------------------------------------//
-void Variable::print() const{
+void Variable::print(){
   cout<<"Variable"<<name<<" = ";
   var->print();
 

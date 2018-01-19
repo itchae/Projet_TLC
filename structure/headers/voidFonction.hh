@@ -29,8 +29,8 @@ class VoidFonction : public Fonction  {
 		bool noParams() const;
 		bool containsParam(string var) const;
 		Decl* getParam(string var) const;
-		inline const string getName() const { return name; }
-		inline const Instruction* getInst() const { return instruct; }
+		inline string getName() const { return name; }
+		inline Instruction* getInst() const { return instruct; }
 		void visit(Visitor& visitor);
 
 };

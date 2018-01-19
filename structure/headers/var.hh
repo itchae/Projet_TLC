@@ -21,12 +21,12 @@ class Variable : public Expression {
     Variable(string n, string t);
     ~Variable();
     void setVar(Expression* e);
-    string getType() const;
+    string getType();
     inline string getName() const { return name; }
     inline Expression* getVar() const { return var; }
     Expression* calcul() { return var->calcul(); }
     void visit(Visitor& visitor);
-    void print() const;
+    void print();
 };
 
 #endif

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6400 64-bit) (preloaded format=pdflatex 2017.9.13)  19 JAN 2018 20:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6400 64-bit) (preloaded format=pdflatex 2017.9.13)  19 JAN 2018 21:47
 entering extended mode
 **./TLC_Gpe_14_README.tex
 (TLC_Gpe_14_README.tex
@@ -711,26 +711,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--60
 
  []
 
-[1] (TLC_Gpe_14_README.aux) ) 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[1] [2] (TLC_Gpe_14_README.aux) ) 
 Here is how much of TeX's memory you used:
- 6401 strings out of 493314
- 83234 string characters out of 3140163
- 180102 words of memory out of 3000000
- 9830 multiletter control sequences out of 15000+200000
- 15968 words of font info for 48 fonts, out of 3000000 for 9000
+ 6403 strings out of 493314
+ 83256 string characters out of 3140163
+ 181102 words of memory out of 3000000
+ 9831 multiletter control sequences out of 15000+200000
+ 16641 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,58p,624b,1141s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Programmes/MiKTeX 2.9/fonts/enc/dvips/cm-super
-/cm-super-t1.enc}<D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1000
-.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1440.pfb><D:/Pro
-grammes/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm1000.pfb><D:/Programmes/MiKT
-eX 2.9/fonts/type1/public/cm-super/sfrm1200.pfb><D:/Programmes/MiKTeX 2.9/fonts
-/type1/public/cm-super/sfrm1728.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/publi
-c/cm-super/sfti1000.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/s
-fti1200.pfb>
-Output written on TLC_Gpe_14_README.pdf (2 pages, 256227 bytes).
+{D:/Programmes/MiKTeX 2.9/fonts/enc/dvips/cm-s
+uper/cm-super-t1.enc}<D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx
+1000.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1440.pfb><D:
+/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/sfcc1000.pfb><D:/Programmes/
+MiKTeX 2.9/fonts/type1/public/cm-super/sfrm1000.pfb><D:/Programmes/MiKTeX 2.9/f
+onts/type1/public/cm-super/sfrm1200.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/p
+ublic/cm-super/sfrm1728.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-sup
+er/sfti1000.pfb><D:/Programmes/MiKTeX 2.9/fonts/type1/public/cm-super/sfti1200.
+pfb>
+Output written on TLC_Gpe_14_README.pdf (3 pages, 266206 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -30,7 +30,7 @@ void Interpretor::visitAffect(Affect *a){
 void Interpretor::visitFonction(Fonction *f){
   VoidFonction* f2 = static_cast<VoidFonction*>(f);
   if (f2==NULL) throw invalid_argument("la methode n'est pas une procedure void");
-  f2->getInst()->visit();
+  f2->getInst()->visit(*this);
 }
 
 /**--------------------------------------------------------------------------**/
@@ -48,6 +48,6 @@ void Interpretor::visitCall(Call *c){
     if (obj==NULL) throw invalid_argument("la variable n'est pas un objet");
     Fonction* f = obj->getFonction(c->getName());
     if (f==NULL) throw invalid_argument("la methode n'est pas un reconnue");
-    f->visit();
+    f->visit(*this);
   }
 }

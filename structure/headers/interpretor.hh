@@ -6,6 +6,7 @@
 #include "fonc.hh"
 #include "call.hh"
 #include "visitor.hh"
+#include "voidFonction.hh"
 
 using namespace std;
 

@@ -22,8 +22,8 @@ class Fonction : public Expression  {
 	public:
 		Fonction(string name, vector<Decl*> v, Instruction* instruct);
 		~Fonction();
+		
 		/**
-		 * renvoie vrai si la fonction n'a pas de parametre (vector vide)
 		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
 		 */
 		bool noParams() const;

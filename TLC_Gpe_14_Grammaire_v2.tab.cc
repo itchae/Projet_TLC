@@ -1538,7 +1538,7 @@ yyreduce:
 
   case 31:
 #line 187 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = -(yyvsp[0].exp);}
+    {(yyval.exp) = new Operator(NEG,(yyvsp[0].exp));}
 #line 1543 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 

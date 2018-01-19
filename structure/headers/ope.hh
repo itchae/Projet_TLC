@@ -12,8 +12,8 @@ enum OperatorSymbol {
   DIV,
   INF,
   SUP,
-  EGALITE,
-  DIFF,
+  INFEG,
+  SUPEG,
 };
 
 /**

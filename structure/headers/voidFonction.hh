@@ -1,17 +1,39 @@
-#ifndef _VOIDFONCTION_H
-#define _VOIDFONCTION_H
+#ifndef _FONC_H
+#define _FONC_H
+
+#include <vector>
+#include <string>
+#include "decl.hh"
 #include "fonc.hh"
+#include "inst.hh"
 
-class VoidFonction : public Fonction {
+using namespace std;
 
-private:
+/**
+ * Classe permettant de stocker les informations d'une fonction déclarée (nom, parametres, instructions)
+ */
+class VoidFonction : public Fonction  {
 
-public:
+	private:
+		string name;
+		vector<Decl*> params;
+		Instruction* instruct;
 
+	public:
+		VoidFonction(string name, vector<Decl*> v, Instruction* instruct);
+		~VoidFonction();
 
-
-
-
+		/**
+		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
+		 */
+		bool noParams() const;
+		bool containsParam(string var) const;
+		Decl* getParam(string var) const;
+		string getType() const;
+		inline const string getName() const { return name; }
+		inline const Instruction* getInst() const { return instruct; }
+		void visit(Visitor& visitor);
+		void print() const;
 
 };
 

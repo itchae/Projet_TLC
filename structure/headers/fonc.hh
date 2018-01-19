@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 #include "decl.hh"
-#include "expr.hh"
-#include "return.hh"
 
 using namespace std;
 
@@ -33,7 +31,7 @@ class Fonction : public Expression  {
 		inline const string getName() const { return name; }
 		inline const Instruction* getInst() const { return instruct; }
 		void visit(Visitor& visitor);
-		void print() const; 
+		void print() const;
 
 };
 

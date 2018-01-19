@@ -1,19 +1,39 @@
-#ifndef _RETURNFONCTION_H
-#define _RETURNFONCTION_H
+#ifndef _FONC_H
+#define _FONC_H
+
+#include <vector>
+#include <string>
+#include "decl.hh"
 #include "expr.hh"
 #include "fonc.hh"
 
-class ReturnFonction : public Fonction {
+using namespace std;
 
-private:
-  Expression* retour;
+/**
+ * Classe permettant de stocker les informations d'une fonction déclarée (nom, parametres, instructions)
+ */
+class ReturnFonction : public Fonction  {
 
-public:
-  Expression* calcul() const;
-  string getTypeRetour() const;
+	private:
+		string name;
+		vector<Decl*> params;
+		Expression* expr;
 
+	public:
+		ReturnFonction(string name, vector<Decl*> v, Instruction* instruct);
+		~ReturnFonction();
 
-
+		/**
+		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
+		 */
+		bool noParams() const;
+		bool containsParam(string var) const;
+		Decl* getParam(string var) const;
+		string getType() const;
+		inline const string getName() const { return name; }
+		inline const Instruction* getExpr() const { return expr; }
+		void visit(Visitor& visitor);
+		void print() const;
 
 };
 

@@ -1,2 +1,2 @@
 class blabla is
-end blabla;;
+end blabla;

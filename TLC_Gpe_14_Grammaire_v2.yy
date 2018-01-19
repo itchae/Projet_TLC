@@ -63,7 +63,6 @@
 		Class* cl;
 		Method* meth;
 		Data* data;
-		Fonction* fonc;
     Decl* decl;
     Call* call;
 };
@@ -81,7 +80,6 @@
 %type<exp> expression callExp
 %type<data> data
 %type<meth> method
-%type<fonc> fonction
 %type<inst> instruction
 %type<sval> type
 %type<cl> classe
@@ -127,9 +125,9 @@ paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}
           ;
 
 /* signature de la classe */
-classe : T_CLASS T_NAME T_IS data method T_END T_NAME T_SEMICOLON 										{ if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");
+classe : T_CLASS T_NAME T_IS data method T_END T_NAME 										            { if (toString($2).compare(toString($7))!=0) yyerror("nom de debut et de fin de classe non identitiques");
                                                                                         $$ = new Class(toString($2),$4,$5);}
-	  	 | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME T_SEMICOLON		{ if (toString($2).compare(toString($9))!=0) yyerror("nom de debut et de fin de classe non identitiques");
+	  	 | T_CLASS T_NAME T_EXTENDS T_NAME T_IS data method T_END T_NAME		            { if (toString($2).compare(toString($9))!=0) yyerror("nom de debut et de fin de classe non identitiques");
                                                                                         if (toString($2).compare(toString($4))==0) yyerror("classe mere identique a la classe");
                                                                                         $$ = new Class(toString($4),toString($2),$6,$7);}
 	  	;
@@ -145,19 +143,24 @@ declaration : T_NAME T_IS type T_SEMICOLON declaration 	  {Decl* d = new Decl(to
             ;
 
 /* Emplacement méthod contenant les fonctions */
-method : T_METHOD fonction 								{$$ = new Method(fonctions);}
-       | 																	{}
+method : T_METHOD fonction 								{$$ = new Method(fonctions); fonctions.clear();}
+       | 																	{$$ = new Method(fonctions); fonctions.clear();}
        ;
 
 /* Signatures des fonctions */
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	          {$$ = new VoidFonction(toString($1),params,$6); params.clear(); }
-         | T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN expression T_SEMICOLON fonction    {$$ = new ReturnFonction(toString($1),params,$7); params.clear(); }
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	          {VoidFonction* v = new VoidFonction(toString($1),params,$6);
+                                                                                                params.clear();
+                                                                                                fonctions.push_back(v); }
+         | T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN expression T_SEMICOLON fonction    {ReturnFonction* r = new ReturnFonction(toString($1),params,$7);
+                                                                                                params.clear();
+                                                                                                fonctions.push_back(r);}
+         |                                                                                    {}
          ;
 
 /* Paramètres de la fonction */
-parametre : T_NAME T_COLON T_NAME T_COMMA parametre 		{ Decl* d = new Decl(toString($1),toString($3));
+parametre : T_NAME T_COLON type T_COMMA parametre 		{ Decl* d = new Decl(toString($1),toString($3));
                                                           params.push_back(d);}
-		  		| T_NAME T_COLON T_NAME  											{ Decl* d = new Decl(toString($1),toString($3));
+		  		| T_NAME T_COLON type  											{ Decl* d = new Decl(toString($1),toString($3));
                                                           params.push_back(d);}
           | 																					  {}
           ;

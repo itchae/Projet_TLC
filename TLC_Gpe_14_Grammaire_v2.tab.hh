@@ -96,11 +96,10 @@ union YYSTYPE
 		Class* cl;
 		Method* meth;
 		Data* data;
-		Fonction* fonc;
     Decl* decl;
     Call* call;
 
-#line 104 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
+#line 103 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

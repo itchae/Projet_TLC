@@ -20,5 +20,6 @@
 #include "decl_classe.hh"
 #include "voidFonction.hh"
 #include "returnFonction.hh"
+#include "var.hh"
 
 #endif

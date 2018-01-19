@@ -7,11 +7,6 @@ ReturnFonction::ReturnFonction(string name, vector<Decl*> v, Expression* e)
 }
 
 /**--------------------------------------------------------------------------**/
-string ReturnFonction::getName() {
-  return name;
-}
-
-/**--------------------------------------------------------------------------**/
 void ReturnFonction::print() const {
   if (expr==NULL){
     throw invalid_argument("expression inexistante");

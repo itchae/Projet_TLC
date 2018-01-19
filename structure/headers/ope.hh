@@ -2,6 +2,9 @@
 #define _OPE_H
 
 #include "expr.hh"
+#include "bool.hh"
+#include "int.hh"
+#include "float.hh"
 
 using namespace std;
 
@@ -17,7 +20,8 @@ enum OperatorSymbol {
   EGALITE,
   DIFF,
   SQRT,
-  POW
+  POW,
+  NEGA
 };
 
 /**
@@ -32,6 +36,7 @@ class Operator : public Expression {
 
   public:
     Operator(OperatorSymbol symbol, Expression *left, Expression *right);
+    Operator(OperatorSymbol symbol, Expression *left);
     ~Operator();
     inline const Expression* getLeft() const { return left; }
     inline const Expression* getRight() const { return right; }

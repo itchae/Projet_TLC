@@ -69,7 +69,7 @@ Variable* SymbolTable::findVar(vector<string> s) const{
   //on cherche dans la variable tmp une autre variable du nom de s[i]
   int i=1;
   while (i<s.size()){
-    Object* obj = static_cast<Object*>(tmp);
+    Object* obj = dynamic_cast<Object*>(tmp);
     if (obj==NULL) throw invalid_argument("objet inexistant");
     tmp = obj->getVar(s[i]);
     if (tmp==NULL) throw invalid_argument("variable inexistante");
@@ -89,7 +89,7 @@ Expression* SymbolTable::resultOfReturnFonction(vector<string> s, vector<Express
   //on cherche dans la variable tmp une autre variable du nom de s[i]
   int i=1;
   while (i<s.size()-1){
-    Object* obj = static_cast<Object*>(tmp);
+    Object* obj = dynamic_cast<Object*>(tmp);
     if (obj==NULL) throw invalid_argument("objet inexistant");
     tmp = obj->getVar(s[i]);
     if (tmp==NULL) throw invalid_argument("variable inexistante");
@@ -101,7 +101,7 @@ Expression* SymbolTable::resultOfReturnFonction(vector<string> s, vector<Express
   Fonction* f = c->getMethod()->getFonction(s[s.size()-1]);
   if (f==NULL) throw invalid_argument("fonction inexistante");
   // seulement une fonction de type returnfonction renvoie une Expression
-  ReturnFonction* f2 = static_cast<ReturnFonction*>(f);
+  ReturnFonction* f2 = dynamic_cast<ReturnFonction*>(f);
   if (f2==NULL) throw invalid_argument("fonction de type void");
   return f2->calcul();
 }

@@ -91,7 +91,7 @@ Grammaire
 
    41 callExp: T_NAME T_PLEFT paramUtil T_PRIGHT
    42        | T_NAME
-   43        | T_NAME T_POINT call
+   43        | T_NAME T_POINT callExp
 
 
 Terminaux, suivis des règles où ils apparaissent
@@ -141,7 +141,7 @@ axiome (36)
 instruction (37)
     à gauche: 3 4 5 6 7, à droite: 1
 call (38)
-    à gauche: 8 9, à droite: 6 9 43
+    à gauche: 8 9, à droite: 6 9
 paramUtil (39)
     à gauche: 10 11, à droite: 8 10 41
 classe (40)
@@ -160,7 +160,7 @@ expression (46)
     à gauche: 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40, à droite:
     3 10 11 23 24 25 26 27 28 29 30 31 32 33 34 35 36
 callExp (47)
-    à gauche: 41 42 43, à droite: 40
+    à gauche: 41 42 43, à droite: 40 43
 
 
 État 0
@@ -343,7 +343,7 @@ callExp (47)
 
    41 callExp: T_NAME . T_PLEFT paramUtil T_PRIGHT
    42        | T_NAME .
-   43        | T_NAME . T_POINT call
+   43        | T_NAME . T_POINT callExp
 
     T_PLEFT  décalage et aller à l'état 41
     T_POINT  décalage et aller à l'état 42
@@ -597,11 +597,11 @@ callExp (47)
 
 État 42
 
-   43 callExp: T_NAME T_POINT . call
+   43 callExp: T_NAME T_POINT . callExp
 
-    T_NAME  décalage et aller à l'état 27
+    T_NAME  décalage et aller à l'état 17
 
-    call  aller à l'état 63
+    callExp  aller à l'état 63
 
 
 État 43
@@ -880,7 +880,7 @@ callExp (47)
 
 État 63
 
-   43 callExp: T_NAME T_POINT call .
+   43 callExp: T_NAME T_POINT callExp .
 
     $défaut  réduction par utilisation de la règle 43 (callExp)
 

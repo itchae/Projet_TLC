@@ -11,7 +11,7 @@ class Fonction {
 	private:
 
 	public:
-		virtual ~Fonction();
+		virtual ~Fonction() {}
 		virtual string getName() = 0;
 		virtual void visit(Visitor& visitor) = 0;
 

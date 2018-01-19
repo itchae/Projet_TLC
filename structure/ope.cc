@@ -12,13 +12,20 @@ Operator::Operator(OperatorSymbol symbol, Expression *left, Expression *right)
 }
 
 /**--------------------------------------------------------------------------**/
+Operator::Operator(OperatorSymbol symbol, Expression *left)
+  : symbol(symbol), left(left)
+{
+    calcul();
+}
+
+/**--------------------------------------------------------------------------**/
 Operator::~Operator() {
   delete left;
   delete right;
 }
 
 /**--------------------------------------------------------------------------**/
-string Operator::getType() const {
+string Operator::getType() {
   return left->getType();
 }
 
@@ -29,28 +36,18 @@ void Operator::visit(Visitor& visitor) {
 
 /**--------------------------------------------------------------------------**/
 Expression* Operator::calculOperation(){
+  Float* f;
+  Boolean* b;
+  Integer* i;
   switch(symbol){
-    case PLUS : return (left->plus(*right));
-          break;
-    case MOINS : return (left->moins(*right));
-          break;
-    case MULT : return (left->mult(*right));
-          break;
-    case POW : return (left->pow(*right));
-          break;
-    case SQRT : return (left->sqrt(*right));
-          break;
-    case INF : return (left->inferieur(*right));
-          break;
-    case SUP : return (left->superieur(*right));
-          break;
-    case SUPEG : return (left->superieurEgal(*right));
-          break;
-    case INFEG : return (left->inferieurEgal(*right));
-          break;
-    case EGALITE : return (left->egalite(*right));
-          break;
-    case DIFF : return (left->diff(*right));
+    case PLUS :
+          b = dynamic_cast<Boolean*>(right);
+          if (b!=NULL) return left->plus(*b);
+          i = dynamic_cast<Integer*>(right);
+          if (i!=NULL) return left->plus(*i);
+          f = dynamic_cast<Float*>(right);
+          if (f!=NULL) return left->plus(*f);
+          return NULL;
           break;
     default: cout<<"Opérateur non implémenté";
               return NULL;

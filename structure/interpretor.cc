@@ -28,7 +28,7 @@ void Interpretor::visitAffect(Affect *a){
 
 /**--------------------------------------------------------------------------**/
 void Interpretor::visitFonction(Fonction *f){
-  VoidFonction* f2 = static_cast<VoidFonction*>(f);
+  VoidFonction* f2 = dynamic_cast<VoidFonction*>(f);
   if (f2==NULL) throw invalid_argument("la methode n'est pas une procedure void");
   f2->getInst()->visit(*this);
 }
@@ -44,7 +44,7 @@ void Interpretor::visitCall(Call *c){
     v->print();
   }else{
     //sinon il faut chercher la methode dans la classe
-    Object* obj = static_cast<Object*>(v);
+    Object* obj = dynamic_cast<Object*>(v);
     if (obj==NULL) throw invalid_argument("la variable n'est pas un objet");
     Fonction* f = obj->getFonction(c->getName());
     if (f==NULL) throw invalid_argument("la methode n'est pas un reconnue");

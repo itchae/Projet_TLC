@@ -150,8 +150,8 @@ method : T_METHOD fonction 								{$$ = new Method(fonctions);}
        ;
 
 /* Signatures des fonctions */
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	          {/*$$ = new VoidFonction(toString($1),params,$6);*/ $$ = new VoidFonction();}
-         | T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN expression T_SEMICOLON fonction    {/*$$ = new ReturnFonction(toString($1),params,$7);*/ $$ = new VoidFonction();}
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	          {$$ = new VoidFonction(toString($1),params,$6); params.clear(); }
+         | T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN expression T_SEMICOLON fonction    {$$ = new ReturnFonction(toString($1),params,$7); params.clear(); }
          ;
 
 /* Paramètres de la fonction */
@@ -196,10 +196,10 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | expression T_SUPEG expression                           {$$ = new Operator(SUPEG,$1,$3);}
            | expression T_INF expression                             {$$ = new Operator(INF,$1,$3);}
            | expression T_INFEG expression                           {$$ = new Operator(INFEG,$1,$3);}
-           | T_SQRT T_PLEFT expression T_PRIGHT 	                   {$$ = new Operator(SQRT,$3,NULL);}
+           | T_SQRT T_PLEFT expression T_PRIGHT 	                   {$$ = new Operator(SQRT,$3);}
            | expression T_POWER T_INTEGER 		 		                   {$$ = $1;}
            | T_PLEFT expression T_PRIGHT 			   	                   {$$ = $2;}
-           | T_MINUS expression %prec NEG  				                   {$$ = new Operator(NEG,$2);}
+           | T_MINUS expression %prec NEG  				                   {$$ = new Operator(NEGA,$2);}
            | T_INTEGER 														                   {$$ = new Integer($1);}
            | T_FLOAT 															                   {$$ = new Float($1);}
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
@@ -225,7 +225,7 @@ callExp  : T_NAME T_PLEFT paramUtil T_PRIGHT { vars.push_back(toString($1));
                                                  $$ = v;
                                                }
                                                exprs.clear(); vars.clear();}
-      | T_NAME T_POINT call                {vars.push_back($1); $$ = $3;}
+      | T_NAME T_POINT callExp             {vars.push_back($1); $$ = $3;}
       ;
 
 %%

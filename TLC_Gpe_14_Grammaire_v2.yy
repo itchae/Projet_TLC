@@ -139,8 +139,8 @@ method : T_METHOD fonction 								{$$ = new Method(fonctions);}
        ;
 
 /* Signatures des fonctions */
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	{$$ = new Fonction(toString($1),params,$6);}
-         | 																																			    {}
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	          {/*$$ = new VoidFonction(toString($1),params,$6);*/ $$ = new VoidFonction();}
+         | T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN expression T_SEMICOLON fonction    {/*$$ = new ReturnFonction(toString($1),params,$7);*/ $$ = new VoidFonction();}
          ;
 
 /* Paramètres de la fonction */
@@ -184,7 +184,7 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | T_SQRT T_PLEFT expression T_PRIGHT 	                   {$$ = $3;}
            | expression T_POWER T_INTEGER 		 		                   {$$ = $1;}
            | T_PLEFT expression T_PRIGHT 			   	                   {$$ = $2;}
-           | T_MINUS expression %prec NEG  				                   {$$ = $2;}
+           | T_MINUS expression %prec NEG  				                   {$$ = new Operator(NEG,$2);}
            | T_INTEGER 														                   {$$ = new Integer($1);}
            | T_FLOAT 															                   {$$ = new Float($1);}
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}

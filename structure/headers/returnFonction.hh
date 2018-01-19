@@ -9,8 +9,8 @@ private:
   Expression* retour;
 
 private:
-  Expression* getTypeRetour() const;
-
+  Expression* calcul() const;
+  string getTypeRetour() const; 
 
 
 

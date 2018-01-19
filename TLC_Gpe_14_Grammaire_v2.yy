@@ -184,7 +184,12 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
            | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT        {$$ = symbol.findResultOfMethodOfClass($1,$3,exprs);
                                                                       exprs.clear();}
-           | T_NAME                                                  {$$ = new CallVar(toString($1));}
+           | T_NAME                                                  {Variable* v = symbol.findVar(toString($1));
+                                                                        if (v==NULL){
+                                                                          yyerror("variable inexistante");
+                                                                        }else{
+                                                                          $$ = v;
+                                                                        }}
            ;
 
 %%

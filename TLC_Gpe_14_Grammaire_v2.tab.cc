@@ -1614,12 +1614,17 @@ yyreduce:
 
   case 42:
 #line 187 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = new CallVar(toString((yyvsp[0].sval)));}
-#line 1619 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+    {Variable* v = symbol.findVar(toString((yyvsp[0].sval)));
+                                                                        if (v==NULL){
+                                                                          yyerror("variable inexistante");
+                                                                        }else{
+                                                                          (yyval.exp) = v;
+                                                                        }}
+#line 1624 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1623 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
+#line 1628 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1847,5 +1852,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 190 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1906  */
+#line 195 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1906  */
 

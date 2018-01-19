@@ -8,16 +8,18 @@
 
 using namespace std;
 
-class Variable {
+class Variable : Expression {
 
   private:
     string name;
+    string type;
     Expression* var;
 
   public:
     Variable(string n, Expression* e);
-    Variable(string n);
+    Variable(string n, string t);
     ~Variable();
+    string getType() const;
     inline string getName() const { return name; }
     inline Expression* getVar() const { return var; }
     void visit(Visitor& visitor);

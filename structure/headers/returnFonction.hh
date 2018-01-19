@@ -8,9 +8,9 @@ class ReturnFonction : public Fonction {
 private:
   Expression* retour;
 
-private:
+public:
   Expression* calcul() const;
-  string getTypeRetour() const; 
+  string getTypeRetour() const;
 
 
 

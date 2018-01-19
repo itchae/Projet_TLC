@@ -5,5 +5,5 @@ Expression* ReturnFonction::calcul() const{
 }
 
 string ReturnFonction::getTypeRetour() const{
-  
+
 }

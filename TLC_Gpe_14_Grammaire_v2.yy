@@ -35,11 +35,17 @@
    */
   Interpretor interpretor;
 
+  /**
+   * methode erreur, affiche le message d'erreur et ferme le programme
+   */
   void yyerror(const char* msg){
   	cerr << "ERROR : " << msg << endl;
     exit (EXIT_FAILURE);
   }
 
+  /**
+   * transforme un char* en string
+   */
   string toString(char* msg){
     string res(msg);
     return res;
@@ -70,7 +76,7 @@
 %token T_PLEFT T_PRIGHT T_COMMA T_POINT T_COLON T_SEMICOLON T_ASSIGNMENT
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
-%type<exp> expression
+%type<exp> expression call
 %type<data> data
 %type<meth> method
 %type<fonc> fonction
@@ -182,14 +188,29 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | T_INTEGER 														                   {$$ = new Integer($1);}
            | T_FLOAT 															                   {$$ = new Float($1);}
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
-           | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT        {$$ = symbol.findResultOfMethodOfClass($1,$3,exprs);
-                                                                      exprs.clear();}
-           | T_NAME                                                  {Variable* v = symbol.findVar(toString($1));
-                                                                        if (v==NULL){
-                                                                          yyerror("variable inexistante");
-                                                                        }else{
-                                                                          $$ = v;
-                                                                        }}
+           | call                                                    {$$ = $1;}
            ;
+
+/**
+ * renvoie la variable ou methode utilisee
+ */
+call  : T_NAME T_PLEFT paramUtil T_PRIGHT   { vars.push_back(toString($1));
+                                               Expression* exp = symbol.resultOfReturnFonction(vars, exprs);
+                                               if (exp==NULL){
+                                                 yyerror("methode inexistante");
+                                               }else{
+                                                 $$ = exp;
+                                               }
+                                               exprs.clear(); vars.clear();}
+      | T_NAME                              {vars.push_back(toString($1));
+                                               Variable* v = symbol.findVar(vars);
+                                               if (v==NULL){
+                                                 yyerror("variable inexistante");
+                                               }else{
+                                                 $$ = v;
+                                               }
+                                               exprs.clear(); vars.clear();}
+      | T_NAME T_POINT call                {vars.push_back($1); $$ = $3;}
+      ;
 
 %%

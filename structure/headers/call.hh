@@ -14,13 +14,22 @@ using namespace std;
 class Call : public Instruction {
 
 	private:
-		string objet;
-    string methode;
+		/**
+		 * nom de la methode a utiliser
+		 */
+		string nom;
+		/**
+		 * contient la liste d'appels (exemple : a.b.method(), donc contient a et b)
+		 */
+		vector<string> objs;
 		vector<Expression*> params;
 
 	public:
-		Call(string o, string m, vector<Expression*> p);
+		Call(string n, vector<string> c, vector<Expression*> p);
 		~Call();
+		inline string getName() { return nom; }
+		inline vector<string> getObjs() { return objs; }
+		inline vector<Expression*> getParams() { return params; }
 		void visit(Visitor& visitor);
 
 };

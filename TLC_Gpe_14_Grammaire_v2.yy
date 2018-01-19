@@ -65,6 +65,7 @@
 		Data* data;
 		Fonction* fonc;
     Decl* decl;
+    Call* call;
 };
 
 %token<sval> T_NAME
@@ -77,13 +78,14 @@
 %token T_PLEFT T_PRIGHT T_COMMA T_POINT T_COLON T_SEMICOLON T_ASSIGNMENT
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
-%type<exp> expression call
+%type<exp> expression callExp
 %type<data> data
 %type<meth> method
 %type<fonc> fonction
 %type<inst> instruction
 %type<sval> type
 %type<cl> classe
+%type<call> call
 
 %left T_PLUS T_MINUS
 %left T_TIMES T_DIVIDE
@@ -105,9 +107,17 @@ instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(t
                                                                   vars.clear();
                                                                   exprs.clear();}
            | T_NAME T_IS type                                   {$$ = new Decl(toString($1),toString($3));}
-           | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT   {$$ = new Call(toString($1),toString($3),exprs); exprs.clear();}
+           | call                                               {$$ = $1;}
            | classe                                             {$$ = new DeclClass($1);}
            ;
+
+/**
+* renvoie la variable ou methode utilisee
+*/
+call  : T_NAME T_PLEFT paramUtil T_PRIGHT   { $$ = new Call(toString($1),vars,exprs);
+                                              exprs.clear(); vars.clear();}
+     | T_NAME T_POINT call                 { vars.push_back($1); $$ = $3; }
+     ;
 
 /**
 * parametres pour utiliser une methode, exemple : fonction(1,h) les parametres sont 1 et h
@@ -193,13 +203,13 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | T_INTEGER 														                   {$$ = new Integer($1);}
            | T_FLOAT 															                   {$$ = new Float($1);}
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
-           | call                                                    {$$ = $1;}
+           | callExp                                                 {$$ = $1;}
            ;
 
 /**
- * renvoie la variable ou methode utilisee
+ * renvoie la variable ou le resultat de la ReturnFonction
  */
-call  : T_NAME T_PLEFT paramUtil T_PRIGHT   { vars.push_back(toString($1));
+callExp  : T_NAME T_PLEFT paramUtil T_PRIGHT { vars.push_back(toString($1));
                                                Expression* exp = symbol.resultOfReturnFonction(vars, exprs);
                                                if (exp==NULL){
                                                  yyerror("methode inexistante");

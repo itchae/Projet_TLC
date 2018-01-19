@@ -26,9 +26,9 @@ enum OperatorSymbol {
 class Operator : public Expression {
 
   private:
-    Expression *left;
+    const Expression *left;
     OperatorSymbol symbol;
-    Expression *right;
+    const Expression *right;
 
   public:
     Operator(OperatorSymbol symbol, Expression *left, Expression *right);

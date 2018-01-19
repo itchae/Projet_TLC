@@ -1,8 +1,8 @@
 #include "headers/call.hh"
 
 /**--------------------------------------------------------------------------**/
-Call::Call(string o, string m, vector<Expression*> p)
-	: objet(o), methode(m), params(p)
+Call::Call(string n, vector<string> c, vector<Expression*> p)
+	: nom(n), objs(c), params(p)
 {
 }
 

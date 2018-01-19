@@ -1,7 +1,7 @@
 #include "headers/ope.hh"
 
 /**--------------------------------------------------------------------------**/
-Operator::Operator(OperatorSymbol symbol, Expression *left, Expression *right)
+Operator::Operator(OperatorSymbol symbol, const Expression *left, const Expression *right)
   : symbol(symbol), left(left), right(right)
 {
   if(left->getType().compare(right->getType()) != 0){

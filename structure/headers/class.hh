@@ -30,7 +30,7 @@ class Class  : Expression {
 		inline const Method* getMethod() const { return method; }
 		inline const string getName() const { return nom; }
 		void visit(Visitor& visitor);
-
+		void print() const;
 };
 
 #endif

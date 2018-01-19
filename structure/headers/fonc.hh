@@ -22,7 +22,7 @@ class Fonction : public Expression  {
 	public:
 		Fonction(string name, vector<Decl*> v, Instruction* instruct);
 		~Fonction();
-		
+
 		/**
 		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
 		 */
@@ -33,7 +33,7 @@ class Fonction : public Expression  {
 		inline const string getName() const { return name; }
 		inline const Instruction* getInst() const { return instruct; }
 		void visit(Visitor& visitor);
-
+		void print() const; 
 
 };
 

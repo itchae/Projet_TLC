@@ -35,6 +35,7 @@ class Operator : public Expression {
     string getType() const;
     void visit(Visitor& visitor);
     void calcul();
+    void print() const;
 
 };
 

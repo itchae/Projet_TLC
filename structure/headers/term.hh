@@ -11,6 +11,7 @@ class Term {
    public:
     virtual ~Term() { }
     virtual void visit(Visitor& visitor) = 0;
+    //virtual void print() = 0;
 };
 
 #endif

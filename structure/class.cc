@@ -33,3 +33,7 @@ string Class::getType() const {
 void Class::visit(Visitor& visitor) {
   //return visitor.visitClass(this);
 }
+
+void Class::print() const{
+	cout<<nom<<endl; 
+}

@@ -21,7 +21,7 @@ class Float : public Expression {
     inline double getValue() const { return value; }
     string getType() const { return "float"; }
     void visit(Visitor& visitor);
-
+    void print() const;
 
     Expression* operator +(const Expression& val)const;
     Expression* operator -(const Expression& val)const;

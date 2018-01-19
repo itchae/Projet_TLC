@@ -16,6 +16,9 @@ void Boolean::visit(Visitor& visitor) {
   //return visitor.visitFloat(this);
 }
 
+void Boolean::print() const{
+  cout<<value<<endl;
+}
 
 Expression* Boolean::operator +(const Expression& val)const {
   return val.plus(*this);

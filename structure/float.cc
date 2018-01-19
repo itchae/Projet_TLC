@@ -15,7 +15,9 @@ void Float::visit(Visitor& visitor) {
   //return visitor.visitFloat(this);
 }
 
-
+void Float::print() const{
+  cout<<value<<endl; 
+}
 
 Expression* Float::operator +(const Expression& val)const {
   return val.plus(*this);

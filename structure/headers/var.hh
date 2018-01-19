@@ -23,7 +23,7 @@ class Variable : public Expression {
     inline string getName() const { return name; }
     inline Expression* getVar() const { return var; }
     void visit(Visitor& visitor);
-
+    void print() const; 
 };
 
 #endif

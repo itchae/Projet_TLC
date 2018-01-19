@@ -26,3 +26,10 @@ string Variable::getType() const {
 void Variable::visit(Visitor& visitor){
 
 }
+
+//--------------------------------------------------------------------------//
+void Variable::print() const{
+  cout<<"Variable"<<name<<" = ";
+  var->print();
+
+}

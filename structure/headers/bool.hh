@@ -22,7 +22,7 @@ class Boolean : public Expression {
     inline bool getValue() const { return value; }
     string getType() const { return "boolean"; }
     void visit(Visitor& visitor);
-
+    void print() const;
 
     Expression* operator +(const Expression& val)const;
     Expression* operator -(const Expression& val)const;

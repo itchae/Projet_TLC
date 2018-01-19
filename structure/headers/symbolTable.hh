@@ -4,8 +4,7 @@
 #include <string>
 #include <vector>
 #include "class.hh"
-#include "affect.hh"
-#include "decl.hh"
+#include "var.hh"
 #include "expr.hh"
 
 using namespace std;
@@ -22,18 +21,15 @@ class SymbolTable  {
 		SymbolTable();
 		~SymbolTable();
 		static vector<Class*> classes;
-		static vector<Decl*> decls;
-		static vector<Affect*> affects;
+		static vector<Variable*> vars;
 
 	public:
 		static SymbolTable& Instance();
 		void cleanAll();
     void addClass(Class* c);
 		Class* findClass(string name) const;
-		void addDecl(Decl* d);
-		Decl* findDecl(string name) const;
-		void addAffect(Affect* a);
-		Affect* findAffect(string name) const;
+		void addVar(Variable* v);
+		Variable* findVar(string name) const;
 		/**
 		 * Permet de retrouver le resultat de l
 		 * @param  d [description]

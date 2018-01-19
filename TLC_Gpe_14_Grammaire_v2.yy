@@ -74,7 +74,7 @@
 %type<data> data
 %type<meth> method
 %type<fonc> fonction
-%type<inst> instruction corps
+%type<inst> instruction
 %type<sval> type
 %type<cl> classe
 
@@ -88,8 +88,7 @@
 
 %%
 
-axiome : classe axiome                        {/*Classe* c = $1; c->visit(interpretor); delete c;*/}
-       | instruction T_SEMICOLON axiome       {Instruction* i = $1; i->visit(interpretor); delete i;}
+axiome : instruction T_SEMICOLON axiome       {Instruction* i = $1; i->visit(interpretor); delete i;}
        |                                      {}
        ;
 
@@ -100,6 +99,7 @@ instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(t
                                                                   exprs.clear();}
            | T_NAME T_IS type                                   {$$ = new Decl(toString($1),toString($3));}
            | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT   {$$ = new Call(toString($1),toString($3),exprs); exprs.clear();}
+           | classe                                             {$$ = new DeclClass($1);}
            ;
 
 /**
@@ -133,8 +133,8 @@ method : T_METHOD fonction 								{$$ = new Method(fonctions);}
        ;
 
 /* Signatures des fonctions */
-fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS corps T_SEMICOLON fonction 		{$$ = new Fonction(toString($1),params,$6);}
-         | 																																			{}
+fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	{$$ = new Fonction(toString($1),params,$6);}
+         | 																																			    {}
          ;
 
 /* Paramètres de la fonction */
@@ -161,11 +161,6 @@ type : T_TYPEBOOLEAN														{string str = "boolean";
 	 	 | T_NAME																		{$$ = $1;}
  	   ;
 
-/* Corps de la fonction : affectation ou retourne une expression */
-corps : instruction                             {$$ = $1;}
-      | T_RETURN expression		 									{$$ = new Return($2);}
-      ;
-
 /* Affectations multiples (ex : (x,y):=(1,2) */
 assignment : T_NAME T_COMMA assignment T_COMMA expression						{vars.push_back(toString($1));
                                                                       exprs.insert(exprs.begin(),$5);}
@@ -189,9 +184,7 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
            | T_NAME T_POINT T_NAME T_PLEFT paramUtil T_PRIGHT        {$$ = symbol.findResultOfMethodOfClass($1,$3,exprs);
                                                                       exprs.clear();}
-           | T_NAME                                                  {Affect *a = symbol.findAffect($1);
-                                                                      if (a==NULL) yyerror("valeur de variable non trouvee");
-                                                                      $$ = a->getExprs()[0];}
+           | T_NAME                                                  {$$ = new CallVar(toString($1));}
            ;
 
 %%

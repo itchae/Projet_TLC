@@ -3,8 +3,7 @@
 /**--------------------------------------------------------------------------**/
 SymbolTable SymbolTable::m_instance = SymbolTable();
 vector<Class*> SymbolTable::classes;
-vector<Decl*> SymbolTable::decls;
-vector<Affect*> SymbolTable::affects;
+vector<Variable*> SymbolTable::vars;
 
 /**--------------------------------------------------------------------------**/
 SymbolTable::SymbolTable(){
@@ -28,13 +27,9 @@ void SymbolTable::cleanAll(){
     delete classes.back();
     classes.pop_back();
   }
-  while (decls.size()>0){
-    delete decls.back();
-    decls.pop_back();
-  }
-  while (affects.size()>0){
-    delete affects.back();
-    affects.pop_back();
+  while (vars.size()>0){
+    delete vars.back();
+    vars.pop_back();
   }
 }
 
@@ -56,36 +51,19 @@ Class* SymbolTable::findClass(string name) const{
 }
 
 /**--------------------------------------------------------------------------**/
-void SymbolTable::addDecl(Decl* d){
-  for (int i=0; i<decls.size(); i++){
+void SymbolTable::addVar(Variable* v){
+  for (int i=0; i<vars.size(); i++){
     //on ne peut pas avoir deux variables portant le meme nom
-    if (d->getVar().compare(decls[i]->getVar())==0) throw invalid_argument("declaration deja existante");
+    if (v->getName().compare(vars[i]->getName())==0) throw invalid_argument("declaration deja existante");
   }
-  decls.push_back(d);
+  vars.push_back(v);
 }
 
 /**--------------------------------------------------------------------------**/
-Decl* SymbolTable::findDecl(string name) const{
-  for (int i=0; i<decls.size(); i++){
-    if (name.compare(decls[i]->getVar())==0) return decls[i];
+Variable* SymbolTable::findVar(string name) const{
+  for (int i=0; i<vars.size(); i++){
+    if (name.compare(vars[i]->getName())==0) return vars[i];
   }
-  return NULL;
-}
-
-/**--------------------------------------------------------------------------**/
-void SymbolTable::addAffect(Affect* a){
-  /*for (int i=0; i<affects.size(); i++){
-    if (*affects[i]==a){
-      //on garde seulement la derniere affectation (qui correspond donc a la valeur actuelle de la variable)
-      affects[i] = a;
-      return;
-    }
-  }
-  affects.push_back(a);*/
-}
-
-/**--------------------------------------------------------------------------**/
-Affect* SymbolTable::findAffect(string name) const{
   return NULL;
 }
 

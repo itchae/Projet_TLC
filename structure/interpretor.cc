@@ -7,7 +7,7 @@ using namespace std;
 /**--------------------------------------------------------------------------**/
 void Interpretor::visitDecl(Decl *d){
   SymbolTable& symbol = SymbolTable::Instance();
-  symbol.addDecl(d);
+  //symbol.addVar(d);
 }
 
 /**--------------------------------------------------------------------------**/

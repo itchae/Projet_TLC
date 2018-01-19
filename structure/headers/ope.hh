@@ -14,6 +14,10 @@ enum OperatorSymbol {
   SUP,
   INFEG,
   SUPEG,
+  EGALITE,
+  DIFF,
+  SQRT,
+  POW
 };
 
 /**
@@ -34,7 +38,7 @@ class Operator : public Expression {
     inline const OperatorSymbol getSymbol() const { return symbol;}
     string getType() const;
     void visit(Visitor& visitor);
-    Expression* calcul();
+    Expression* calculOperation();
     void print() const;
 
 };

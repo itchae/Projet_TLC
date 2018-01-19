@@ -95,13 +95,32 @@ Expression* Boolean::div(const Boolean& val)const{
 }
 
 
+Expression* Boolean::pow(const Integer& val)const{
+  throw runtime_error("Operation pow impossible entre bool et int");
+}
+Expression* Boolean::pow(const Float& val)const{
+  throw runtime_error("Operation pow impossible entre bool et float");
+}
+Expression* Boolean::pow(const Boolean& val)const{
+  throw runtime_error("Operation pow impossible entre bool et bool");
+}
+
+Expression* Boolean::sqrt(const Integer& val)const{
+  throw runtime_error("Operation sqrt impossible entre bool et int");
+}
+Expression* Boolean::sqrt(const Float& val)const{
+  throw runtime_error("Operation sqrt impossible entre bool et float");
+}
+Expression* Boolean::sqrt(const Boolean& val)const{
+  throw runtime_error("Operation sqrt impossible entre bool et bool");
+}
 
 
 Expression* Boolean::inferieur(const Integer& val)const{
-  throw "Comparaison entre float et int";
+  throw runtime_error("Comparaison entre float et int");
 }
 Expression* Boolean::inferieur(const Float& val)const{
-  throw "Comparaison entre bool et float";
+  throw runtime_error("Comparaison entre bool et float");
 }
 Expression* Boolean::inferieur(const Boolean& val)const{
   return new Boolean(this->value<val.value);
@@ -109,10 +128,10 @@ Expression* Boolean::inferieur(const Boolean& val)const{
 
 
 Expression* Boolean::inferieurEgal(const Integer& val)const{
-  throw "Comparaison entre bool et int";
+  throw runtime_error("Comparaison entre bool et int");
 }
 Expression* Boolean::inferieurEgal(const Float& val)const{
-  throw "Comparaison entre bool et float";
+  throw runtime_error("Comparaison entre bool et float");
 }
 Expression* Boolean::inferieurEgal(const Boolean& val)const{
   return new Boolean(this->value<=val.value);
@@ -120,10 +139,10 @@ Expression* Boolean::inferieurEgal(const Boolean& val)const{
 
 
 Expression* Boolean::superieur (const Integer& val)const{
-  throw "Comparaison entre bool et int";
+  throw runtime_error("Comparaison entre bool et int");
 }
 Expression* Boolean::superieur (const Float& val)const{
-  throw "Comparaison entre bool et float";
+  throw runtime_error("Comparaison entre bool et float");
 }
 Expression* Boolean::superieur (const Boolean& val)const{
   return new Boolean(this->value>val.value);
@@ -131,11 +150,31 @@ Expression* Boolean::superieur (const Boolean& val)const{
 
 
 Expression* Boolean::superieurEgal(const Integer& val)const{
-  throw "Comparaison entre float et int";
+  throw runtime_error("Comparaison entre float et int");
 }
 Expression* Boolean::superieurEgal(const Float& val)const{
-  throw "Comparaison entre bool et float";
+  throw runtime_error("Comparaison entre bool et float");
 }
 Expression* Boolean::superieurEgal(const Boolean& val)const{
   return new Boolean(this->value>=val.value);
+}
+
+Expression* Boolean::diff(const Integer& val)const{
+  throw runtime_error("Comparaison entre bool et int");
+}
+Expression* Boolean::diff(const Float& val)const{
+  throw runtime_error("Comparaison entre bool et float");
+}
+Expression* Boolean::diff(const Boolean& val)const{
+  throw runtime_error("Comparaison entre bool et bool");
+}
+
+Expression* Boolean::egalite(const Integer& val)const{
+  throw runtime_error("Comparaison entre bool et int");
+}
+Expression* Boolean::egalite(const Float& val)const{
+  throw runtime_error("Comparaison entre bool et float");
+}
+Expression* Boolean::egalite(const Boolean& val)const{
+  throw runtime_error("Comparaison entre bool et bool");
 }

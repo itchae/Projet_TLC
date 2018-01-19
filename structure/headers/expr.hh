@@ -44,6 +44,13 @@ class Expression : public Term {
     virtual Expression* div(const Float& val)const;
     virtual Expression* div(const Boolean& val)const;
 
+    virtual Expression* pow(const Integer& val)const;
+    virtual Expression* pow(const Float& val)const;
+    virtual Expression* pow(const Boolean& val)const;
+
+    virtual Expression* sqrt(const Integer& val)const;
+    virtual Expression* sqrt(const Float& val)const;
+    virtual Expression* sqrt(const Boolean& val)const;
 
     virtual Expression* inferieur(const Integer& val)const;
     virtual Expression* inferieur(const Float& val)const;
@@ -63,6 +70,16 @@ class Expression : public Term {
     virtual Expression* superieurEgal(const Integer& val)const;
     virtual Expression* superieurEgal(const Float& val)const;
     virtual Expression* superieurEgal(const Boolean& val)const;
+
+    virtual Expression* diff(const Integer& val)const;
+    virtual Expression* diff(const Float& val)const;
+    virtual Expression* diff(const Boolean& val)const;
+
+    virtual Expression* egalite(const Integer& val)const;
+    virtual Expression* egalite(const Float& val)const;
+    virtual Expression* egalite(const Boolean& val)const;
+
+
 
 };
 

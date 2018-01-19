@@ -28,31 +28,35 @@ void Operator::visit(Visitor& visitor) {
 }
 
 /**--------------------------------------------------------------------------**/
-Expression* Operator::calcul(){
-  Expression expr;
+Expression* Operator::calculOperation(){
   switch(symbol){
-    case PLUS : expr = left+right;
+    case PLUS : return (left->plus(*right));
           break;
-    case MOINS : expr = left-right;
+    case MOINS : return (left->moins(*right));
           break;
-    case MULT : expr = left*right;
+    case MULT : return (left->mult(*right));
           break;
-    case INF : expr = left<right;
+    case POW : return (left->pow(*right));
           break;
-    case SUP : expr = left>right;
+    case SQRT : return (left->sqrt(*right));
           break;
-    case SUPEG : expr = left>=right;
+    case INF : return (left->inferieur(*right));
           break;
-    case INFEG : expr = left<=right;
-          break; 
-    case EGALITE : cout<<"EGALITE"<<endl;
+    case SUP : return (left->superieur(*right));
           break;
-    case DIFF : cout<<"DIFF"<<endl;
+    case SUPEG : return (left->supeg(*right));
+          break;
+    case INFEG : return (left->infeg(*right));
+          break;
+    case EGALITE : return (left->egalite(*right));
+          break;
+    case DIFF : return (left->diff(*right));
           break;
     default: cout<<"Opérateur non implémenté";
+              return NULL;
 
   }
-  return NULL; //TODO
+  return NULL;
 }
 
 void Operator::print() const{

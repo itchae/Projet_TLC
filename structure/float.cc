@@ -104,16 +104,13 @@ Expression* Float::pow( Boolean& val){
   throw runtime_error("Operation pow impossible entre float et bool");
 }
 
-Expression* Float::sqrt( Integer& val){
-  throw runtime_error("Operation sqrt impossible entre float et int");
-}
-Expression* Float::sqrt( Float& val){
-  throw runtime_error("Operation sqrt impossible entre float et float");
-}
-Expression* Float::sqrt( Boolean& val){
-  throw runtime_error("Operation sqrt impossible entre float et bool");
+Expression* Float::sqrt(){
+  throw runtime_error("Operation sqrt impossible");
 }
 
+Expression* Float::neg(){
+  throw runtime_error("Operation neg impossible");
+}
 
 Expression* Float::inferieur( Integer& val){
   throw runtime_error("Comparaison entre float et int");

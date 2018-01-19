@@ -51,9 +51,9 @@ class Float : public Expression {
     Expression* pow( Float& val);
     Expression* pow( Boolean& val);
 
-    Expression* sqrt( Integer& val);
-    Expression* sqrt( Float& val);
-    Expression* sqrt( Boolean& val);
+    Expression* sqrt();
+
+    Expression* neg();
 
     Expression* inferieur( Integer& val);
     Expression* inferieur( Float& val);

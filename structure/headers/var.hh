@@ -19,7 +19,7 @@ class Variable : public Expression {
     Variable();
     Variable(string n, Expression* e);
     Variable(string n, string t);
-    ~Variable();
+    virtual ~Variable();
     void setVar(Expression* e);
     string getType();
     inline string getName() const { return name; }

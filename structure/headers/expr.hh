@@ -15,8 +15,8 @@ class Expression : public Term {
   public:
     virtual ~Expression() {}
     virtual string getType()  = 0;
-    virtual void print()  = 0;
-    virtual Expression* calcul(){}
+    virtual void print() = 0;
+    virtual Expression* calcul() {return NULL;}
 
     virtual Expression* operator +( Expression& val);
     virtual Expression* operator -( Expression& val);
@@ -48,9 +48,9 @@ class Expression : public Term {
     virtual Expression* pow( Float& val);
     virtual Expression* pow( Boolean& val);
 
-    virtual Expression* sqrt( Integer& val);
-    virtual Expression* sqrt( Float& val) ;
-    virtual Expression* sqrt( Boolean& val) ;
+    virtual Expression* sqrt();
+
+    virtual Expression* neg();
 
     virtual Expression* inferieur( Integer& val);
     virtual Expression* inferieur( Float& val);

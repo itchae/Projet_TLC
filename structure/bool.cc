@@ -105,14 +105,12 @@ Expression* Boolean::pow( Boolean& val){
   throw runtime_error("Operation pow impossible entre bool et bool");
 }
 
-Expression* Boolean::sqrt( Integer& val){
-  throw runtime_error("Operation sqrt impossible entre bool et int");
+Expression* Boolean::sqrt(){
+  throw runtime_error("Operation sqrt impossible");
 }
-Expression* Boolean::sqrt( Float& val){
-  throw runtime_error("Operation sqrt impossible entre bool et float");
-}
-Expression* Boolean::sqrt( Boolean& val){
-  throw runtime_error("Operation sqrt impossible entre bool et bool");
+
+Expression* Boolean::neg(){
+  throw runtime_error("Operation neg impossible");
 }
 
 

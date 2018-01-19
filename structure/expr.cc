@@ -78,16 +78,13 @@ Expression* Expression::pow( Boolean& val){
   throw runtime_error("Operation pow impossible");
 }
 
-Expression* Expression::sqrt( Integer& val){
-  throw runtime_error("Operation sqrt impossible");
-}
-Expression* Expression::sqrt( Float& val){
-  throw runtime_error("Operation sqrt impossible");
-}
-Expression* Expression::sqrt( Boolean& val){
+Expression* Expression::sqrt(){
   throw runtime_error("Operation sqrt impossible");
 }
 
+Expression* Expression::neg(){
+  throw runtime_error("Operation neg impossible");
+}
 
 Expression* Expression::inferieur( Integer& val){
   throw runtime_error("Operation inferieur impossible");

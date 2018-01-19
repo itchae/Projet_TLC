@@ -73,6 +73,7 @@
 %token<bval> T_BOOLEAN
 %token T_TYPEFLOAT T_TYPEBOOLEAN T_TYPEINTEGER
 %token T_PLUS T_MINUS T_TIMES T_DIVIDE T_POWER T_SQRT
+%token T_INF T_SUP T_INFEG T_SUPEG
 %token T_PLEFT T_PRIGHT T_COMMA T_POINT T_COLON T_SEMICOLON T_ASSIGNMENT
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
@@ -181,6 +182,10 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | expression T_MINUS expression 				                   {$$ = new Operator(MOINS,$1,$3);}
            | expression T_TIMES expression 				                   {$$ = new Operator(MULT,$1,$3);}
            | expression T_DIVIDE expression 			                   {$$ = new Operator(DIV,$1,$3);}
+           | expression T_SUP expression                             {$$ = new Operator(SUP,$1,$3);}
+           | expression T_SUPEG expression                           {$$ = new Operator(SUPEG,$1,$3);}
+           | expression T_INF expression                             {$$ = new Operator(INF,$1,$3);}
+           | expression T_INFEG expression                           {$$ = new Operator(INFEG,$1,$3);}
            | T_SQRT T_PLEFT expression T_PRIGHT 	                   {$$ = $3;}
            | expression T_POWER T_INTEGER 		 		                   {$$ = $1;}
            | T_PLEFT expression T_PRIGHT 			   	                   {$$ = $2;}

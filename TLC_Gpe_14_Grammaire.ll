@@ -15,12 +15,19 @@
 "boolean"			{return T_TYPEBOOLEAN;}
 "integer"			{return T_TYPEINTEGER;}
 
+
+
 "+"					{return T_PLUS;}
 "-"					{return T_MINUS;}
 "*"					{return T_TIMES;}
 "/"					{return T_DIVIDE;}
 "^"					{return T_POWER;}
-"sqrt"				{return T_SQRT;}
+"sqrt"			{return T_SQRT;}
+"<"           {return T_INF}
+">"           {return T_SUP}
+"<="          {return T_INFEG}
+">="          {return T_SUPEG}
+
 
 "("					{return T_PLEFT;}
 ")"					{return T_PRIGHT;}

@@ -29,17 +29,22 @@ void Operator::visit(Visitor& visitor) {
 
 /**--------------------------------------------------------------------------**/
 Expression* Operator::calcul(){
-  switch(this->symbol){
-    case PLUS : cout<<"PLUS"<<endl;
+  Expression expr;
+  switch(symbol){
+    case PLUS : expr = left+right;
           break;
-    case MOINS : cout<<"MOINS"<<endl;
+    case MOINS : expr = left-right;
           break;
-    case MULT : cout<<"MULT"<<endl;
+    case MULT : expr = left*right;
           break;
-    case INF : cout<<"INF"<<endl;
+    case INF : expr = left<right;
           break;
-    case SUP : cout<<"SUP"<<endl;
+    case SUP : expr = left>right;
           break;
+    case SUPEG : expr = left>=right;
+          break;
+    case INFEG : expr = left<=right;
+          break; 
     case EGALITE : cout<<"EGALITE"<<endl;
           break;
     case DIFF : cout<<"DIFF"<<endl;

@@ -6,6 +6,7 @@
 #include "class.hh"
 #include "var.hh"
 #include "expr.hh"
+#include "object.hh"
 #include "returnFonction.hh"
 
 using namespace std;
@@ -31,7 +32,7 @@ class SymbolTable  {
 		Class* findClass(string name) const;
 		void addVar(Variable* v);
 		Variable* findVar(vector<string> s) const;
-		
+
 		/**
 		 * Renvoie le resultat d'une fonction de type return fonction
 		 * @param  s liste des appels, exemple pour a.b.c.methode(), la liste contient a,b,c,methode

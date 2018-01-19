@@ -16,9 +16,11 @@ class Variable : public Expression {
     Expression* var;
 
   public:
+    Variable();
     Variable(string n, Expression* e);
     Variable(string n, string t);
     ~Variable();
+    void setVar(Expression* e);
     string getType() const;
     inline string getName() const { return name; }
     inline Expression* getVar() const { return var; }

@@ -4,14 +4,13 @@
 #include <string>
 #include "data.hh"
 #include "method.hh"
-#include "expr.hh"
 
 using namespace std;
 
 /**
  * Classe permettant de stocker toutes les informations relatives à une classe
  */
-class Class  : Expression {
+class Class {
 
 	private:
 		string mere; // Classe mère

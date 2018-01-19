@@ -69,9 +69,9 @@ Variable* SymbolTable::findVar(vector<string> s) const{
   //on cherche dans la variable tmp une autre variable du nom de s[i]
   int i=1;
   while (i<s.size()){
-    Class* c = findClass(tmp->getType());
-    if (c==NULL) throw invalid_argument("classe inexistante");
-    tmp = c->getVar(s[i]);
+    Object* obj = static_cast<Object*>(tmp);
+    if (obj==NULL) throw invalid_argument("objet inexistant");
+    tmp = obj->getVar(s[i]);
     if (tmp==NULL) throw invalid_argument("variable inexistante");
   }
   return tmp;
@@ -89,16 +89,16 @@ Expression* SymbolTable::resultOfReturnFonction(vector<string> s, vector<Express
   //on cherche dans la variable tmp une autre variable du nom de s[i]
   int i=1;
   while (i<s.size()-1){
-    Class* c = findClass(tmp->getType());
-    if (c==NULL) throw invalid_argument("classe inexistante");
-    tmp = c->getVar(s[i]);
+    Object* obj = static_cast<Object*>(tmp);
+    if (obj==NULL) throw invalid_argument("objet inexistant");
+    tmp = obj->getVar(s[i]);
     if (tmp==NULL) throw invalid_argument("variable inexistante");
   }
   // on est rendu a la fin de l'appel, donc il reste le nom de la methode
   // on la cherche donc dans la derniere variable
   Class* c = findClass(tmp->getType());
   if (c==NULL) throw invalid_argument("classe inexistante");
-  Fonction* f = c->getFonction(s[s.size()-1]);
+  Fonction* f = c->getMethod()->getFonction(s[s.size()-1]);
   if (f==NULL) throw invalid_argument("fonction inexistante");
   // seulement une fonction de type returnfonction renvoie une Expression
   ReturnFonction* f2 = static_cast<ReturnFonction*>(f);

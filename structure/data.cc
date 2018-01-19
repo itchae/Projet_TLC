@@ -1,7 +1,7 @@
 #include "headers/data.hh"
 
 /**--------------------------------------------------------------------------**/
-Data::Data(vector<Expression*> v) : vars(v)
+Data::Data(vector<Decl*> v) : vars(v)
 {
 }
 
@@ -22,7 +22,7 @@ bool Data::contains(string var) const{
 }
 
 /**--------------------------------------------------------------------------**/
-Variable* Data::getVar(string var) const{
+Decl* Data::getDecl(string var) const{
 	for (int i=0; i<vars.size(); i++){
 		if (vars[i]->getVar().compare(var)==0) return vars[i];
 	}

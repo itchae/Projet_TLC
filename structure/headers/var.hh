@@ -1,9 +1,10 @@
-#ifndef _TERM_H
-#define _TERM_H
+#ifndef _VAR_H
+#define _VAR_H
 
 #include <iostream>
 #include <string>
 #include "visitor.hh"
+#include "expr.hh"
 
 using namespace std;
 
@@ -14,9 +15,11 @@ class Variable {
     Expression* var;
 
   public:
-    Variable(string,Expression*);
-    Variable(string);
-    virtual ~Variable() { }
+    Variable(string n, Expression* e);
+    Variable(string n);
+    ~Variable();
+    inline string getName() const { return name; }
+    inline Expression* getVar() const { return var; }
     void visit(Visitor& visitor);
 
 };

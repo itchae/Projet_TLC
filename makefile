@@ -1,6 +1,6 @@
 SRC= $(wildcard structure/*.cc) $(NAME)_v2.tab.cc lex.yy.c main.cc
 OBJ= $(SRC:structure/*.cc=.o)
-CFLAGS =  -W -Wall -g
+CFLAGS = -std=c++11
 EXEC=test
 NAME=TLC_Gpe_14_Grammaire
 FFLAGS = -lfl
@@ -11,7 +11,7 @@ all: $(EXEC)
 
 
 $(EXEC): $(OBJ)
-	$(CXX) -o $@ $^ $(FFLAGS)
+	$(CXX) -o $@ $^ $(FFLAGS) $(CFLAGS)
 
 
 %.o : %.cc

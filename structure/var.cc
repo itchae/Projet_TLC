@@ -1,4 +1,4 @@
-#include "var.hh"
+#include "headers/var.hh"
 
 //--------------------------------------------------------------------------//
 Variable::Variable(string n, Expression* e)

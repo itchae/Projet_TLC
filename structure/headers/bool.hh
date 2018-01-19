@@ -11,9 +11,6 @@ using namespace std;
  * Classe représentant un boolean
  */
 
-//class Float;
-//class Integer;
-
 class Boolean : public Expression {
 
   private:

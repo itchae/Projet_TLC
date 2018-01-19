@@ -105,7 +105,7 @@ Expression* Boolean::pow( Boolean& val){
   throw runtime_error("Operation pow impossible entre bool et bool");
 }
 
-Expression* Boolean::sqrt(){
+Expression* Boolean::racineCarree(){
   throw runtime_error("Operation sqrt impossible");
 }
 

@@ -1,4 +1,5 @@
 #include "headers/int.hh"
+#include <math.h>
 
 /**--------------------------------------------------------------------------**/
 Integer::Integer(int v) : value(v) {
@@ -104,12 +105,12 @@ Expression* Integer::pow( Boolean& val){
   throw runtime_error("Operation pow impossible entre int et bool");
 }
 
-Expression* Integer::sqrt(){
-  throw runtime_error("Operation sqrt impossible");
+Expression* Integer::racineCarree(){
+  return new Integer(sqrt(this->value));
 }
 
 Expression* Integer::neg(){
-  throw runtime_error("Operation neg impossible");
+  return new Integer(-(this->value));
 }
 
 

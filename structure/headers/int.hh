@@ -53,7 +53,7 @@ class Integer : public Expression {
     Expression* pow( Float& val);
     Expression* pow( Boolean& val);
 
-    Expression* sqrt();
+    Expression* racineCarree();
 
     Expression* neg();
 

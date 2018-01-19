@@ -1,4 +1,5 @@
 #include "headers/float.hh"
+#include <math.h>
 
 /**--------------------------------------------------------------------------**/
 Float::Float(double v) : value(v) {
@@ -104,12 +105,12 @@ Expression* Float::pow( Boolean& val){
   throw runtime_error("Operation pow impossible entre float et bool");
 }
 
-Expression* Float::sqrt(){
-  throw runtime_error("Operation sqrt impossible");
+Expression* Float::racineCarree(){
+  return new Float(sqrt(this->value));
 }
 
 Expression* Float::neg(){
-  throw runtime_error("Operation neg impossible");
+  return new Float(-(this->value));
 }
 
 Expression* Float::inferieur( Integer& val){

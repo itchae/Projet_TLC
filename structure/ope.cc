@@ -78,11 +78,11 @@ Expression* Operator::calculOperation(){
           break;
     case SQRT :
           b = dynamic_cast<Boolean*>(right);
-          if (b!=NULL) return left->sqrt();
+          if (b!=NULL) return left->racineCarree();
           i = dynamic_cast<Integer*>(right);
-          if (i!=NULL) return left->sqrt();
+          if (i!=NULL) return left->racineCarree();
           f = dynamic_cast<Float*>(right);
-          if (f!=NULL) return left->sqrt();
+          if (f!=NULL) return left->racineCarree();
           return NULL;
           break;
     case INF :

@@ -78,7 +78,7 @@ Expression* Expression::pow( Boolean& val){
   throw runtime_error("Operation pow impossible");
 }
 
-Expression* Expression::sqrt(){
+Expression* Expression::racineCarree(){
   throw runtime_error("Operation sqrt impossible");
 }
 

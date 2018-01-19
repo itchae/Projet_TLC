@@ -48,7 +48,7 @@ class Expression : public Term {
     virtual Expression* pow( Float& val);
     virtual Expression* pow( Boolean& val);
 
-    virtual Expression* sqrt();
+    virtual Expression* racineCarree();
 
     virtual Expression* neg();
 

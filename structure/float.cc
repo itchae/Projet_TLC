@@ -163,7 +163,7 @@ Expression* Float::diff( Integer& val){
   throw runtime_error("Comparaison entre float et int");
 }
 Expression* Float::diff( Float& val){
-  throw runtime_error("Comparaison entre float et float");
+  return new Boolean(this->value != val.value);;
 }
 Expression* Float::diff( Boolean& val){
   throw runtime_error("Comparaison entre float et bool");
@@ -173,7 +173,7 @@ Expression* Float::egalite( Integer& val){
   throw runtime_error("Comparaison entre float et int");
 }
 Expression* Float::egalite( Float& val){
-  throw runtime_error("Comparaison entre float et float");
+  return new Boolean(this->value == val.value);
 }
 Expression* Float::egalite( Boolean& val){
   throw runtime_error("Comparaison entre float et bool");

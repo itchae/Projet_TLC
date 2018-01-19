@@ -16,7 +16,7 @@ class Expression : public Term {
     virtual ~Expression() {}
     virtual string getType()  = 0;
     virtual void print()  = 0;
-    virtual Expression* calcul();
+    virtual Expression* calcul(){}
 
     virtual Expression* operator +( Expression& val);
     virtual Expression* operator -( Expression& val);

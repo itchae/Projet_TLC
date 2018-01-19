@@ -21,7 +21,7 @@ class ReturnFonction : public Fonction  {
 
 	public:
 		ReturnFonction(string name, vector<Decl*> v, Expression* e);
-		~ReturnFonction();
+		~ReturnFonction(){};
     inline const string getName() const { return name; }
     inline const Expression* getExpr() const { return expr; }
 		void print() const;

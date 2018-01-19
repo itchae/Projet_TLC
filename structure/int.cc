@@ -95,7 +95,7 @@ Expression* Integer::div( Boolean& val){
 
 
 Expression* Integer::pow( Integer& val){
-  throw runtime_error("Operation pow impossible entre int et int");
+  return new Integer(this->value^val.value);
 }
 Expression* Integer::pow( Float& val){
   throw runtime_error("Operation pow impossible entre int et float");
@@ -160,7 +160,7 @@ Expression* Integer::superieurEgal( Boolean& val){
 
 
 Expression* Integer::diff( Integer& val){
-  throw runtime_error("Comparaison entre int et int");
+  return new Boolean(this->value != val.value);
 }
 Expression* Integer::diff( Float& val){
   throw runtime_error("Comparaison entre int et float");
@@ -170,7 +170,7 @@ Expression* Integer::diff( Boolean& val){
 }
 
 Expression* Integer::egalite( Integer& val){
-  throw runtime_error("Comparaison entre int et int");
+  return new Boolean(this->value == val.value);
 }
 Expression* Integer::egalite( Float& val){
   throw runtime_error("Comparaison entre int et float");

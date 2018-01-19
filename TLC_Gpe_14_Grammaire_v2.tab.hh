@@ -58,21 +58,25 @@ extern int yydebug;
     T_DIVIDE = 268,
     T_POWER = 269,
     T_SQRT = 270,
-    T_PLEFT = 271,
-    T_PRIGHT = 272,
-    T_COMMA = 273,
-    T_POINT = 274,
-    T_COLON = 275,
-    T_SEMICOLON = 276,
-    T_ASSIGNMENT = 277,
-    T_CLASS = 278,
-    T_EXTENDS = 279,
-    T_DATA = 280,
-    T_IS = 281,
-    T_METHOD = 282,
-    T_RETURN = 283,
-    T_END = 284,
-    NEG = 285
+    T_INF = 271,
+    T_SUP = 272,
+    T_INFEG = 273,
+    T_SUPEG = 274,
+    T_PLEFT = 275,
+    T_PRIGHT = 276,
+    T_COMMA = 277,
+    T_POINT = 278,
+    T_COLON = 279,
+    T_SEMICOLON = 280,
+    T_ASSIGNMENT = 281,
+    T_CLASS = 282,
+    T_EXTENDS = 283,
+    T_DATA = 284,
+    T_IS = 285,
+    T_METHOD = 286,
+    T_RETURN = 287,
+    T_END = 288,
+    NEG = 289
   };
 #endif
 
@@ -95,7 +99,7 @@ union YYSTYPE
 		Fonction* fonc;
     Decl* decl;
 
-#line 99 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
+#line 103 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

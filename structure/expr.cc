@@ -68,6 +68,27 @@ Expression* Expression::div(const Boolean& val)const{
 }
 
 
+Expression* Expression::pow(const Integer& val)const{
+  throw runtime_error("Operation pow impossible");
+}
+Expression* Expression::pow(const Float& val)const{
+  throw runtime_error("Operation pow impossible");
+}
+Expression* Expression::pow(const Boolean& val)const{
+  throw runtime_error("Operation pow impossible");
+}
+
+Expression* Expression::sqrt(const Integer& val)const{
+  throw runtime_error("Operation sqrt impossible");
+}
+Expression* Expression::sqrt(const Float& val)const{
+  throw runtime_error("Operation sqrt impossible");
+}
+Expression* Expression::sqrt(const Boolean& val)const{
+  throw runtime_error("Operation sqrt impossible");
+}
+
+
 Expression* Expression::inferieur(const Integer& val)const{
   throw runtime_error("Operation inferieur impossible");
 }
@@ -109,4 +130,24 @@ Expression* Expression::superieurEgal(const Float& val)const{
 }
 Expression* Expression::superieurEgal(const Boolean& val)const{
   throw runtime_error("Operation superieurEgal impossible");
+}
+
+Expression* Expression::diff(const Integer& val)const{
+  throw runtime_error("Operation diff impossible");
+}
+Expression* Expression::diff(const Float& val)const{
+  throw runtime_error("Operation diff impossible");
+}
+Expression* Expression::diff(const Boolean& val)const{
+  throw runtime_error("Operation diff impossible");
+}
+
+Expression* Expression::egalite(const Integer& val)const{
+  throw runtime_error("Operation egalité impossible");
+}
+Expression* Expression::egalite(const Float& val)const{
+  throw runtime_error("Operation egalité impossible");
+}
+Expression* Expression::egalite(const Boolean& val)const{
+  throw runtime_error("Operation egalité impossible");
 }

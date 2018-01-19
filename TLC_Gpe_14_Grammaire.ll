@@ -23,10 +23,10 @@
 "/"					{return T_DIVIDE;}
 "^"					{return T_POWER;}
 "sqrt"			{return T_SQRT;}
-"<"           {return T_INF}
-">"           {return T_SUP}
-"<="          {return T_INFEG}
-">="          {return T_SUPEG}
+"<"           {return T_INF;}
+">"           {return T_SUP;}
+"<="          {return T_INFEG;}
+">="          {return T_SUPEG;}
 
 
 "("					{return T_PLEFT;}

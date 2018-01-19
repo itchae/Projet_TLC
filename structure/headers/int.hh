@@ -52,25 +52,40 @@ class Integer : public Expression {
     Expression* div(const Float& val)const;
     Expression* div(const Boolean& val)const;
 
+    Expression* pow(const Integer& val)const;
+    Expression* pow(const Float& val)const;
+    Expression* pow(const Boolean& val)const;
 
-    virtual Expression* inferieur(const Integer& val)const;
-    virtual Expression* inferieur(const Float& val)const;
-    virtual Expression* inferieur(const Boolean& val)const;
+    Expression* sqrt(const Integer& val)const;
+    Expression* sqrt(const Float& val)const;
+    Expression* sqrt(const Boolean& val)const;
 
-
-    virtual Expression* inferieurEgal(const Integer& val)const;
-    virtual Expression* inferieurEgal(const Float& val)const;
-    virtual Expression* inferieurEgal(const Boolean& val)const;
-
-
-    virtual Expression* superieur (const Integer& val)const;
-    virtual Expression* superieur (const Float& val)const;
-    virtual Expression* superieur (const Boolean& val)const;
+    Expression* inferieur(const Integer& val)const;
+    Expression* inferieur(const Float& val)const;
+    Expression* inferieur(const Boolean& val)const;
 
 
-    virtual Expression* superieurEgal(const Integer& val)const;
-    virtual Expression* superieurEgal(const Float& val)const;
-    virtual Expression* superieurEgal(const Boolean& val)const;
+    Expression* inferieurEgal(const Integer& val)const;
+    Expression* inferieurEgal(const Float& val)const;
+    Expression* inferieurEgal(const Boolean& val)const;
+
+
+    Expression* superieur (const Integer& val)const;
+    Expression* superieur (const Float& val)const;
+    Expression* superieur (const Boolean& val)const;
+
+
+    Expression* superieurEgal(const Integer& val)const;
+    Expression* superieurEgal(const Float& val)const;
+    Expression* superieurEgal(const Boolean& val)const;
+
+    Expression* diff(const Integer& val)const;
+    Expression* diff(const Float& val)const;
+    Expression* diff(const Boolean& val)const;
+
+    Expression* egalite(const Integer& val)const;
+    Expression* egalite(const Float& val)const;
+    Expression* egalite(const Boolean& val)const;
 
 };
 

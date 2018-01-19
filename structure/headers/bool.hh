@@ -51,6 +51,13 @@ class Boolean : public Expression {
     Expression* div(const Float& val)const;
     Expression* div(const Boolean& val)const;
 
+    Expression* pow(const Integer& val)const;
+    Expression* pow(const Float& val)const;
+    Expression* pow(const Boolean& val)const;
+
+    Expression* sqrt(const Integer& val)const;
+    Expression* sqrt(const Float& val)const;
+    Expression* sqrt(const Boolean& val)const;
 
     Expression* inferieur(const Integer& val)const;
     Expression* inferieur(const Float& val)const;
@@ -70,6 +77,14 @@ class Boolean : public Expression {
     Expression* superieurEgal(const Integer& val)const;
     Expression* superieurEgal(const Float& val)const;
     Expression* superieurEgal(const Boolean& val)const;
+
+    Expression* diff(const Integer& val)const;
+    Expression* diff(const Float& val)const;
+    Expression* diff(const Boolean& val)const;
+
+    Expression* egalite(const Integer& val)const;
+    Expression* egalite(const Float& val)const;
+    Expression* egalite(const Boolean& val)const;
 };
 
 #endif

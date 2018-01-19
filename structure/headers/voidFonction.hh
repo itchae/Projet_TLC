@@ -1,5 +1,5 @@
-#ifndef _FONC_H
-#define _FONC_H
+#ifndef _VOIDFONC_H
+#define _VOIDFONC_H
 
 #include <vector>
 #include <string>
@@ -29,11 +29,9 @@ class VoidFonction : public Fonction  {
 		bool noParams() const;
 		bool containsParam(string var) const;
 		Decl* getParam(string var) const;
-		string getType() const;
 		inline const string getName() const { return name; }
 		inline const Instruction* getInst() const { return instruct; }
 		void visit(Visitor& visitor);
-		void print() const;
 
 };
 

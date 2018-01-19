@@ -15,7 +15,8 @@ class Expression : public Term {
   public:
     virtual ~Expression() = default;
     virtual string getType() const = 0;
-    virtual void print() const = 0; 
+    virtual void print() const = 0;
+    virtual Expression* calcul();
 
     virtual Expression* operator +(const Expression& val)const;
     virtual Expression* operator -(const Expression& val)const;

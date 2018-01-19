@@ -1,5 +1,5 @@
-#ifndef _FONC_H
-#define _FONC_H
+#ifndef _RETURNFONC_H
+#define _RETURNFONC_H
 
 #include <vector>
 #include <string>
@@ -20,21 +20,14 @@ class ReturnFonction : public Fonction  {
 		Expression* expr;
 
 	public:
-		ReturnFonction(string name, vector<Decl*> v, Instruction* instruct);
+		ReturnFonction(string name, vector<Decl*> v, Expression* e);
 		~ReturnFonction();
-
-		/**
-		 * @return renvoie vrai si la fonction n'a pas de parametre (vector vide)
-		 */
-		bool noParams() const;
-		bool containsParam(string var) const;
-		Decl* getParam(string var) const;
-		string getType() const;
-		inline const string getName() const { return name; }
-		inline const Instruction* getExpr() const { return expr; }
-		void visit(Visitor& visitor);
+    inline const string getName() const { return name; }
+    inline const Expression* getExpr() const { return expr; }
 		void print() const;
-
+    Expression* calcul() const;
+    string getType() const;
+    void visit(Visitor& visitor);
 };
 
 #endif

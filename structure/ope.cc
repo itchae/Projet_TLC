@@ -52,6 +52,7 @@ Expression* Operator::calcul(){
     default: cout<<"Opérateur non implémenté";
 
   }
+  return NULL; //TODO
 }
 
 void Operator::print() const{

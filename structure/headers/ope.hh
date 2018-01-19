@@ -34,7 +34,7 @@ class Operator : public Expression {
     inline const OperatorSymbol getSymbol() const { return symbol;}
     string getType() const;
     void visit(Visitor& visitor);
-    void calcul();
+    Expression* calcul();
     void print() const;
 
 };

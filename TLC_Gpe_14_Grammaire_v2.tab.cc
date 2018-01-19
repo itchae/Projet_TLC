@@ -1405,7 +1405,7 @@ yyreduce:
   case 11:
 #line 119 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     { if (toString((yyvsp[-6].sval)).compare(toString((yyvsp[-1].sval)))!=0) yyerror("nom de debut et de fin de classe non identitiques");
-                                                                                      (yyval.cl) = new Class(toString((yyvsp[-6].sval)),(yyvsp[-4].data),(yyvsp[-3].meth));}
+                                                                                        (yyval.cl) = new Class(toString((yyvsp[-6].sval)),(yyvsp[-4].data),(yyvsp[-3].meth));}
 #line 1410 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
@@ -1413,7 +1413,7 @@ yyreduce:
 #line 121 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
     { if (toString((yyvsp[-8].sval)).compare(toString((yyvsp[-1].sval)))!=0) yyerror("nom de debut et de fin de classe non identitiques");
                                                                                         if (toString((yyvsp[-8].sval)).compare(toString((yyvsp[-6].sval)))==0) yyerror("classe mere identique a la classe");
-                                                                                      (yyval.cl) = new Class(toString((yyvsp[-6].sval)),toString((yyvsp[-8].sval)),(yyvsp[-4].data),(yyvsp[-3].meth));}
+                                                                                        (yyval.cl) = new Class(toString((yyvsp[-6].sval)),toString((yyvsp[-8].sval)),(yyvsp[-4].data),(yyvsp[-3].meth));}
 #line 1418 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 
@@ -1538,7 +1538,7 @@ yyreduce:
 
   case 31:
 #line 187 "TLC_Gpe_14_Grammaire_v2.yy" /* yacc.c:1646  */
-    {(yyval.exp) = -(yyvsp[0].exp);}
+    {(yyval.exp) = new Operator(NEG,(yyvsp[0].exp));}
 #line 1543 "TLC_Gpe_14_Grammaire_v2.tab.cc" /* yacc.c:1646  */
     break;
 

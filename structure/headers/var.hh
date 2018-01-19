@@ -22,8 +22,9 @@ class Variable : public Expression {
     string getType() const;
     inline string getName() const { return name; }
     inline Expression* getVar() const { return var; }
+    Expression* calcul() { return var->calcul(); }
     void visit(Visitor& visitor);
-    void print() const; 
+    void print() const;
 };
 
 #endif

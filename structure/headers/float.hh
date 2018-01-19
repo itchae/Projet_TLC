@@ -19,6 +19,7 @@ class Float : public Expression {
     Float(double v);
     ~Float();
     inline double getValue() const { return value; }
+    Expression* calcul() { return this; }
     string getType() const { return "float"; }
     void visit(Visitor& visitor);
     void print() const;

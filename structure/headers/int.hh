@@ -19,6 +19,7 @@ class Integer : public Expression {
     Integer(int v);
     ~Integer();
     inline int getValue() const { return value; }
+    Expression* calcul() { return this; }
     string getType() const { return "integer"; }
     void visit(Visitor& visitor);
     void print() const;

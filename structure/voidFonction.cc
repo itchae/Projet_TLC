@@ -37,19 +37,6 @@ bool VoidFonction::noParams() const{
 }
 
 /**--------------------------------------------------------------------------**/
-string VoidFonction::getType() const{
-	Return* r = dynamic_cast<Return*>(instruct);
-	if ( r != NULL )
-	  return r->getType();
-	else
-	  return "void";
-}
-
-/**--------------------------------------------------------------------------**/
 void VoidFonction::visit(Visitor& visitor) {
   //return visitor.visitFonc(this);
-}
-
-void VoidFonction::print() const{
-	cout<< name << endl;
 }

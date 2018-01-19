@@ -28,7 +28,7 @@ void Operator::visit(Visitor& visitor) {
 }
 
 /**--------------------------------------------------------------------------**/
-void Operator::calcul(){
+Expression* Operator::calcul(){
   switch(this->symbol){
     case PLUS : cout<<"PLUS"<<endl;
           break;
@@ -47,8 +47,9 @@ void Operator::calcul(){
     default: cout<<"Opérateur non implémenté";
 
   }
+  return NULL; //TODO
 }
 
 void Operator::print() const{
-  cout<<symbol<<endl; 
+  cout<<symbol<<endl;
 }

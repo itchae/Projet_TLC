@@ -14,5 +14,5 @@ void Decl::visit(Visitor& visitor) {
 }
 
 void Decl::print(){
-  cout<<var<<"."<<getVar()<<endl; 
+  cout<<getVar()<<"."<<<<endl; 
 }

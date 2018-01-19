@@ -36,6 +36,7 @@ void Data::visit(Visitor& visitor) {
 
 void Data::print(){
   for (auto var : vars){
-    var->print(); 
+    var->print();
+    cout<<",";
   }
 }

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Variable : Expression {
+class Variable : public Expression {
 
   private:
     string name;

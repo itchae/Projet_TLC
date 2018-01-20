@@ -24,6 +24,10 @@ Affect::~Affect() {
 	for (int i = 0; i < exprs.size(); i++){
 		delete exprs[i];
 	}
+	while (vars.size()>0){
+	  delete vars.back();
+	 	vars.pop_back();
+  }
 }
 
 /**--------------------------------------------------------------------------**/

@@ -12,6 +12,10 @@ Call::~Call() {
 	  delete params.back();
 	  params.pop_back();
   }
+	while (objs.size()>0){
+	  delete objs.back();
+	 	objs.pop_back();
+  }
 }
 
 /**--------------------------------------------------------------------------**/

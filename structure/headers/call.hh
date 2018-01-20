@@ -15,19 +15,19 @@ class Call : public Instruction {
 
 	private:
 		/**
-		 * nom de la methode a utiliser
-		 */
-		string nom;
-		/**
-		 * contient la liste d'appels (exemple : a.b.method(), donc contient a et b)
+		 * contient la liste d'appels (exemple : a.b.method(), donc contient a et b et method)
 		 */
 		vector<string> objs;
 		vector<Expression*> params;
 
 	public:
-		Call(string n, vector<string> c, vector<Expression*> p);
+		Call(vector<string> c, vector<Expression*> p);
 		~Call();
-		inline string getName() { return nom; }
+		/**
+		 * retourne le nom de la fonction (en derniere position)
+		 * @return le nom de la fonction (en derniere position)
+		 */
+		string getName();
 		inline vector<string> getObjs() { return objs; }
 		inline vector<Expression*> getParams() { return params; }
 		void visit(Visitor& visitor);

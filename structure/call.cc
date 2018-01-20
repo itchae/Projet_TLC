@@ -1,8 +1,8 @@
 #include "headers/call.hh"
 
 /**--------------------------------------------------------------------------**/
-Call::Call(string n, vector<string> c, vector<Expression*> p)
-	: nom(n), objs(c), params(p)
+Call::Call(vector<string> c, vector<Expression*> p)
+	: objs(c), params(p)
 {
 }
 
@@ -12,6 +12,15 @@ Call::~Call() {
 	  delete params.back();
 	  params.pop_back();
   }
+}
+
+/**--------------------------------------------------------------------------**/
+string Call::getName() {
+ if (objs.size()>0){
+	 return objs[objs.size()-1];
+ }else{
+	 return "";
+ }
 }
 
 /**--------------------------------------------------------------------------**/

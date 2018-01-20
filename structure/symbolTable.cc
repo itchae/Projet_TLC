@@ -69,7 +69,7 @@ Variable* SymbolTable::findVar(vector<string> s){
   if (tmp==NULL) throw invalid_argument("variable inexistante");
   //on cherche dans la variable tmp une autre variable du nom de s[i]
   int i=1;
-  while (i<s.size()){
+  while (i<s.size()-1){
     Object* obj = dynamic_cast<Object*>(tmp);
     if (obj==NULL) throw invalid_argument("objet inexistant");
     tmp = obj->getVar(s[i]);

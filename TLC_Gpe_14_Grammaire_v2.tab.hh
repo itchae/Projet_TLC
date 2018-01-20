@@ -97,9 +97,8 @@ union YYSTYPE
 		Method* meth;
 		Data* data;
     Decl* decl;
-    Call* call;
 
-#line 103 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
+#line 102 "TLC_Gpe_14_Grammaire_v2.tab.hh" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

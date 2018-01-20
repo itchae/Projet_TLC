@@ -42,8 +42,9 @@ void Interpretor::visitFonction(Fonction *f){
 /**--------------------------------------------------------------------------**/
 void Interpretor::visitCall(Call *c){
   SymbolTable& symbol = SymbolTable::Instance();
+  vector<string> vec = c->getObjs();
   //on cherche la variable dans la table des symboles
-  Variable* v = symbol.findVar(c->getObjs());
+  Variable* v = symbol.findVar(vec);
   if (v==NULL) throw invalid_argument("la variable n'existe pas");
   //si c'est la methode print
   if (c->getName().compare("print")==0){

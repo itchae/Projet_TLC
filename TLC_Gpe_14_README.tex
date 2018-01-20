@@ -87,7 +87,7 @@
 	\end{lstlisting}
 	Dans le programme principal, les méthodes de cette classe pourront donc être appelées grâce à la classe Call qui contiendra toutes les informations relatives à l'appel. Ensuite l'interpréteur cherchera l'objet dans la table des symboles et à partir de celui-ci on pourra accéder à la méthode de sa classe et donc exécuter l'instruction.
 	\section{Choix de structuration}
-	Pour la structuration, la grammaire va lire instruction par instruction comme détaillé précédemment. Les classes seront donc regroupés en plusieurs classes "majeures" Classe, Expression et Instruction. Les autres classes sont des spécificités de celles-ci et héritent donc de ces dernières. Beaucoup de vector sont utilisés dans la grammaire pour stocker les paramètres de certaines classes qui nécessitent un nombre non limité de paramètres, par exemple les paramètres d'une méthode.
+	Pour la structuration, les fichiers contenant la grammaire sont contenus dans le répertoire principale, tandis que notre structure se trouve donc dans le répertoire structure (les headers (fichiers .hh) sont dans le dossier headers). La grammaire va lire instruction par instruction comme détaillé précédemment. Ces instructions seront dans un Bloc qui permet de lire les instructions dans le bon sens. Les classes seront donc regroupés en plusieurs classes "majeures" Classe, Expression et Instruction. Les autres classes sont des spécificités de celles-ci et héritent donc de ces dernières. Beaucoup de vector sont utilisés dans la grammaire pour stocker les paramètres de certaines classes qui nécessitent un nombre non limité de paramètres, par exemple les paramètres d'une méthode.
 	\section{Jeux d'essais}
 	\begin{table}[!h]
 		\begin{center}

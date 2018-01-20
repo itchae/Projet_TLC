@@ -12,6 +12,12 @@ void Interpretor::visitDecl(Decl *d){
 }
 
 /**--------------------------------------------------------------------------**/
+void Interpretor::visitDeclClass(DeclClass *c){
+  SymbolTable& symbol = SymbolTable::Instance();
+  symbol.addClass(c->getClass());
+}
+
+/**--------------------------------------------------------------------------**/
 void Interpretor::visitAffect(Affect *a){
   SymbolTable& symbol = SymbolTable::Instance();
   if (a->getVars().size()>0){
@@ -38,7 +44,6 @@ void Interpretor::visitCall(Call *c){
   SymbolTable& symbol = SymbolTable::Instance();
   //on cherche la variable dans la table des symboles
   Variable* v = symbol.findVar(c->getObjs());
-  cout<<"test"<<endl;
   if (v==NULL) throw invalid_argument("la variable n'existe pas");
   //si c'est la methode print
   if (c->getName().compare("print")==0){

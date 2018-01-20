@@ -17,7 +17,7 @@ class DeclClass : public Instruction {
   public:
     DeclClass(Class* c);
     ~DeclClass();
-    inline const Class* getClass() const { return classe; }
+    inline Class* getClass() { return classe; }
     void visit(Visitor& visitor);
 
 };

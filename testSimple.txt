@@ -1,5 +1,6 @@
 class blabla is
-end blabla;
+ end blabla;
 ite is integer;
 ite :=2;
+ite :=4;
 ite.print();

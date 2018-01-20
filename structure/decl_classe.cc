@@ -11,5 +11,5 @@ DeclClass::~DeclClass() {
 
 /**--------------------------------------------------------------------------**/
 void DeclClass::visit(Visitor& visitor) {
-  //return visitor.visitDecl(this);
+  return visitor.visitDeclClass(this);
 }

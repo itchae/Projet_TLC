@@ -8,6 +8,7 @@
 #include "visitor.hh"
 #include "voidFonction.hh"
 #include "bloc.hh"
+#include "decl_classe.hh"
 #include "var.hh"
 
 using namespace std;
@@ -22,6 +23,7 @@ class Interpretor : public Visitor{
     void visitFonction(Fonction *f);
     void visitCall(Call *c);
     void visitBloc(Bloc *b);
+    void visitDeclClass(DeclClass *c);
 
 };
 

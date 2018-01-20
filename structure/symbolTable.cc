@@ -62,8 +62,9 @@ void SymbolTable::addVar(Variable* v){
 /**--------------------------------------------------------------------------**/
 Variable* SymbolTable::findVar(vector<string> s){
   Variable* tmp = NULL;
+  if (s.size()==0) return tmp;
   for (int i=0; i<vars.size(); i++){
-    if (vars[i]->getName().compare(s[i])==0) tmp = vars[i];
+    if (vars[i]->getName().compare(s[0])==0) tmp = vars[i];
   }
   if (tmp==NULL) throw invalid_argument("variable inexistante");
   //on cherche dans la variable tmp une autre variable du nom de s[i]

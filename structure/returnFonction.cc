@@ -37,3 +37,13 @@ string ReturnFonction::getType() const {
 void ReturnFonction::visit(Visitor& visitor) {
   //return visitor.visitFonc(this);
 }
+
+ReturnFonction::~ReturnFonction(){
+	while (params.size()>0){
+	  delete params.back();
+	 	params.pop_back();
+  }
+	if(expr!=NULL){
+		delete expr; 
+	}
+}

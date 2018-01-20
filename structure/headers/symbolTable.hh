@@ -6,6 +6,7 @@
 #include "class.hh"
 #include "var.hh"
 #include "expr.hh"
+#include "fonc.hh"
 #include "object.hh"
 #include "returnFonction.hh"
 #include <iostream>
@@ -63,6 +64,13 @@ class SymbolTable  {
 		 * @return la variable correspondant au nom sinon renvoie NULL
 		 */
 		Variable* findVar(vector<string> s);
+
+		/**
+		 * Renvoie la Fonction correspondant au nom sinon renvoie NULL
+		 * @param  s le nom de la classe que l'on cherche
+		 * @return la Fonction correspondant au nom sinon renvoie NULL
+		 */
+		Fonction* findFonction(vector<string> s);
 
 		/**
 		 * Renvoie le resultat d'une fonction de type return fonction

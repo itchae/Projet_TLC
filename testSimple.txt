@@ -1,7 +1,10 @@
 class blabla is
- end blabla;
+ 
+data
+a is integer;
+end blabla;
 ite is integer;
 ite :=2;
 ite.print();
-ite :=4;
+ite :=4+8;
 ite.print();

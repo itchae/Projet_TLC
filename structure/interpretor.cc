@@ -43,6 +43,32 @@ void Interpretor::visitFonction(Fonction *f){
 void Interpretor::visitCall(Call *c){
   SymbolTable& symbol = SymbolTable::Instance();
   vector<string> vec = c->getObjs();
+  //si c'est la methode print
+  if (c->getName().compare("print")==0){
+    //on cherche la variable dans la table des symboles
+    vec.pop_back();
+    Variable* v = symbol.findVar(vec);
+    if (v==NULL) throw invalid_argument("la variable n'existe pas");
+    v->print();
+  }else{
+    //sinon il faut chercher la methode dans la classe
+    Fonction* f = symbol.findFonction(vec);
+    if (f==NULL) throw invalid_argument("la methode n'est pas un reconnue");
+    f->visit(*this);
+  }
+}
+
+/**--------------------------------------------------------------------------**/
+void Interpretor::visitBloc(Bloc *b){
+  for (int i=0; i<b->getInsts().size(); i++){
+    b->getInsts()[i]->visit(*this);
+  }
+}
+
+/**--------------------------------------------------------------------------**/
+void Interpretor::visitCallExp(CallExp *c){
+  SymbolTable& symbol = SymbolTable::Instance();
+  vector<string> vec = c->getObjs();
   //on cherche la variable dans la table des symboles
   Variable* v = symbol.findVar(vec);
   if (v==NULL) throw invalid_argument("la variable n'existe pas");
@@ -56,12 +82,5 @@ void Interpretor::visitCall(Call *c){
     Fonction* f = obj->getFonction(c->getName());
     if (f==NULL) throw invalid_argument("la methode n'est pas un reconnue");
     f->visit(*this);
-  }
-}
-
-/**--------------------------------------------------------------------------**/
-void Interpretor::visitBloc(Bloc *b){
-  for (int i=0; i<b->getInsts().size(); i++){
-    b->getInsts()[i]->visit(*this);
   }
 }

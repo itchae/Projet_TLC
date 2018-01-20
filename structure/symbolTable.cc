@@ -69,7 +69,7 @@ Variable* SymbolTable::findVar(vector<string> s){
   if (tmp==NULL) throw invalid_argument("variable inexistante");
   //on cherche dans la variable tmp une autre variable du nom de s[i]
   int i=1;
-  while (i<s.size()-1){
+  while (i<s.size()){
     Object* obj = dynamic_cast<Object*>(tmp);
     if (obj==NULL) throw invalid_argument("objet inexistant");
     tmp = obj->getVar(s[i]);
@@ -79,12 +79,34 @@ Variable* SymbolTable::findVar(vector<string> s){
 }
 
 /**--------------------------------------------------------------------------**/
+Fonction* SymbolTable::findFonction(vector<string> s){
+  Variable* tmp = NULL;
+  if (s.size()==0) return NULL;
+  for (int i=0; i<vars.size(); i++){
+    if (vars[i]->getName().compare(s[0])==0) tmp = vars[i];
+  }
+  if (tmp==NULL) throw invalid_argument("variable inexistante");
+  //on cherche dans la variable tmp une autre variable du nom de s[i]
+  int i=1;
+  while (i<s.size()-1){
+    Object* obj = dynamic_cast<Object*>(tmp);
+    if (obj==NULL) throw invalid_argument("objet inexistant");
+    tmp = obj->getVar(s[i]);
+    if (tmp==NULL) throw invalid_argument("variable inexistante");
+  }
+  Object* obj = dynamic_cast<Object*>(tmp);
+  if (obj==NULL) throw invalid_argument("variable pas de type objet");
+  Fonction* f = obj->getFonction(s[s.size()-1]);
+  return f;
+}
+
+/**--------------------------------------------------------------------------**/
 Expression* SymbolTable::resultOfReturnFonction(vector<string> s, vector<Expression*> e){
   //le vector s contient les noms des variables, exemple si c'est var.v, il contient var puis v
   //on cherche donc si la premiere variable est présente dans la table des symboles
   Variable* tmp = NULL;
   for (int i=0; i<vars.size(); i++){
-    if (vars[i]->getName().compare(s[i])==0) tmp = vars[i];
+    if (vars[i]->getName().compare(s[0])==0) tmp = vars[i];
   }
   if (tmp==NULL) throw invalid_argument("variable inexistante");
   //on cherche dans la variable tmp une autre variable du nom de s[i]

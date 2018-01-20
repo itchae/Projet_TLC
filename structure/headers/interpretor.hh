@@ -10,6 +10,7 @@
 #include "bloc.hh"
 #include "decl_classe.hh"
 #include "var.hh"
+#include "callExp.hh"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ class Interpretor : public Visitor{
     void visitCall(Call *c);
     void visitBloc(Bloc *b);
     void visitDeclClass(DeclClass *c);
+    void visitCallExp(CallExp *c);
 
 };
 

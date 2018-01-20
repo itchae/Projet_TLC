@@ -156,5 +156,6 @@ Expression* Operator::calculOperation(){
 }
 
 void Operator::print(){
-  cout<<symbol<<endl;
+  Expression* exp = calculOperation();
+  if (exp!=NULL) exp->print();
 }

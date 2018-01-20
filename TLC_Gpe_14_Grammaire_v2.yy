@@ -78,7 +78,7 @@
 %token T_PLEFT T_PRIGHT T_COMMA T_POINT T_COLON T_SEMICOLON T_ASSIGNMENT
 %token T_CLASS T_EXTENDS T_DATA T_IS T_METHOD T_RETURN T_END
 
-%type<exp> expression callExp
+%type<exp> expression
 %type<data> data
 %type<meth> method
 %type<inst> instruction
@@ -104,7 +104,7 @@ bloc   :  instruction T_SEMICOLON bloc  {insts.insert(insts.begin(),$1);}
        ;
 
 /* Definit les instructions possibles */
-instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(toString($1),$3);}
+instruction : call T_ASSIGNMENT expression		                  {$$ = new Affect(vars,$3); vars.clear(); exprs.clear();}
 	  	      | T_PLEFT assignment T_PRIGHT 			                {$$ = new Affect(vars,exprs);
                                                                   vars.clear();
                                                                   exprs.clear();}
@@ -116,16 +116,17 @@ instruction : T_NAME T_ASSIGNMENT expression		                {$$ = new Affect(t
 /**
 * renvoie la variable ou methode utilisee
 */
-call  : T_NAME T_PLEFT paramUtil T_PRIGHT   { vars.insert(vars.begin(),$1); }
-      | T_NAME T_PLEFT T_PRIGHT             { vars.insert(vars.begin(),$1); }
-      | T_NAME T_POINT call                 { vars.insert(vars.begin(),$1); }
+call  : T_NAME T_PLEFT paramUtil T_PRIGHT   { vars.insert(vars.begin(),toString($1)); }
+      | T_NAME T_PLEFT T_PRIGHT             { vars.insert(vars.begin(),toString($1)); }
+      | T_NAME T_POINT call                 { vars.insert(vars.begin(),toString($1)); }
+      | T_NAME                              { vars.insert(vars.begin(),toString($1)); }
       ;
 
 /**
 * parametres pour utiliser une methode, exemple : fonction(1,h) les parametres sont 1 et h
 */
-paramUtil : expression T_COMMA paramUtil             {exprs.push_back($1);}
-          | expression                               {exprs.push_back($1);}
+paramUtil : expression T_COMMA paramUtil             {exprs.insert(exprs.begin(),$1);}
+          | expression                               {exprs.insert(exprs.begin(),$1);}
           ;
 
 /* signature de la classe */
@@ -142,7 +143,7 @@ data : T_DATA declaration  								{$$ = new Data(params); params.clear();}
      ;
 
 /* Déclarations des variables */
-declaration : T_NAME T_IS type T_SEMICOLON declaration 	  {Decl* d = new Decl(toString($1),toString($3)); params.push_back(d);}
+declaration : T_NAME T_IS type T_SEMICOLON declaration 	  {Decl* d = new Decl(toString($1),toString($3)); params.insert(params.begin(),d);}
             | 																					  {}
             ;
 
@@ -154,18 +155,18 @@ method : T_METHOD fonction 								{$$ = new Method(fonctions); fonctions.clear(
 /* Signatures des fonctions */
 fonction : T_NAME T_PLEFT parametre T_PRIGHT T_IS instruction T_SEMICOLON fonction 	          {VoidFonction* v = new VoidFonction(toString($1),params,$6);
                                                                                                 params.clear();
-                                                                                                fonctions.push_back(v); }
+                                                                                                fonctions.insert(fonctions.begin(),v); }
          | T_NAME T_PLEFT parametre T_PRIGHT T_IS T_RETURN expression T_SEMICOLON fonction    {ReturnFonction* r = new ReturnFonction(toString($1),params,$7);
                                                                                                 params.clear();
-                                                                                                fonctions.push_back(r);}
+                                                                                                fonctions.insert(fonctions.begin(),r);}
          |                                                                                    {}
          ;
 
 /* Paramètres de la fonction */
 parametre : T_NAME T_COLON type T_COMMA parametre 		{ Decl* d = new Decl(toString($1),toString($3));
-                                                          params.push_back(d);}
+                                                          params.insert(params.begin(),d);}
 		  		| T_NAME T_COLON type  											{ Decl* d = new Decl(toString($1),toString($3));
-                                                          params.push_back(d);}
+                                                          params.insert(params.begin(),d);}
           | 																					  {}
           ;
 
@@ -186,10 +187,10 @@ type : T_TYPEBOOLEAN														{string str = "boolean";
  	   ;
 
 /* Affectations multiples (ex : (x,y):=(1,2) */
-assignment : T_NAME T_COMMA assignment T_COMMA expression						{vars.push_back(toString($1));
-                                                                      exprs.insert(exprs.begin(),$5);}
-		   		 | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression				{vars.push_back(toString($1));
-                                                                      exprs.insert(exprs.begin(),$5);}
+assignment : T_NAME T_COMMA assignment T_COMMA expression						{vars.insert(vars.begin(),toString($1));
+                                                                      exprs.push_back($5);}
+		   		 | T_NAME T_PRIGHT T_ASSIGNMENT T_PLEFT expression				{vars.insert(vars.begin(),toString($1));
+                                                                       exprs.push_back($5);}
 		   		 ;
 
 /**
@@ -210,29 +211,27 @@ expression : expression T_PLUS expression 				                   {$$ = new Opera
            | T_INTEGER 														                   {$$ = new Integer($1);}
            | T_FLOAT 															                   {$$ = new Float($1);}
 		   		 | T_BOOLEAN													                     {$$ = new Boolean($1);}
-           | callExp                                                 {$$ = $1;}
+           | callExp                                                 {Variable* v = symbol.findVar(vars);
+                                                                       if (v==NULL){
+                                                                         yyerror("variable inexistante");
+                                                                       }else{
+                                                                        $$=v;
+                                                                       }}
            ;
 
 /**
  * renvoie la variable ou le resultat de la ReturnFonction
  */
-callExp  : T_NAME T_PLEFT paramUtil T_PRIGHT { vars.push_back(toString($1));
+callExp  : T_NAME T_PLEFT paramUtil T_PRIGHT { vars.insert(vars.begin(),toString($1));
                                                Expression* exp = symbol.resultOfReturnFonction(vars, exprs);
                                                if (exp==NULL){
                                                  yyerror("methode inexistante");
-                                               }else{
-                                                 $$ = exp;
                                                }
                                                exprs.clear(); vars.clear();}
-      | T_NAME                              {vars.push_back(toString($1));
-                                               Variable* v = symbol.findVar(vars);
-                                               if (v==NULL){
-                                                 yyerror("variable inexistante");
-                                               }else{
-                                                 $$ = v;
-                                               }
+      | T_NAME                              {vars.insert(vars.begin(),toString($1));
+
                                                exprs.clear(); vars.clear();}
-      | T_NAME T_POINT callExp             {vars.push_back($1); $$ = $3;}
+      | T_NAME T_POINT callExp             {vars.insert(vars.begin(),$1);}
       ;
 
 %%

@@ -1,17 +1,16 @@
-#ifndef _CALL_H
-#define _CALL_H
+#ifndef _CALLEXP_H
+#define _CALLEXP_H
 
 #include <vector>
 #include <string>
 #include "expr.hh"
-#include "inst.hh"
 
 using namespace std;
 
 /**
- * Classe permettant de stocker les informations relatives a un appel de fonction void
+ * Classe permettant de stocker les informations relatives a un appel de fonction return ou alors un appel d'attribut
  */
-class Call : public Instruction {
+class CallExp : public Expression {
 
 	private:
 		/**
@@ -21,8 +20,8 @@ class Call : public Instruction {
 		vector<Expression*> params;
 
 	public:
-		Call(vector<string> c, vector<Expression*> p);
-		~Call();
+		CallExp(vector<string> c, vector<Expression*> p);
+		~CallExp();
 		/**
 		 * retourne le nom de la fonction (en derniere position)
 		 * @return le nom de la fonction (en derniere position)

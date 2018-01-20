@@ -8,6 +8,7 @@ class Decl;
 class Affect;
 class Fonction;
 class Call;
+class CallExp;
 class DeclClass;
 
 class Visitor {
@@ -19,6 +20,7 @@ class Visitor {
     virtual void visitCall(Call *c)=0;
     virtual void visitBloc(Bloc *b)=0;
     virtual void visitDeclClass(DeclClass *c)=0;
+    virtual void visitCallExp(CallExp *c)=0;
 
 };
 

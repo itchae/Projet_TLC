@@ -23,8 +23,7 @@ class Affect : public Instruction {
     bool memeType(vector<string> v, vector<Expression*> e);
 
   public:
-    Affect(string v, vector<Expression*> e);
-    Affect(string v, Expression* e);
+    Affect(vector<string> v, Expression* e);
     Affect(vector<string> v, vector<Expression*> e);
     ~Affect();
     bool operator==(Affect* rhs);

@@ -16,6 +16,9 @@ Object::~Object() {
   for (int i=0; i<vars.size(); i++){
     delete vars[i];
   }
+  if(classe!=NULL){
+    delete classe; 
+  }
 }
 
 //--------------------------------------------------------------------------//
